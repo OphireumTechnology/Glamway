@@ -105,6 +105,13 @@ export const ServicesSection: React.FC = () => {
         {/* Ambient Subtle Background Texture */}
         <div className="absolute inset-0 bg-[radial-gradient(#C6A667_1px,transparent_1px)] [background-size:28px_28px] opacity-15 pointer-events-none" />
         
+        {/* Subtle Floating Pearl Particles & Ambient Light Trails */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+          <div className="absolute top-1/4 left-[15%] w-2 h-2 rounded-full bg-[#C6A667]/40 blur-[1px] animate-particle-1" />
+          <div className="absolute top-2/3 right-[18%] w-2.5 h-2.5 rounded-full bg-[#F5D6DE]/60 blur-[1px] animate-particle-2" />
+          <div className="absolute bottom-1/4 left-[35%] w-1.5 h-1.5 rounded-full bg-[#C6A667]/50 blur-[0.5px] animate-particle-3" />
+        </div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-center space-y-4">
           <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#C6A667] font-semibold bg-white/90 border border-[#C6A667]/35 px-4 py-1.5 rounded-full shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-[#8E4B63]" />
@@ -198,7 +205,7 @@ export const ServicesSection: React.FC = () => {
                 {groupServices.map(service => (
                   <div
                     key={service.id}
-                    className="group bg-white border border-[#C6A667]/30 rounded-xs overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:border-[#8E4B63]/60 hover:-translate-y-1"
+                    className="group bg-white border border-[#C6A667]/30 rounded-xs overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:border-[#8E4B63]/60 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none relative"
                   >
                     
                     {/* Large Premium Service Photograph */}
@@ -206,15 +213,15 @@ export const ServicesSection: React.FC = () => {
                       <img
                         src={service.image}
                         alt={`The Glamway - ${service.name}`}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 motion-reduce:group-hover:scale-100"
                         loading="lazy"
                       />
                       
                       {/* Gradient Ambient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#3B2A28]/70 via-transparent to-transparent opacity-50 group-hover:opacity-30 transition-opacity" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#3B2A28]/70 via-transparent to-transparent opacity-45 group-hover:opacity-30 transition-opacity" />
 
                       {/* Duration Badge with Clock */}
-                      <div className="absolute top-3.5 right-3.5 bg-black/70 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full border border-white/20 flex items-center gap-1.5 font-medium shadow-sm">
+                      <div className="absolute top-3.5 right-3.5 bg-black/75 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full border border-white/20 flex items-center gap-1.5 font-medium shadow-sm">
                         <Clock className="w-3.5 h-3.5 text-[#C6A667]" />
                         <span>{service.durationMinutes} minutes</span>
                       </div>
@@ -229,7 +236,7 @@ export const ServicesSection: React.FC = () => {
                     <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
                       
                       <div className="space-y-2.5">
-                        <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#3B2A28] group-hover:text-[#8E4B63] transition-colors leading-snug">
+                        <h3 className="font-serif text-[21px] sm:text-[23px] font-bold text-[#3B2A28] group-hover:text-[#8E4B63] transition-colors leading-snug">
                           {service.name}
                         </h3>
 
@@ -239,7 +246,7 @@ export const ServicesSection: React.FC = () => {
                           </div>
                         )}
 
-                        <p className="text-[15px] sm:text-base text-[#3B2A28]/85 leading-relaxed font-light">
+                        <p className="text-[15px] sm:text-[16px] text-[#3B2A28]/85 leading-relaxed font-light">
                           {service.description}
                         </p>
                       </div>
@@ -248,7 +255,7 @@ export const ServicesSection: React.FC = () => {
                       <div className="pt-5 border-t border-[#C6A667]/20">
                         <button
                           onClick={() => openBookingModal(service.id)}
-                          className="w-full py-3.5 px-4 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs sm:text-sm uppercase tracking-[0.16em] font-semibold transition-all flex items-center justify-center gap-2 rounded-xs shadow-sm border border-[#C6A667]/40 hover:shadow-md"
+                          className="w-full py-3.5 px-4 bg-[#8E4B63] hover:bg-[#70374C] text-white text-sm uppercase tracking-[0.16em] font-semibold transition-all flex items-center justify-center gap-2 rounded-xs shadow-sm border border-[#C6A667]/40 hover:shadow-md active:scale-[0.99]"
                         >
                           <Calendar className="w-4 h-4 text-[#C6A667]" />
                           <span>Book Appointment</span>

@@ -119,8 +119,8 @@ export const FeaturedServices: React.FC = () => {
               {/* Service Card Body */}
               <div className="p-6 flex-1 flex flex-col justify-between space-y-5">
                 <div className="space-y-2.5">
-                  <div className="text-xs text-[#8E4B63] font-semibold italic">
-                    "{card.tagline}"
+                  <div className="text-xs text-[#8E4B63] font-semibold">
+                    {card.tagline}
                   </div>
                   <p className="text-xs text-[#3B2A28]/85 leading-relaxed font-light">
                     {card.description}
@@ -252,8 +252,8 @@ export const FeaturedServices: React.FC = () => {
                         <div className="font-serif text-lg font-semibold text-[#3B2A28]">
                           {srv.name}
                         </div>
-                        <div className="text-xs text-[#8E4B63] italic">
-                          "{srv.tagline}"
+                        <div className="text-xs text-[#8E4B63]">
+                          {srv.tagline}
                         </div>
                         <p className="text-xs text-[#3B2A28]/80 max-w-md">
                           {srv.description}
