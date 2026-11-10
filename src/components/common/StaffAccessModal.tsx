@@ -18,19 +18,7 @@ export const StaffAccessModal: React.FC<StaffAccessModalProps> = ({ isOpen, onCl
 
   const handleAccess = (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-
-    // Simple security validation for demonstration & authorized staff verification
-    if (selectedTarget === 'branch') {
-      setSelectedBranchId(targetBranchId);
-      setUserRole('branch_manager');
-      setCurrentView('branch-console');
-      onClose();
-    } else {
-      setUserRole('corporate_admin');
-      setCurrentView('corporate-dashboard');
-      onClose();
-    }
+    setError('Staff access is unavailable until secure server-side authentication is configured.');
   };
 
   return (
@@ -130,11 +118,11 @@ export const StaffAccessModal: React.FC<StaffAccessModalProps> = ({ isOpen, onCl
               type="password"
               value={pinCode}
               onChange={(e) => setPinCode(e.target.value)}
-              placeholder="Enter passcode (e.g. 2026 for demo)"
+              placeholder="Staff access temporarily unavailable"
               className="w-full text-xs p-2.5 bg-white border border-[#C6A667]/40 rounded-xs text-[#3B2A28] focus:outline-none focus:border-[#8E4B63]"
             />
             <div className="text-[10px] text-[#A98F86]">
-              Authorized personnel enter your employee ID or click continue.
+              Secure staff sign-in is not yet available.
             </div>
           </div>
 
@@ -152,7 +140,7 @@ export const StaffAccessModal: React.FC<StaffAccessModalProps> = ({ isOpen, onCl
           <div className="pt-1 text-center">
             <span className="text-[10px] text-[#A98F86] flex items-center justify-center gap-1">
               <ShieldCheck className="w-3 h-3 text-[#C6A667]" />
-              <span>North Carolina Board of Cosmetic Art Sciences Security Standard</span>
+              <span>Staff access requires verified authentication and authorization</span>
             </span>
           </div>
         </form>
