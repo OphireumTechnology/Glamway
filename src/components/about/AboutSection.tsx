@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { GLAMWAY_LOGO, FOUNDER_INFO } from '../../data/salonData';
+import { FOUNDER_INFO } from '../../data/salonData';
+import { GlamwayLogo } from '../common/GlamwayLogo';
 import { Sparkles, Calendar, ArrowRight, CheckCircle2, GraduationCap, MapPin } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
@@ -50,9 +51,8 @@ export const AboutSection: React.FC = () => {
                 </div>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-[#FFF9F4] p-3 border border-[#C6A667]/40 rounded-xs shadow-lg max-w-[170px] hidden sm:block">
-                <img
-                  src={GLAMWAY_LOGO}
-                  alt="The Glamway Beauty Salon"
+                <GlamwayLogo
+                  size="sm"
                   className="w-full h-auto object-contain"
                 />
               </div>

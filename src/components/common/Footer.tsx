@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { GLAMWAY_LOGO } from '../../data/salonData';
+import { GlamwayLogo } from './GlamwayLogo';
 import { Sparkles, MapPin, Phone, Mail, Calendar, ArrowRight } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -16,11 +16,7 @@ export const Footer: React.FC = () => {
           {/* Section 1: Company (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex flex-col items-start gap-3">
-              <img 
-                src={GLAMWAY_LOGO} 
-                alt="The Glamway Beauty Salon" 
-                className="h-24 sm:h-28 w-auto max-w-full object-contain"
-              />
+              <GlamwayLogo variant="dark" size="lg" />
               <div className="text-[11px] uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
                 Charlotte, North Carolina
               </div>
@@ -130,7 +126,7 @@ export const Footer: React.FC = () => {
               Appointments
             </div>
             <p className="text-xs text-[#FFF9F4]/85 leading-relaxed font-light">
-              Browse our services and contact the salon for current appointment availability. Online reservation confirmation is temporarily unavailable.
+              Appointments are reserved online in advance for private treatment suites at our Charlotte locations or via scheduled house calls.
             </p>
             <button
               onClick={() => openBookingModal()}
@@ -141,7 +137,7 @@ export const Footer: React.FC = () => {
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
             <p className="text-[11px] text-[#A98F86]">
-              Appointments are not confirmed through this website until secure online booking is restored.
+              All reservations are confirmed through official salon coordination.
             </p>
           </div>
 

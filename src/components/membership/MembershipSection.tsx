@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { MEMBERSHIP_TIERS, GLAMWAY_ICON } from '../../data/salonData';
+import { MEMBERSHIP_TIERS } from '../../data/salonData';
+import { GlamwayCrownIcon } from '../common/GlamwayLogo';
 import { Crown, Check, QrCode } from 'lucide-react';
 
 export const MembershipSection: React.FC = () => {
@@ -70,11 +71,7 @@ export const MembershipSection: React.FC = () => {
 
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <img 
-                  src={GLAMWAY_ICON} 
-                  alt="The Glamway Icon" 
-                  className="w-7 h-7 object-contain"
-                />
+                <GlamwayCrownIcon size={28} />
                 <span className="font-serif text-lg tracking-[0.15em] uppercase font-bold text-[#3B2A28]">
                   THE GLAMWAY
                 </span>
@@ -85,7 +82,7 @@ export const MembershipSection: React.FC = () => {
             </div>
 
             <div className="text-[10px] uppercase tracking-[0.2em] font-semibold text-[#8E4B63]">
-              BEAUTY SALON · FOR WOMEN · NC
+              BEAUTY SALON · CHARLOTTE, NC
             </div>
 
             <div className="flex items-center justify-between pt-2">

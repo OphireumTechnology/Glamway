@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { GLAMWAY_ICON } from '../../data/salonData';
+import { GlamwayCrownIcon } from '../common/GlamwayLogo';
 import { Sparkles, X, Send, Bot, User, Calendar, ShieldAlert } from 'lucide-react';
 
 interface ChatMessage {
@@ -87,11 +87,7 @@ export const BeautyConciergeModal: React.FC = () => {
         {/* Header */}
         <div className="bg-[#3B2A28] text-white px-6 py-4 flex items-center justify-between border-b border-[#C6A667]/30">
           <div className="flex items-center gap-3">
-            <img 
-              src={GLAMWAY_ICON} 
-              alt="The Glamway Icon" 
-              className="w-8 h-8 object-contain"
-            />
+            <GlamwayCrownIcon size={32} />
             <div>
               <div className="font-serif text-lg font-semibold tracking-wide flex items-center gap-2">
                 <span>The Glamway Concierge</span>
@@ -100,7 +96,7 @@ export const BeautyConciergeModal: React.FC = () => {
                 </span>
               </div>
               <div className="text-[11px] text-[#C6A667]">
-                North Carolina Branches · FOR WOMEN · Eastern Time (America/New_York)
+                Charlotte, NC · Luxury Beauty Salon · Eastern Time (America/New_York)
               </div>
             </div>
           </div>

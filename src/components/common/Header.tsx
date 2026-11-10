@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { GLAMWAY_LOGO } from '../../data/salonData';
+import { GlamwayLogo } from './GlamwayLogo';
 import { User, Menu, X, Shield, Calendar, LogOut } from 'lucide-react';
 import { StaffAccessModal } from './StaffAccessModal';
 
@@ -51,17 +51,13 @@ export const Header: React.FC = () => {
       <header className="sticky top-0 z-40 bg-[#FFF9F4]/95 backdrop-blur-md border-b border-[#C6A667]/25 transition-all shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 sm:h-22 flex items-center justify-between gap-4 lg:gap-6">
           
-          {/* Official Glamway Logo */}
+          {/* Official Glamway Logo (~110-140px on desktop, ~85-105px on mobile) */}
           <button 
             onClick={() => handleNavClick('home')}
-            className="flex items-center shrink-0 hover:opacity-95 transition-opacity text-left focus:outline-none"
+            className="flex items-center shrink-0 hover:opacity-95 transition-opacity text-left focus:outline-none py-1"
             aria-label="The Glamway - Home"
           >
-            <img
-              src={GLAMWAY_LOGO}
-              alt="The Glamway Beauty Salon - Charlotte, NC"
-              className="h-14 sm:h-16 w-auto object-contain max-w-[190px] sm:max-w-[220px]"
-            />
+            <GlamwayLogo size="md" priority />
           </button>
 
           {/* Center Navigation Bar */}
@@ -164,11 +160,7 @@ export const Header: React.FC = () => {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-[#C6A667]/25 bg-[#FFF9F4] px-6 py-6 space-y-4 animate-in fade-in duration-200">
             <div className="flex justify-center pb-2">
-              <img
-                src={GLAMWAY_LOGO}
-                alt="The Glamway Beauty Salon"
-                className="h-14 w-auto object-contain"
-              />
+              <GlamwayLogo size="sm" priority />
             </div>
 
             <div className="flex flex-col space-y-3 text-xs tracking-[0.18em] uppercase text-[#3B2A28]">

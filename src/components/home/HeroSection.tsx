@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { GLAMWAY_LOGO, HERO_IMAGE } from '../../data/salonData';
+import { HERO_IMAGE } from '../../data/salonData';
+import { GlamwayLogo } from '../common/GlamwayLogo';
 import { Calendar, MapPin, ArrowRight, Sparkles, Eye, Scissors, Sparkle, Droplets } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
@@ -199,9 +200,8 @@ export const HeroSection: React.FC = () => {
 
                 {/* Floating Official Brand Overlay Badge (Top Right) */}
                 <div className="absolute top-6 right-6 p-2.5 glass-panel rounded-xs shadow-xl max-w-[150px] z-20 border border-[#C6A667]/50">
-                  <img
-                    src={GLAMWAY_LOGO}
-                    alt="The Glamway Logo"
+                  <GlamwayLogo
+                    size="sm"
                     className="w-full h-auto object-contain"
                   />
                 </div>

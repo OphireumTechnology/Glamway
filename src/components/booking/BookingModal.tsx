@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { BEAUTY_SPECIALISTS, GLAMWAY_ICON } from '../../data/salonData';
+import { BEAUTY_SPECIALISTS } from '../../data/salonData';
+import { GlamwayCrownIcon } from '../common/GlamwayLogo';
 import { 
   X, Check, Clock, User, 
   MapPin, Sparkles, ChevronRight, ChevronLeft, ShieldCheck, AlertCircle
@@ -119,11 +120,7 @@ export const BookingModal: React.FC = () => {
         {/* Modal Top Bar */}
         <div className="bg-[#3B2A28] text-white px-6 py-4 flex items-center justify-between border-b border-[#C6A667]/30">
           <div className="flex items-center gap-3">
-            <img 
-              src={GLAMWAY_ICON} 
-              alt="The Glamway Crown" 
-              className="w-8 h-8 object-contain"
-            />
+            <GlamwayCrownIcon size={32} />
             <div>
               <div className="text-[10px] uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
                 The Glamway Appointment Scheduler · Step {step <= 6 ? step : 6} of 6
