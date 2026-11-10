@@ -61,15 +61,8 @@ export const SalonProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const [currentUser, setCurrentUser] = useState<UserProfile>({
-    id: 'usr-client-01',
-    name: 'Caroline Rutledge Pinckney',
-    email: 'caroline.pinckney@example.com',
-    phone: '+1 (843) 555-0192',
-    tier: 'Beauty Gold',
-    loyaltyPoints: 3450,
-    memberSince: 'March 2024',
-    preferredBranchId: 'branch-charleston',
-    savedLookCount: 4
+    id: 'guest', name: 'Guest', email: '', phone: '', tier: '',
+    loyaltyPoints: 0, memberSince: '', preferredBranchId: '', savedLookCount: 0
   });
 
   const showToast = (msg: string) => {
@@ -79,23 +72,8 @@ export const SalonProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }, 4000);
   };
 
-  const fetchAppointments = async () => {
-    try {
-      const res = await fetch('/api/appointments');
-      if (res.ok) {
-        const data = await res.json();
-        if (data.success && data.appointments) {
-          setAppointments(data.appointments);
-        }
-      }
-    } catch {
-      // In-browser mock fallback if offline
-    }
-  };
-
-  useEffect(() => {
-    fetchAppointments();
-  }, []);
+  // Appointment records must only be loaded after authenticated backend access is implemented.
+  // Never fetch other customers' bookings from a public page.
 
   const openBookingModal = (serviceId?: string, branchId?: string) => {
     setPreselectedServiceId(serviceId);
