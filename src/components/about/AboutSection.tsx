@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSalon } from '../../context/SalonContext';
 import { GLAMWAY_LOGO, FOUNDER_INFO } from '../../data/salonData';
-import { Sparkles, Calendar, ArrowRight, CheckCircle2, GraduationCap, ShoppingBag } from 'lucide-react';
+import { Sparkles, Calendar, ArrowRight, CheckCircle2, GraduationCap, MapPin } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   const { openBookingModal, setCurrentView } = useSalon();
@@ -26,7 +26,7 @@ export const AboutSection: React.FC = () => {
           </h1>
 
           <p className="text-base sm:text-lg text-[#3B2A28]/85 font-light leading-relaxed max-w-2xl mx-auto">
-            A one-stop beauty destination in Charlotte, North Carolina offering specialized eyelash extensions, hair care, structured nails, esthetician facials, beauty supplies, and professional lash training.
+            A one-stop beauty destination in Charlotte, North Carolina offering specialized eyelash extensions, hair care, structured nails, esthetician facials, and professional lash training.
           </p>
         </div>
       </section>
@@ -72,7 +72,7 @@ export const AboutSection: React.FC = () => {
             </p>
 
             <p className="text-sm sm:text-base text-[#3B2A28]/80 leading-relaxed font-light">
-              In addition to salon appointments, The Glamway operates a dedicated beauty supply line for lash technicians across the country and delivers hands-on lash certification courses for aspiring and practicing artists.
+              In addition to bespoke salon appointments, The Glamway delivers comprehensive hands-on lash certification courses for aspiring beauty entrepreneurs and practicing artists.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#C6A667]/20">
@@ -107,13 +107,13 @@ export const AboutSection: React.FC = () => {
         <div className="max-w-7xl mx-auto space-y-14">
           <div className="text-center max-w-2xl mx-auto space-y-3">
             <div className="text-xs uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
-              THE THREE DIVISIONS OF THE GLAMWAY
+              THE THREE CORE PILLARS
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl text-[#3B2A28]">
-              Services, Supplies &amp; Education
+              Services, Education &amp; Client Experience
             </h2>
             <p className="text-sm text-[#A98F86] font-light">
-              A comprehensive platform serving individual beauty clients and beauty professionals.
+              A comprehensive luxury beauty destination dedicated to exceptional client outcomes and professional growth.
             </p>
           </div>
 
@@ -140,29 +140,10 @@ export const AboutSection: React.FC = () => {
 
             <div className="p-8 bg-[#FFF9F4] border border-[#C6A667]/30 rounded-xs space-y-4">
               <div className="w-12 h-12 rounded-full bg-white border border-[#C6A667]/40 flex items-center justify-center text-[#8E4B63]">
-                <ShoppingBag className="w-5 h-5 text-[#C6A667]" />
-              </div>
-              <h3 className="font-serif text-xl font-bold text-[#3B2A28]">
-                2. Professional Beauty Retail
-              </h3>
-              <p className="text-xs sm:text-sm text-[#3B2A28]/80 leading-relaxed font-light">
-                Providing lash technicians with essential tools: 0.03 and 0.5 second adhesives, standard and XL lash trays in C, CC, and D curls, DIY lash kits, glue rings, mascara wands, and wholesale supplies.
-              </p>
-              <button
-                onClick={() => setCurrentView('boutique')}
-                className="text-xs text-[#8E4B63] font-semibold uppercase tracking-wider hover:underline flex items-center gap-1"
-              >
-                <span>Browse Shop</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-
-            <div className="p-8 bg-[#FFF9F4] border border-[#C6A667]/30 rounded-xs space-y-4">
-              <div className="w-12 h-12 rounded-full bg-white border border-[#C6A667]/40 flex items-center justify-center text-[#8E4B63]">
                 <GraduationCap className="w-5 h-5 text-[#C6A667]" />
               </div>
               <h3 className="font-serif text-xl font-bold text-[#3B2A28]">
-                3. Beauty Training Academy
+                2. Beauty Training Academy
               </h3>
               <p className="text-xs sm:text-sm text-[#3B2A28]/80 leading-relaxed font-light">
                 Structured courses for beauty professionals including the 4-hour Beginner Lash Tech Course and the 2-hour Advanced Volume Lashes Course, taught hands-on in Charlotte, NC.
@@ -172,6 +153,25 @@ export const AboutSection: React.FC = () => {
                 className="text-xs text-[#8E4B63] font-semibold uppercase tracking-wider hover:underline flex items-center gap-1"
               >
                 <span>Explore Courses</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            <div className="p-8 bg-[#FFF9F4] border border-[#C6A667]/30 rounded-xs space-y-4">
+              <div className="w-12 h-12 rounded-full bg-white border border-[#C6A667]/40 flex items-center justify-center text-[#8E4B63]">
+                <MapPin className="w-5 h-5 text-[#C6A667]" />
+              </div>
+              <h3 className="font-serif text-xl font-bold text-[#3B2A28]">
+                3. Charlotte Locations
+              </h3>
+              <p className="text-xs sm:text-sm text-[#3B2A28]/80 leading-relaxed font-light">
+                Two convenient physical branch locations in Charlotte, NC (Uptown on 4th Street and Graham on Lucena Street) providing private, sanitary treatment suites and welcoming care.
+              </p>
+              <button
+                onClick={() => setCurrentView('branches')}
+                className="text-xs text-[#8E4B63] font-semibold uppercase tracking-wider hover:underline flex items-center gap-1"
+              >
+                <span>View Locations</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

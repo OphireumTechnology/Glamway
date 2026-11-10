@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-xs text-[#FFF9F4]/80 font-light leading-relaxed max-w-sm">
-              Founded by licensed esthetician Summer Davis in Charlotte, NC. Offering specialized eyelash extensions, hair styling, structured nails, esthetician facials, lash supplies, and professional beauty training.
+              Founded by licensed esthetician Summer Davis in Charlotte, NC. Offering specialized eyelash extensions, hair styling, structured nails, esthetician facials, and professional beauty training.
             </p>
             <div className="pt-2 flex items-center gap-2 text-xs text-[#C6A667]">
               <Sparkles className="w-4 h-4" />
@@ -90,11 +90,6 @@ export const Footer: React.FC = () => {
               <li>
                 <button onClick={() => setCurrentView('branches')} className="hover:text-[#C6A667] transition-colors">
                   Charlotte Locations
-                </button>
-              </li>
-              <li>
-                <button onClick={() => setCurrentView('boutique')} className="hover:text-[#C6A667] transition-colors">
-                  Shop Lash Supplies
                 </button>
               </li>
               <li>

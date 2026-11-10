@@ -5,10 +5,9 @@ import { PlatformNavigation } from './components/common/PlatformNavigation';
 import { Footer } from './components/common/Footer';
 import { HeroSection } from './components/home/HeroSection';
 import { FeaturedServices } from './components/home/FeaturedServices';
+import { BeautyEducationFeature } from './components/home/BeautyEducationFeature';
 import { BranchShowcase } from './components/home/BranchShowcase';
 import { ExperienceProof } from './components/home/ExperienceProof';
-import { ShopSection } from './components/boutique/ShopSection';
-import { CartDrawer } from './components/boutique/CartDrawer';
 import { MembershipSection } from './components/membership/MembershipSection';
 import { CustomerPortal } from './components/portals/CustomerPortal';
 import { BranchConsole } from './components/portals/BranchConsole';
@@ -37,6 +36,7 @@ const MainLayout: React.FC = () => {
           <>
             <HeroSection />
             <FeaturedServices />
+            <BeautyEducationFeature />
             <BranchShowcase />
             <ExperienceProof />
           </>
@@ -58,11 +58,6 @@ const MainLayout: React.FC = () => {
           </div>
         )}
 
-        {currentView === 'boutique' && (
-          <div className="py-8">
-            <ShopSection />
-          </div>
-        )}
 
         {currentView === 'training' && (
           <BeautyTrainingSection />
@@ -96,7 +91,6 @@ const MainLayout: React.FC = () => {
 
       {/* Global Interactive Modals & Drawers */}
       <BookingModal />
-      <CartDrawer />
 
       {/* Toast Notification Container */}
       {toastMessage && (

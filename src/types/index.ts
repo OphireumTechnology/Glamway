@@ -142,7 +142,6 @@ export type ViewMode =
   | 'services'
   | 'branches'
   | 'booking'
-  | 'boutique'
   | 'training'
   | 'contact'
   | 'membership'

@@ -50,7 +50,7 @@ export const ContactSection: React.FC = () => {
         </h1>
 
         <p className="text-base sm:text-lg text-[#3B2A28]/80 font-light leading-relaxed max-w-2xl mx-auto">
-          Contact our Charlotte locations for appointment assistance, retail supply inquiries, and beauty course enrollment.
+          Contact our Charlotte locations for appointment assistance, beauty service consultations, and course enrollment.
         </p>
       </div>
 
@@ -142,7 +142,7 @@ export const ContactSection: React.FC = () => {
               Send an Inquiry
             </h2>
             <p className="text-xs text-[#A98F86]">
-              Have questions about services, products, or training? Send us a message.
+              Have questions about services, bookings, or beauty training? Send us a message.
             </p>
           </div>
 
@@ -232,7 +232,6 @@ export const ContactSection: React.FC = () => {
                     <option value="hair">Hair Styling / Install</option>
                     <option value="nails">Nail Services</option>
                     <option value="facial">Esthetician Facials</option>
-                    <option value="supplies">Lash Supplies / Wholesale</option>
                     <option value="training">Lash Tech Training Courses</option>
                     <option value="general">General Inquiries</option>
                   </select>
@@ -248,7 +247,7 @@ export const ContactSection: React.FC = () => {
                   required
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Tell us what service, product, or class you are interested in..."
+                  placeholder="Tell us what service, date, or course you are interested in..."
                   className="w-full px-3.5 py-2.5 bg-[#FFF9F4] border border-[#C6A667]/30 text-xs text-[#3B2A28] rounded-xs focus:outline-none focus:border-[#8E4B63] resize-none"
                 />
               </div>

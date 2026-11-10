@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSalon } from '../../context/SalonContext';
 import { GLAMWAY_LOGO } from '../../data/salonData';
-import { ShoppingBag, User, Menu, X, Shield, Calendar, LogOut } from 'lucide-react';
+import { User, Menu, X, Shield, Calendar, LogOut } from 'lucide-react';
 import { StaffAccessModal } from './StaffAccessModal';
 
 export const Header: React.FC = () => {
@@ -9,8 +9,6 @@ export const Header: React.FC = () => {
     currentView, 
     setCurrentView, 
     openBookingModal, 
-    cart, 
-    setIsCartOpen,
     currentUser,
     userRole,
     setUserRole
@@ -21,16 +19,12 @@ export const Header: React.FC = () => {
   const [staffModalOpen, setStaffModalOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const cartTotalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
-
-  // Exact navigation specified in Directive Section 7:
-  // Home, About Us, Services, Locations, Book Appointment, Shop, Beauty Training, Contact
+  // Exact 6 navigation items: Home | About Us | Services | Locations | Beauty Training | Contact
   const navLinks = [
     { label: 'Home', view: 'home' as const },
     { label: 'About Us', view: 'about' as const },
     { label: 'Services', view: 'services' as const },
     { label: 'Locations', view: 'branches' as const },
-    { label: 'Shop', view: 'boutique' as const },
     { label: 'Beauty Training', view: 'training' as const },
     { label: 'Contact', view: 'contact' as const }
   ];
@@ -145,20 +139,6 @@ export const Header: React.FC = () => {
                 </div>
               )}
             </div>
-
-            {/* Shopping Bag Indicator */}
-            <button
-              onClick={() => setIsCartOpen(true)}
-              aria-label="Shopping Cart"
-              className="relative p-2 text-[#3B2A28] hover:text-[#8E4B63] transition-colors"
-            >
-              <ShoppingBag className="w-5 h-5 stroke-[1.5]" />
-              {cartTotalItems > 0 && (
-                <span className="absolute top-1 right-1 w-4 h-4 bg-[#8E4B63] text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                  {cartTotalItems}
-                </span>
-              )}
-            </button>
 
             {/* Book Appointment CTA Button */}
             <button

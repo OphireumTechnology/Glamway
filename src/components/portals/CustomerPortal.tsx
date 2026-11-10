@@ -185,8 +185,8 @@ export const CustomerPortal: React.FC = () => {
               </div>
               <div className="p-3 bg-[#FFF9F4] border border-[#C6A667]/20 rounded-xs flex items-center justify-between">
                 <div>
-                  <div className="font-semibold">15% Privilege on Boutique Skincare</div>
-                  <div className="text-[#A98F86]">Applies automatically at checkout.</div>
+                  <div className="font-semibold">Complimentary Lash Care Consultation</div>
+                  <div className="text-[#A98F86]">Personalized esthetician assessment and mapping.</div>
                 </div>
                 <span className="text-[#8E4B63] font-bold">ACTIVE</span>
               </div>

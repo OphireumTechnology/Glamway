@@ -11,21 +11,6 @@
   --brand-dusty-pink: #E8C3C8;
   --brand-white: #FFFFFF;
 
-  --background-primary: var(--brand-ivory);
-  --background-card: var(--brand-white);
-  --background-secondary: var(--brand-rose-beige);
-
-  --text-primary: var(--brand-espresso);
-  --text-secondary: #705B55;
-
-  --accent-primary: var(--brand-gold);
-  --accent-secondary: var(--brand-plum);
-
-  --button-primary: var(--brand-plum);
-  --button-primary-text: #FFFFFF;
-
-  --border-luxury: var(--brand-gold);
-
   --font-heading: "Playfair Display", Georgia, serif;
   --font-body: "Montserrat", Arial, sans-serif;
 }
@@ -62,15 +47,148 @@ html {
   font-family: var(--font-body);
 }
 
-/* Subtle luxury gold & plum glow effects */
+/* Luxury shadows and glass effects */
 .gold-glow {
-  box-shadow: 0 4px 20px -2px rgba(198, 166, 103, 0.25);
+  box-shadow: 0 8px 32px -4px rgba(198, 166, 103, 0.28);
 }
 
 .plum-glow {
-  box-shadow: 0 4px 20px -2px rgba(142, 75, 99, 0.35);
+  box-shadow: 0 8px 30px -4px rgba(142, 75, 99, 0.35);
 }
 
-.gold-border {
-  border-color: rgba(198, 166, 103, 0.35);
+.glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(198, 166, 103, 0.32);
+}
+
+.glass-panel-dark {
+  background: rgba(59, 42, 40, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(198, 166, 103, 0.35);
+}
+
+/* Flowing gold light trail keyframes */
+@keyframes flow-ribbon {
+  0% {
+    stroke-dashoffset: 1200;
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.2;
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+}
+
+@keyframes float-subtle-rev {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(7px) rotate(-0.5deg);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-20deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes particle-drift {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-24px) translateX(12px);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(-48px) translateX(-6px);
+    opacity: 0.1;
+  }
+}
+
+.animate-flow-ribbon {
+  stroke-dasharray: 600;
+  animation: flow-ribbon 14s ease-in-out infinite;
+}
+
+.animate-float-gentle {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+.animate-float-subtle-rev {
+  animation: float-subtle-rev 7s ease-in-out infinite;
+}
+
+.animate-shimmer-sweep {
+  animation: shimmer-sweep 5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+.animate-particle-1 {
+  animation: particle-drift 9s ease-in-out infinite;
+}
+
+.animate-particle-2 {
+  animation: particle-drift 12s ease-in-out infinite 2s;
+}
+
+.animate-particle-3 {
+  animation: particle-drift 10s ease-in-out infinite 4s;
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-flow-ribbon,
+  .animate-float-gentle,
+  .animate-float-subtle-rev,
+  .animate-shimmer-sweep,
+  .animate-pulse-glow,
+  .animate-particle-1,
+  .animate-particle-2,
+  .animate-particle-3 {
+    animation: none !important;
+  }
 }

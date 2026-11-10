@@ -406,7 +406,7 @@ export const MEMBERSHIP_TIERS: MembershipTier[] = [
     name: 'Glam Guest',
     minimumSpendUSD: 0,
     pointsMultiplier: 1,
-    perks: ['Online Appointment Scheduling', 'Product Drop Notifications'],
+    perks: ['Online Appointment Scheduling', 'Seasonal Service Announcements', '24-Hour Reschedule Flexibility'],
     color: '#D9B6A9'
   },
   {
@@ -414,7 +414,7 @@ export const MEMBERSHIP_TIERS: MembershipTier[] = [
     name: 'Glamway VIP',
     minimumSpendUSD: 500,
     pointsMultiplier: 1.5,
-    perks: ['Priority Booking Access', 'Supply Store Privilege Discounts', 'Invitations to Training Workshops'],
+    perks: ['Priority Appointment Booking', 'Complimentary Custom Lash Consultation', 'Invitations to Exclusive Beauty Masterclasses'],
     color: '#8E4B63'
   }
 ];
