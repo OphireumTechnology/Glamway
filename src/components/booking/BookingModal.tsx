@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { BEAUTY_SPECIALISTS } from '../../data/salonData';
+import { BEAUTY_SPECIALISTS, GLAMWAY_ICON } from '../../data/salonData';
 import { 
   X, Check, Calendar as CalendarIcon, Clock, User, 
   MapPin, Sparkles, CreditCard, ShieldCheck, ChevronRight, ChevronLeft, DollarSign
@@ -135,7 +135,7 @@ export const BookingModal: React.FC = () => {
         <div className="bg-[#3B2A28] text-white px-6 py-4 flex items-center justify-between border-b border-[#C6A667]/30">
           <div className="flex items-center gap-3">
             <img 
-              src="/branding/glamway-icon.png" 
+              src={GLAMWAY_ICON} 
               alt="The Glamway Crown" 
               className="w-8 h-8 object-contain"
             />
