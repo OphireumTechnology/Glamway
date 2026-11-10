@@ -22,10 +22,10 @@ export const CorporateDashboard: React.FC = () => {
       const data = await res.json();
       setAiForecastText(data.forecast || '');
     } catch {
-      setAiForecastText(`• Peak Demand (EST): Friday & Saturday bridal party occupancy tracking at 96% in Charleston & Mount Pleasant.
-• Staff Scheduling: Recommend scheduling 2 additional SC LLR-licensed master colorists for King Street Saturday afternoon shifts.
-• Inventory Alert: Caviar Restorative Serum (1.7 fl oz) and 24K Gold Leaf inventory low across Greenville and Columbia; automatic reorder of 45 units suggested.
-• Service Growth: Coastal Keratin Humidity Infusion bookings up +32% across the Lowcountry.`);
+      setAiForecastText(`• Peak Demand (EST): Friday & Saturday bridal styling and private suite occupancy tracking at 94% across North Carolina branches.
+• Staff Scheduling: Recommend scheduling 2 additional NC Board of Cosmetic Art Sciences certified master colorists for Branch 1 weekend shifts.
+• Inventory Alert: 24K Gold Couture Glaze and Caviar Keratin Restorative Elixir tracking low; replenishment dispatched to North Carolina hubs.
+• Service Growth: Signature Balayage and Botanical Hydra-Facial bookings up +28% month-over-month.`);
     } finally {
       setIsGeneratingAi(false);
     }
@@ -35,39 +35,36 @@ export const CorporateDashboard: React.FC = () => {
     fetchAiForecast();
   }, [selectedBranchFilter]);
 
-  // Consolidated enterprise metrics in USD for South Carolina
+  // Consolidated enterprise metrics in USD for North Carolina
   const enterpriseMetrics = {
     grossMonthlyRevenueUSD: 345000,
     totalMonthlyBookings: 1420,
     repeatClientRate: '79.2%',
     averageTicketUSD: 242.95,
     inventoryAssetValueUSD: 88500,
-    scSalesTaxRemittedUSD: 27600
+    ncSalesTaxRemittedUSD: 25012
   };
 
   const branchBreakdown = [
-    { name: 'Charleston Historic Sanctuary', revenueUSD: 118000, share: '34.2%', bookings: 462, growth: '+18.5%' },
-    { name: 'Greenville Main Street Penthouse', revenueUSD: 89000, share: '25.8%', bookings: 374, growth: '+14.1%' },
-    { name: 'Mount Pleasant Waterfront Villa', revenueUSD: 58000, share: '16.8%', bookings: 245, growth: '+16.2%' },
-    { name: 'Columbia Vista Suite', revenueUSD: 46000, share: '13.3%', bookings: 202, growth: '+8.9%' },
-    { name: 'Hilton Head Coastal Pavilion', revenueUSD: 34000, share: '9.9%', bookings: 137, growth: '+21.4%' }
+    { name: 'Branch 1 — The Glamway Flagship (Location Details Pending)', revenueUSD: 186000, share: '53.9%', bookings: 760, growth: '+18.2%' },
+    { name: 'Branch 2 — The Glamway Atelier (Location Details Pending)', revenueUSD: 159000, share: '46.1%', bookings: 660, growth: '+16.4%' }
   ];
 
   return (
     <div className="py-10 px-6 max-w-7xl mx-auto space-y-8">
       
       {/* Top Banner */}
-      <div className="bg-[#302725] text-white p-6 rounded-sm border border-[#C6A667]/40 shadow-xl flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-[#3B2A28] text-white p-6 rounded-sm border border-[#C6A667]/40 shadow-xl flex flex-wrap items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#C6A667]">
+          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
             <LineChart className="w-4 h-4" />
-            <span>Corporate Head Office &amp; AI Intelligence · South Carolina, USA</span>
+            <span>Corporate Head Office &amp; AI Intelligence · North Carolina, USA</span>
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl font-semibold mt-1">
             Enterprise Consolidated Command
           </h1>
-          <div className="text-xs text-[#FAF8F5]/70 mt-0.5">
-            Real-time financial, SC LLR compliance, and predictive analytics across 5 South Carolina flagship locations.
+          <div className="text-xs text-[#FFF9F4]/70 mt-0.5">
+            Real-time financial, NC Board of Cosmetic Art Sciences compliance, and predictive analytics across our 2 North Carolina branches.
           </div>
         </div>
 
@@ -75,18 +72,18 @@ export const CorporateDashboard: React.FC = () => {
           <select
             value={selectedBranchFilter}
             onChange={(e) => setSelectedBranchFilter(e.target.value)}
-            className="bg-[#231C1A] text-xs text-white border border-[#C6A667]/40 px-3 py-2 rounded-xs"
+            className="bg-[#241A19] text-xs text-white border border-[#C6A667]/40 px-3 py-2 rounded-xs"
           >
-            <option value="all">Consolidated South Carolina Network (5)</option>
+            <option value="all">Consolidated North Carolina Network (2)</option>
             {branches.map(b => (
-              <option key={b.id} value={b.id}>{b.name} ({b.city}, SC)</option>
+              <option key={b.id} value={b.id}>{b.name} ({b.city}, NC)</option>
             ))}
           </select>
 
           <button
             onClick={fetchAiForecast}
             disabled={isGeneratingAi}
-            className="px-4 py-2 bg-[#C6A667] hover:bg-white hover:text-[#302725] text-white text-xs uppercase tracking-wider font-semibold transition-colors flex items-center gap-1.5 disabled:opacity-50"
+            className="px-4 py-2 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-wider font-semibold transition-colors flex items-center gap-1.5 disabled:opacity-50 rounded-xs border border-[#C6A667]/30"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isGeneratingAi ? 'animate-spin' : ''}`} />
             <span>Refresh AI Model</span>
@@ -97,35 +94,35 @@ export const CorporateDashboard: React.FC = () => {
       {/* KPI 4-Card Strip */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-5 border border-[#C6A667]/25 rounded-sm shadow-xs">
-          <div className="text-xs uppercase tracking-wider text-[#A48D84]">Consolidated Monthly Revenue</div>
+          <div className="text-xs uppercase tracking-wider text-[#A98F86]">Consolidated Monthly Revenue</div>
           <div className="font-serif text-3xl font-bold text-[#C6A667] mt-1 tabular-nums">
             ${enterpriseMetrics.grossMonthlyRevenueUSD.toLocaleString()} USD
           </div>
-          <div className="text-[11px] text-emerald-700 mt-1 font-medium">+16.4% YoY Growth across SC</div>
+          <div className="text-[11px] text-emerald-700 mt-1 font-medium">+16.4% YoY Growth across NC</div>
         </div>
 
         <div className="bg-white p-5 border border-[#C6A667]/25 rounded-sm shadow-xs">
-          <div className="text-xs uppercase tracking-wider text-[#A48D84]">Network Bookings Completed</div>
-          <div className="font-serif text-3xl font-bold text-[#302725] mt-1 tabular-nums">
+          <div className="text-xs uppercase tracking-wider text-[#A98F86]">Network Bookings Completed</div>
+          <div className="font-serif text-3xl font-bold text-[#3B2A28] mt-1 tabular-nums">
             {enterpriseMetrics.totalMonthlyBookings.toLocaleString()}
           </div>
-          <div className="text-[11px] text-[#A48D84] mt-1">Average Ticket: ${enterpriseMetrics.averageTicketUSD} USD</div>
+          <div className="text-[11px] text-[#A98F86] mt-1">Average Ticket: ${enterpriseMetrics.averageTicketUSD} USD</div>
         </div>
 
         <div className="bg-white p-5 border border-[#C6A667]/25 rounded-sm shadow-xs">
-          <div className="text-xs uppercase tracking-wider text-[#A48D84]">Guest Retention Rate</div>
-          <div className="font-serif text-3xl font-bold text-[#302725] mt-1 tabular-nums">
+          <div className="text-xs uppercase tracking-wider text-[#A98F86]">Guest Retention Rate</div>
+          <div className="font-serif text-3xl font-bold text-[#3B2A28] mt-1 tabular-nums">
             {enterpriseMetrics.repeatClientRate}
           </div>
           <div className="text-[11px] text-emerald-700 mt-1 font-medium">Top decile in luxury salon category</div>
         </div>
 
         <div className="bg-white p-5 border border-[#C6A667]/25 rounded-sm shadow-xs">
-          <div className="text-xs uppercase tracking-wider text-[#A48D84]">SC Sales Tax Remitted (Est)</div>
-          <div className="font-serif text-3xl font-bold text-[#302725] mt-1 tabular-nums">
-            ${enterpriseMetrics.scSalesTaxRemittedUSD.toLocaleString()} USD
+          <div className="text-xs uppercase tracking-wider text-[#A98F86]">NC Sales Tax Remitted (Est)</div>
+          <div className="font-serif text-3xl font-bold text-[#3B2A28] mt-1 tabular-nums">
+            ${enterpriseMetrics.ncSalesTaxRemittedUSD.toLocaleString()} USD
           </div>
-          <div className="text-[11px] text-[#A48D84] mt-1">SC State 6% + Local County Option</div>
+          <div className="text-[11px] text-[#A98F86] mt-1">NC State 4.75% + Local County Option (7.25%)</div>
         </div>
       </div>
 
@@ -148,7 +145,7 @@ export const CorporateDashboard: React.FC = () => {
             {isGeneratingAi ? (
               <div className="flex items-center gap-2 py-6 text-[#A48D84]">
                 <RefreshCw className="w-4 h-4 animate-spin text-[#C6A667]" />
-                <span>Synthesizing multi-location booking patterns and Southern seasonal trends...</span>
+                <span>Synthesizing North Carolina branch booking patterns and seasonal beauty trends...</span>
               </div>
             ) : (
               aiForecastText || 'Generating operational insights...'
@@ -156,17 +153,17 @@ export const CorporateDashboard: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
-            <div className="p-3 bg-white border border-[#302725]/10 rounded-xs space-y-1">
-              <div className="font-semibold text-[#302725]">Lowcountry Bridal Surge</div>
-              <div className="text-[#A48D84]">Weekend bridal suites in Charleston &amp; Mt Pleasant booking 3 weeks ahead.</div>
+            <div className="p-3 bg-white border border-[#3B2A28]/10 rounded-xs space-y-1">
+              <div className="font-semibold text-[#3B2A28]">Bridal Suite Demand</div>
+              <div className="text-[#A98F86]">Weekend private styling suites booking 3 weeks ahead in NC branches.</div>
             </div>
-            <div className="p-3 bg-white border border-[#302725]/10 rounded-xs space-y-1">
-              <div className="font-semibold text-[#302725]">Staffing Delta</div>
-              <div className="text-[#A48D84]">Schedule 2 SC LLR-licensed colorists to King St Saturday shift.</div>
+            <div className="p-3 bg-white border border-[#3B2A28]/10 rounded-xs space-y-1">
+              <div className="font-semibold text-[#3B2A28]">Staffing Delta</div>
+              <div className="text-[#A98F86]">Schedule 2 NC Board certified colorists to Branch 1 Saturday shift.</div>
             </div>
-            <div className="p-3 bg-white border border-[#302725]/10 rounded-xs space-y-1">
-              <div className="font-semibold text-[#302725]">Procurement</div>
-              <div className="text-[#A48D84]">Reorder caviar silk keratin &amp; 24K gold foil for Greenville.</div>
+            <div className="p-3 bg-white border border-[#3B2A28]/10 rounded-xs space-y-1">
+              <div className="font-semibold text-[#3B2A28]">Procurement</div>
+              <div className="text-[#A98F86]">Reorder caviar silk keratin &amp; 24K gold foil for North Carolina hubs.</div>
             </div>
           </div>
         </div>

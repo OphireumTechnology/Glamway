@@ -16,6 +16,9 @@ import { BranchConsole } from './components/portals/BranchConsole';
 import { CorporateDashboard } from './components/portals/CorporateDashboard';
 import { BookingModal } from './components/booking/BookingModal';
 import { BeautyConciergeModal } from './components/ai/BeautyConciergeModal';
+import { GallerySection } from './components/gallery/GallerySection';
+import { AboutSection } from './components/about/AboutSection';
+import { ContactSection } from './components/contact/ContactSection';
 import { CheckCircle2 } from 'lucide-react';
 
 const MainLayout: React.FC = () => {
@@ -63,6 +66,18 @@ const MainLayout: React.FC = () => {
           <div className="py-8">
             <MembershipSection />
           </div>
+        )}
+
+        {currentView === 'gallery' && (
+          <GallerySection />
+        )}
+
+        {currentView === 'about' && (
+          <AboutSection />
+        )}
+
+        {currentView === 'contact' && (
+          <ContactSection />
         )}
 
         {currentView === 'virtual-studio' && (

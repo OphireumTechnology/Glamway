@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { ShieldCheck, User, Building2, LineChart } from 'lucide-react';
+import { ShieldCheck, ArrowLeft, Building2, LineChart } from 'lucide-react';
 import { UserRole } from '../../types';
 
 export const PlatformNavigation: React.FC = () => {
@@ -14,56 +14,51 @@ export const PlatformNavigation: React.FC = () => {
     branches 
   } = useSalon();
 
+  // ONLY render when actively inside staff portals
+  const isStaffView = currentView === 'branch-console' || currentView === 'corporate-dashboard';
+
+  if (!isStaffView) {
+    return null;
+  }
+
   const handleRoleChange = (role: UserRole) => {
     setUserRole(role);
-    if (role === 'guest') {
-      setCurrentView('home');
-    } else if (role === 'client') {
-      setCurrentView('customer-portal');
-    } else if (role === 'branch_manager') {
+    if (role === 'branch_manager') {
       setCurrentView('branch-console');
     } else if (role === 'corporate_admin') {
       setCurrentView('corporate-dashboard');
     }
   };
 
+  const handleExitToPublic = () => {
+    setUserRole('client');
+    setCurrentView('home');
+  };
+
   return (
-    <div className="bg-[#302725] text-[#FAF8F5] text-xs py-2 px-6 border-b border-[#C6A667]/20">
-      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+    <div className="bg-[#3B2A28] text-[#FFF9F4] text-xs py-2 px-4 sm:px-6 border-b border-[#C6A667]/30 shadow-md">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
         
-        {/* Left: Role Switcher & Active Portal status */}
-        <div className="flex items-center gap-2 overflow-x-auto py-0.5">
-          <span className="text-[#A48D84] uppercase tracking-wider text-[11px] font-medium mr-1 whitespace-nowrap">
-            Portal View:
-          </span>
-          <div className="flex items-center gap-1 bg-[#231C1A] p-1 rounded-sm border border-[#C6A667]/20">
-            <button
-              onClick={() => handleRoleChange('guest')}
-              className={`px-3 py-1 rounded-sm transition-all whitespace-nowrap ${
-                userRole === 'guest' && currentView !== 'customer-portal'
-                  ? 'bg-[#C6A667] text-[#302725] font-semibold' 
-                  : 'text-[#FAF8F5]/70 hover:text-white'
-              }`}
-            >
-              Public Sanctuary
-            </button>
-            <button
-              onClick={() => handleRoleChange('client')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-sm transition-all whitespace-nowrap ${
-                currentView === 'customer-portal'
-                  ? 'bg-[#C6A667] text-[#302725] font-semibold' 
-                  : 'text-[#FAF8F5]/70 hover:text-white'
-              }`}
-            >
-              <User className="w-3 h-3" />
-              <span>Guest Account</span>
-            </button>
+        {/* Left: Staff Session Badge & Mode Toggle */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleExitToPublic}
+            className="flex items-center gap-1.5 px-3 py-1 bg-white/10 hover:bg-white/20 text-[#FFF9F4] rounded-xs transition-colors border border-white/10"
+            title="Return to Public Luxury Website"
+          >
+            <ArrowLeft className="w-3.5 h-3.5 text-[#C6A667]" />
+            <span className="font-medium text-[11px] uppercase tracking-wider">Public Website</span>
+          </button>
+
+          <span className="text-[#C6A667] hidden sm:inline font-mono text-[11px]">|</span>
+
+          <div className="flex items-center gap-1.5 bg-[#2E201E] p-0.5 rounded-xs border border-[#C6A667]/25">
             <button
               onClick={() => handleRoleChange('branch_manager')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-sm transition-all whitespace-nowrap ${
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-xs transition-all whitespace-nowrap text-[11px] ${
                 currentView === 'branch-console'
-                  ? 'bg-[#C6A667] text-[#302725] font-semibold' 
-                  : 'text-[#FAF8F5]/70 hover:text-white'
+                  ? 'bg-[#8E4B63] text-white font-semibold shadow-xs' 
+                  : 'text-[#FFF9F4]/70 hover:text-white'
               }`}
             >
               <Building2 className="w-3 h-3" />
@@ -71,10 +66,10 @@ export const PlatformNavigation: React.FC = () => {
             </button>
             <button
               onClick={() => handleRoleChange('corporate_admin')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-sm transition-all whitespace-nowrap ${
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-xs transition-all whitespace-nowrap text-[11px] ${
                 currentView === 'corporate-dashboard'
-                  ? 'bg-[#C6A667] text-[#302725] font-semibold' 
-                  : 'text-[#FAF8F5]/70 hover:text-white'
+                  ? 'bg-[#8E4B63] text-white font-semibold shadow-xs' 
+                  : 'text-[#FFF9F4]/70 hover:text-white'
               }`}
             >
               <LineChart className="w-3 h-3" />
@@ -83,26 +78,26 @@ export const PlatformNavigation: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: Branch Selector Context */}
+        {/* Right: Branch Selector & State info */}
         <div className="flex items-center gap-3">
-          <label htmlFor="branch-filter" className="text-[#A48D84] text-[11px] uppercase tracking-wider hidden sm:inline whitespace-nowrap">
-            Selected Location:
+          <label htmlFor="branch-filter" className="text-[#A98F86] text-[11px] uppercase tracking-wider hidden md:inline whitespace-nowrap">
+            Active Scope:
           </label>
           <select
             id="branch-filter"
             value={selectedBranchId}
             onChange={(e) => setSelectedBranchId(e.target.value)}
-            className="bg-[#231C1A] text-[#FAF8F5] text-xs px-2.5 py-1 border border-[#C6A667]/30 rounded-sm focus:outline-none focus:border-[#C6A667]"
+            className="bg-[#2E201E] text-[#FFF9F4] text-xs px-2.5 py-1 border border-[#C6A667]/30 rounded-xs focus:outline-none focus:border-[#C6A667]"
           >
-            <option value="all">All South Carolina Locations (5)</option>
+            <option value="all">All North Carolina Branches (2)</option>
             {branches.map(b => (
-              <option key={b.id} value={b.id}>{b.name} ({b.city}, SC)</option>
+              <option key={b.id} value={b.id}>{b.name}</option>
             ))}
           </select>
 
-          <span className="text-[#C6A667] text-[11px] font-mono flex items-center gap-1 hidden md:flex">
+          <span className="text-[#C6A667] text-[11px] font-mono flex items-center gap-1 hidden lg:flex">
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>USD ($) · Eastern Time (America/New_York)</span>
+            <span>Staff Mode (NC Board Licensed)</span>
           </span>
         </div>
 

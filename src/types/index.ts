@@ -5,6 +5,8 @@ export type ServiceCategory =
   | 'lashes-brows'
   | 'makeup'
   | 'body-wellness'
+  | 'bridal'
+  | 'packages'
   | 'vip-packages';
 
 export interface ServiceItem {
@@ -28,7 +30,7 @@ export interface SalonBranch {
   id: string;
   name: string;
   city: string;
-  state: 'SC';
+  state: 'NC';
   zipCode: string;
   district: string;
   address: string;
@@ -41,7 +43,7 @@ export interface SalonBranch {
   coordinates: { lat: number; lng: number };
   image: string;
   googleMapQuery: string;
-  licenseNumber: string; // SC LLR Cosmetology/Salon License
+  licenseNumber: string; // NC Board of Cosmetic Art Sciences License
 }
 
 export interface BeautySpecialist {
@@ -131,6 +133,9 @@ export type ViewMode =
   | 'branches'
   | 'boutique'
   | 'membership'
+  | 'gallery'
+  | 'about'
+  | 'contact'
   | 'virtual-studio'
   | 'customer-portal'
   | 'branch-console'

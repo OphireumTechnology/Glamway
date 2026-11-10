@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
   const { setCurrentView, setIsAiConciergeOpen, setUserRole } = useSalon();
 
   return (
-    <footer className="bg-[#302725] text-[#FAF8F5] border-t border-[#C6A667]/30 pt-16 pb-12 px-6">
+    <footer className="bg-[#3B2A28] text-[#FFF9F4] border-t border-[#C6A667]/30 pt-16 pb-12 px-6">
       <div className="max-w-7xl mx-auto space-y-12">
         
         {/* Top 4-Column Grid */}
@@ -14,14 +14,18 @@ export const Footer: React.FC = () => {
           
           {/* Brand Col (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <span className="font-serif text-3xl tracking-[0.25em] text-[#C6A667] uppercase">
-              Aurélia
-            </span>
-            <div className="text-xs uppercase tracking-[0.2em] text-[#FAF8F5]/60">
-              Haute Beauté &amp; Wellness Sanctuaries · South Carolina
+            <div className="flex flex-col items-start gap-2">
+              <img 
+                src="/branding/glamway-official-logo.png" 
+                alt="The Glamway Beauty Salon — FOR WOMEN" 
+                className="h-20 w-auto object-contain drop-shadow-md"
+              />
+              <div className="text-[11px] uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
+                FOR WOMEN · NORTH CAROLINA
+              </div>
             </div>
-            <p className="text-xs text-[#FAF8F5]/80 font-light leading-relaxed max-w-sm">
-              A luxury women-focused beauty and wellness sanctuary network, combining French aesthetic innovation with gracious Southern hospitality across Charleston, Greenville, Columbia, Mount Pleasant, and Hilton Head Island.
+            <p className="text-xs text-[#FFF9F4]/80 font-light leading-relaxed max-w-sm">
+              The premier luxury women's beauty and wellness network in North Carolina. Combining refined artistry, bespoke aesthetics, and private suite hospitality.
             </p>
             <div className="pt-2 flex items-center gap-2 text-xs text-[#C6A667]">
               <Sparkles className="w-4 h-4" />
@@ -32,14 +36,17 @@ export const Footer: React.FC = () => {
           {/* Destination Sanctuaries (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <div className="text-xs uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
-              South Carolina Sanctuaries
+              North Carolina Branches
             </div>
-            <ul className="space-y-2 text-xs text-[#FAF8F5]/80">
-              <li>284 King Street, Charleston, SC 29401</li>
-              <li>103 N Main Street, Suite 400, Greenville, SC 29601</li>
-              <li>410 W Coleman Blvd, Mount Pleasant, SC 29464</li>
-              <li>812 Gervais Street, The Vista, Columbia, SC 29201</li>
-              <li>100 Lighthouse Road, Hilton Head Island, SC 29928</li>
+            <ul className="space-y-3 text-xs text-[#FFF9F4]/85">
+              <li className="space-y-0.5">
+                <div className="font-semibold text-white">Branch 1 — The Glamway Flagship</div>
+                <div className="text-[#A98F86]">Official Location Details Pending · NC</div>
+              </li>
+              <li className="space-y-0.5">
+                <div className="font-semibold text-white">Branch 2 — The Glamway Atelier</div>
+                <div className="text-[#A98F86]">Official Location Details Pending · NC</div>
+              </li>
             </ul>
           </div>
 
@@ -48,7 +55,7 @@ export const Footer: React.FC = () => {
             <div className="text-xs uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
               Curations
             </div>
-            <ul className="space-y-2 text-xs text-[#FAF8F5]/80">
+            <ul className="space-y-2 text-xs text-[#FFF9F4]/80">
               <li>
                 <button onClick={() => setCurrentView('services')} className="hover:text-[#C6A667] transition-colors">
                   Hair &amp; Balayage
@@ -82,7 +89,7 @@ export const Footer: React.FC = () => {
             <div className="text-xs uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
               Enterprise Portals
             </div>
-            <ul className="space-y-2 text-xs text-[#FAF8F5]/80">
+            <ul className="space-y-2 text-xs text-[#FFF9F4]/80">
               <li>
                 <button 
                   onClick={() => {
@@ -102,7 +109,7 @@ export const Footer: React.FC = () => {
                   }} 
                   className="hover:text-[#C6A667] transition-colors text-left"
                 >
-                  Corporate Head Office &amp; AI Intelligence
+                  Corporate Head Office &amp; AI Command
                 </button>
               </li>
               <li>
@@ -121,8 +128,8 @@ export const Footer: React.FC = () => {
                   onClick={() => setIsAiConciergeOpen(true)}
                   className="hover:text-[#C6A667] transition-colors flex items-center gap-1.5"
                 >
-                  <Sparkles className="w-3 h-3 text-[#C6A667]" />
-                  <span>Consult Madame Aurélia (AI)</span>
+                  <Sparkles className="w-3.5 h-3.5 text-[#C6A667]" />
+                  <span>The Glamway AI Beauty Concierge</span>
                 </button>
               </li>
             </ul>
@@ -131,9 +138,9 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Legal, Privacy & Compliance Bar */}
-        <div className="pt-8 border-t border-[#C6A667]/20 flex flex-wrap items-center justify-between gap-4 text-xs text-[#A48D84]">
+        <div className="pt-8 border-t border-[#C6A667]/20 flex flex-wrap items-center justify-between gap-4 text-xs text-[#A98F86]">
           <div>
-            &copy; 2026 Aurélia Haute Beauté USA Inc. All rights reserved. Registered in South Carolina. Licensed by the SC Department of Labor, Licensing and Regulation (LLR) Board of Cosmetology &amp; Esthetics.
+            &copy; 2026 The Glamway Beauty Salon LLC. All rights reserved. Registered in North Carolina. Licensed by the North Carolina Board of Cosmetic Art Sciences.
           </div>
           <div className="flex items-center gap-6">
             <span>Women-Focused Sanctuary Policy</span>

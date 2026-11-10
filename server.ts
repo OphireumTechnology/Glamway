@@ -25,13 +25,13 @@ const ai = apiKey ? new GoogleGenAI({
   }
 }) : null;
 
-// In-memory data store initialized with baseline appointments in South Carolina (EST)
+// In-memory data store initialized with baseline appointments for The Glamway Beauty Salon (North Carolina, EST)
 let appointments: any[] = [
   {
     id: 'apt-101',
-    referenceCode: 'AUR-88219',
-    branchId: 'branch-charleston',
-    branchName: 'Aurélia Charleston Historic Sanctuary',
+    referenceCode: 'GLAM-88219',
+    branchId: 'branch-nc-1',
+    branchName: 'Branch 1 — The Glamway Flagship',
     serviceId: 'srv-balayage-couture',
     serviceName: 'French Balayage & Glossing Ritual',
     servicePriceUSD: 285,
@@ -43,21 +43,21 @@ let appointments: any[] = [
     addOns: ['Olaplex Bond Multiplier Infusion (+$45)'],
     totalPriceUSD: 330,
     depositPaidUSD: 100,
-    taxAmountUSD: 29.70, // SC State 6% + Charleston County 3% = 9%
+    taxAmountUSD: 23.10, // NC State 4.75% + local county option ~7%
     gratuityUSD: 60,
     paymentMethod: 'apple_pay',
     status: 'confirmed',
-    clientName: 'Caroline Rutledge Pinckney',
-    clientPhone: '+1 (843) 555-0192',
-    clientEmail: 'caroline.pinckney@example.com',
-    specialRequests: 'Prefers quiet suite overlooking private courtyard garden with iced sweet tea.',
+    clientName: 'Victoria Harrison',
+    clientPhone: '+1 (919) 555-0192',
+    clientEmail: 'victoria.harrison@example.com',
+    specialRequests: 'Prefers quiet suite with herbal tea and champagne.',
     createdAt: new Date().toISOString()
   },
   {
     id: 'apt-102',
-    referenceCode: 'AUR-88220',
-    branchId: 'branch-greenville',
-    branchName: 'Aurélia Greenville Main Street Penthouse',
+    referenceCode: 'GLAM-88220',
+    branchId: 'branch-nc-2',
+    branchName: 'Branch 2 — The Glamway Atelier',
     serviceId: 'srv-hydra-radiance',
     serviceName: 'Botanical Radiance Hydra-Infusion',
     servicePriceUSD: 175,
@@ -69,23 +69,23 @@ let appointments: any[] = [
     addOns: ['LED Photon Collagen Rejuvenation (+$35)'],
     totalPriceUSD: 210,
     depositPaidUSD: 65,
-    taxAmountUSD: 12.60,
+    taxAmountUSD: 14.70,
     gratuityUSD: 40,
     paymentMethod: 'card',
     status: 'confirmed',
     clientName: 'Eleanor Vance',
-    clientPhone: '+1 (864) 555-8831',
+    clientPhone: '+1 (704) 555-8831',
     clientEmail: 'eleanor.vance@example.com',
-    specialRequests: 'Sensitive skin barrier recovery post-travel.',
+    specialRequests: 'Sensitive skin barrier recovery.',
     createdAt: new Date().toISOString()
   },
   {
     id: 'apt-103',
-    referenceCode: 'AUR-88221',
-    branchId: 'branch-charleston',
-    branchName: 'Aurélia Charleston Historic Sanctuary',
+    referenceCode: 'GLAM-88221',
+    branchId: 'branch-nc-1',
+    branchName: 'Branch 1 — The Glamway Flagship',
     serviceId: 'srv-gold-couture-mani',
-    serviceName: 'Aurélia 24K Gold Couture Manicure',
+    serviceName: 'Glamway 24K Gold Couture Manicure',
     servicePriceUSD: 85,
     specialistId: 'spec-elena',
     specialistName: 'Elena Santos-Villar',
@@ -95,13 +95,13 @@ let appointments: any[] = [
     addOns: [],
     totalPriceUSD: 85,
     depositPaidUSD: 30,
-    taxAmountUSD: 7.65,
+    taxAmountUSD: 5.95,
     gratuityUSD: 20,
     paymentMethod: 'apple_pay',
     status: 'completed',
-    clientName: 'Margaret Middleton',
-    clientPhone: '+1 (843) 555-4421',
-    clientEmail: 'margaret.m@example.com',
+    clientName: 'Margaret Campbell',
+    clientPhone: '+1 (919) 555-4421',
+    clientEmail: 'margaret.c@example.com',
     createdAt: new Date().toISOString()
   }
 ];
@@ -110,11 +110,11 @@ let orders: any[] = [
   {
     id: 'ord-501',
     referenceCode: 'ORD-7712',
-    items: [{ productId: 'prod-caviar-serum', name: 'Aurélia L’Élixir D’Or Caviar Restorative Serum', quantity: 1, priceUSD: 145 }],
+    items: [{ productId: 'prod-caviar-serum', name: 'The Glamway L’Élixir D’Or Caviar Serum', quantity: 1, priceUSD: 145 }],
     totalAmountUSD: 145,
-    customerName: 'Katherine Calhoun',
+    customerName: 'Katherine Bell',
     deliveryMethod: 'branch_pickup',
-    branchId: 'branch-charleston',
+    branchId: 'branch-nc-1',
     paymentMethod: 'apple_pay',
     status: 'ready_for_pickup',
     createdAt: new Date().toISOString()
@@ -126,7 +126,9 @@ let orders: any[] = [
 app.get('/api/health', (_req, res) => {
   res.json({
     status: 'healthy',
-    market: 'South Carolina, USA',
+    brand: 'The Glamway Beauty Salon — FOR WOMEN',
+    location: 'North Carolina, United States of America',
+    branchesCount: 2,
     timeZone: 'America/New_York (EST/EDT)',
     currency: 'USD ($)',
     timestamp: new Date().toISOString(),
@@ -171,7 +173,7 @@ app.post('/api/appointments', (req, res) => {
   const newAppointment = {
     ...body,
     id: `apt-${Date.now()}`,
-    referenceCode: `AUR-${Math.floor(10000 + Math.random() * 90000)}`,
+    referenceCode: `GLAM-${Math.floor(10000 + Math.random() * 90000)}`,
     status: 'confirmed',
     createdAt: new Date().toISOString()
   };
@@ -210,41 +212,41 @@ app.post('/api/orders', (req, res) => {
   res.status(201).json({ success: true, order: newOrder });
 });
 
-// AI Beauty Concierge endpoint (South Carolina grounded)
+// AI Beauty Concierge endpoint (The Glamway Beauty Salon grounded)
 app.post('/api/ai/concierge', async (req, res) => {
   const { message, history } = req.body;
   if (!message) {
     return res.status(400).json({ error: 'Message is required' });
   }
 
-  const systemInstruction = `You are "Madame Aurélia", the sophisticated, warm, and highly knowledgeable Chief Beauty Concierge for Aurélia Haute Beauté, a premier luxury women's salon and wellness network in South Carolina, USA with destinations in:
-- Charleston Historic Sanctuary (284 King Street, Charleston, SC 29401)
-- Greenville Main Street Penthouse (103 N Main Street, Greenville, SC 29601)
-- Columbia Vista Suite (812 Gervais Street, Columbia, SC 29201)
-- Hilton Head Coastal Resort Pavilion (100 Lighthouse Road, Hilton Head Island, SC 29928)
-- Mount Pleasant Waterfront Villa (410 W Coleman Blvd, Mount Pleasant, SC 29464)
+  const systemInstruction = `You are "Madame Glamway", the sophisticated, warm, and highly knowledgeable Chief Beauty Concierge for "The Glamway Beauty Salon — FOR WOMEN", a premier luxury women's salon and wellness company with two branches in North Carolina, United States:
+- Branch 1 — The Glamway Flagship (North Carolina)
+- Branch 2 — The Glamway Atelier (North Carolina)
 
-Primary currency is United States Dollar (USD, $).
-Time Zone is America/New_York (Eastern Time, ET).
+Official Brand: The Glamway Beauty Salon
+Tagline: FOR WOMEN
+Color Identity: Pearl Ivory, Champagne Gold, Blush Rose, Rose Beige, Mauve Plum, and Espresso.
+Primary currency: United States Dollar (USD, $).
+Time Zone: America/New_York (Eastern Time, ET).
 
 Services & Pricing in USD:
 1. French Balayage & Glossing Ritual: $285 (180 mins)
-2. Caviar Silk Keratin Infusion (Frizz defense for Lowcountry coastal humidity): $320 (150 mins)
+2. Caviar Silk Keratin Infusion (Frizz defense for humidity): $320 (150 mins)
 3. Precision Signature Cut & Blowout: $95 (60 mins)
-4. Aurélia 24K Gold Couture Manicure: $85 (75 mins)
+4. Glamway 24K Gold Couture Manicure: $85 (75 mins)
 5. Imperial Botanical Foot Retreat: $95 (90 mins)
 6. Botanical Radiance Hydra-Infusion (Facial): $175 (75 mins)
 7. Black Caviar & Peptide Youth Sculpt: $245 (90 mins)
 8. Cashmere Feather Lash Extension: $160 (105 mins)
 9. 3D Nano Brow Sculpt & Lamination: $85 (60 mins)
 10. Warm Basalt & Sweet Jasmine Massage: $145 (90 mins)
-11. The Grand Empress Day Retreat (VIP 5-hour suite package): $595
+11. The Glamway Empress Day Retreat (VIP 5-hour suite package): $595
 
 Tone & Polish:
-- Warm Southern hospitality combined with European haute beauté sophistication.
-- Highlight hair resilience against coastal Southern humidity (Caviar Keratin, UV thermal protectants).
-- Recommend specific services, provide preparation/aftercare, and invite the guest to select their preferred South Carolina location.
-- Never invent unauthorized medical claims; clearly present skincare as licensed cosmetic sanctuary rituals.`;
+- Warm, luxurious, highly respectful, feminine, and sophisticated.
+- Adhere strictly to verified service prices in USD.
+- Highlight women-focused private suites, expert color formulations, and customized treatments.
+- Never invent medical diagnoses; describe treatments as licensed cosmetic and wellness rituals.`;
 
   if (ai) {
     try {
@@ -255,16 +257,16 @@ Tone & Polish:
           systemInstruction,
         }
       });
-      return res.json({ reply: response.text || 'Welcome to Aurélia Haute Beauté South Carolina. How may I assist in curating your sanctuary visit today?' });
+      return res.json({ reply: response.text || 'Welcome to The Glamway Beauty Salon. How may I assist in curating your luxury experience today?' });
     } catch (err: any) {
       console.error('Gemini Concierge API error:', err);
       return res.json({
-        reply: `Welcome to Aurélia Haute Beauté. We would be delighted to welcome you to our Charleston, Greenville, Columbia, Hilton Head Island, or Mount Pleasant sanctuaries. Our most requested rituals include our Caviar Silk Keratin Infusion ($320) for lasting Lowcountry humidity protection, and our French Balayage & Glossing ($285) for radiant dimensional tone. Would you like to reserve an appointment?`
+        reply: `Welcome to The Glamway Beauty Salon — FOR WOMEN. We are delighted to assist you at our North Carolina sanctuaries. Our most requested rituals include our French Balayage & Glossing ($285) for radiant dimensional tone, and our Caviar Silk Keratin Infusion ($320) for lasting humidity protection. Would you like to reserve a private suite?`
       });
     }
   } else {
     return res.json({
-      reply: `Welcome to Aurélia Haute Beauté South Carolina. Our destination sanctuaries in Charleston, Greenville, Columbia, Mount Pleasant, and Hilton Head Island provide bespoke hair couture, botanical dermal facials, 24K gold nail art, and private suites. Please explore our booking scheduler or let me know what experience you desire.`
+      reply: `Welcome to The Glamway Beauty Salon — FOR WOMEN. Our two North Carolina branches provide bespoke hair couture, botanical dermal facials, 24K gold nail art, and private VIP suites. Please explore our booking scheduler or let me know what experience you desire.`
     });
   }
 });
@@ -272,7 +274,7 @@ Tone & Polish:
 // AI Operations Command Center Forecasting endpoint
 app.post('/api/ai/forecast', async (req, res) => {
   const { branchId } = req.body;
-  const prompt = `Provide an executive operational brief for salon branch ${branchId || 'All South Carolina Locations'} of Aurélia Haute Beauté USA. Analyze booking demand trends in Eastern Time, Lowcountry weekend wedding and bridal surges, top requested treatments (French Balayage, Keratin Humidity Defense, Hydra-Infusion, 24K Gold Nails), and actionable recommendations for inventory replenishment and SC LLR licensed staff scheduling. Format with concise bullet points for the Executive Director.`;
+  const prompt = `Provide an executive operational brief for salon branch ${branchId || 'All Two North Carolina Branches'} of The Glamway Beauty Salon. Analyze booking demand trends in Eastern Time, top requested treatments (French Balayage, Keratin Silk, Hydra-Infusion, 24K Gold Nails), and actionable recommendations for inventory replenishment and licensed staff scheduling. Format with concise bullet points for the Executive Director.`;
 
   if (ai) {
     try {
@@ -280,7 +282,7 @@ app.post('/api/ai/forecast', async (req, res) => {
         model: 'gemini-3.8-flash',
         contents: prompt,
         config: {
-          systemInstruction: 'You are the Executive Vice President of Operations for Aurélia Haute Beauté South Carolina. Deliver concise, high-value financial, compliance, and operational recommendations in USD.'
+          systemInstruction: 'You are the Executive Vice President of Operations for The Glamway Beauty Salon in North Carolina. Deliver concise, high-value financial, compliance, and operational recommendations in USD.'
         }
       });
       return res.json({ forecast: response.text });
@@ -290,10 +292,10 @@ app.post('/api/ai/forecast', async (req, res) => {
   }
 
   return res.json({
-    forecast: `• Peak Demand (EST): Friday & Saturday bridal party occupancy tracking at 96% in Charleston & Mount Pleasant.
-• Staff Scheduling: Recommend scheduling 2 additional SC LLR-licensed master colorists for King Street Saturday afternoon shifts.
-• Inventory Alert: Caviar Restorative Serum (1.7 fl oz) and 24K Gold Leaf inventory low across Greenville and Columbia; automatic reorder of 45 units suggested.
-• Service Growth: Coastal Keratin Humidity Infusion bookings up +32% across the Lowcountry.`
+    forecast: `• Peak Demand (EST): Friday & Saturday bridal party occupancy tracking at 94% across Branch 1 and Branch 2.
+• Staff Scheduling: Recommend scheduling 2 additional licensed master colorists for Branch 1 Saturday afternoon shifts.
+• Inventory Alert: Caviar Restorative Serum (1.7 fl oz) and 24K Gold Leaf inventory low; automatic reorder of 30 units suggested.
+• Service Growth: Keratin Silk Smoothing and French Balayage bookings up +28% month-over-month.`
   });
 });
 
@@ -317,7 +319,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Aurélia Haute Beauté Platform (South Carolina, USA) running on port ${PORT}`);
+    console.log(`The Glamway Beauty Salon Platform (North Carolina, USA) running on port ${PORT}`);
   });
 }
 

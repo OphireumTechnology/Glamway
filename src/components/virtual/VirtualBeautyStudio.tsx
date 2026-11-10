@@ -33,7 +33,7 @@ export const VirtualBeautyStudio: React.FC = () => {
   ];
 
   const handleSaveToProfile = () => {
-    showToast('Look saved to your Aurélia Beauty Profile!');
+    showToast('Look saved to your Glamway Beauty Profile!');
   };
 
   return (
@@ -41,14 +41,14 @@ export const VirtualBeautyStudio: React.FC = () => {
       
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto space-y-3">
-        <div className="text-xs uppercase tracking-[0.25em] text-[#C6A667] font-medium">
-          Digital Atelier
+        <div className="text-xs uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
+          Digital Atelier · FOR WOMEN
         </div>
-        <h2 className="font-serif text-3xl sm:text-4xl text-[#302725] tracking-tight">
+        <h2 className="font-serif text-3xl sm:text-4xl text-[#3B2A28] tracking-tight">
           Virtual Beauty Lookbook &amp; Shade Visualizer
         </h2>
-        <p className="text-sm sm:text-base text-[#9D8980] font-light">
-          Simulate signature pigment tones, lip finishes, and nail couture architecture before entering your private suite.
+        <p className="text-sm sm:text-base text-[#A98F86] font-light">
+          Simulate signature pigment tones, lip finishes, and nail couture architecture before entering your private styling suite.
         </p>
       </div>
 
@@ -56,30 +56,30 @@ export const VirtualBeautyStudio: React.FC = () => {
       <div className="flex justify-center gap-2">
         <button
           onClick={() => setActiveTab('hair')}
-          className={`px-5 py-2 text-xs uppercase tracking-wider font-medium border rounded-sm transition-all ${
+          className={`px-5 py-2 text-xs uppercase tracking-wider font-semibold border rounded-xs transition-all ${
             activeTab === 'hair'
-              ? 'bg-[#302725] text-white border-[#302725]'
-              : 'bg-white text-[#302725] border-[#C6A667]/30 hover:border-[#C6A667]'
+              ? 'bg-[#8E4B63] text-white border-[#8E4B63] shadow-xs'
+              : 'bg-white text-[#3B2A28] border-[#C6A667]/30 hover:border-[#8E4B63]'
           }`}
         >
           Hairstyle &amp; Balayage
         </button>
         <button
           onClick={() => setActiveTab('makeup')}
-          className={`px-5 py-2 text-xs uppercase tracking-wider font-medium border rounded-sm transition-all ${
+          className={`px-5 py-2 text-xs uppercase tracking-wider font-semibold border rounded-xs transition-all ${
             activeTab === 'makeup'
-              ? 'bg-[#302725] text-white border-[#302725]'
-              : 'bg-white text-[#302725] border-[#C6A667]/30 hover:border-[#C6A667]'
+              ? 'bg-[#8E4B63] text-white border-[#8E4B63] shadow-xs'
+              : 'bg-white text-[#3B2A28] border-[#C6A667]/30 hover:border-[#8E4B63]'
           }`}
         >
           Lip &amp; Complexion
         </button>
         <button
           onClick={() => setActiveTab('nails')}
-          className={`px-5 py-2 text-xs uppercase tracking-wider font-medium border rounded-sm transition-all ${
+          className={`px-5 py-2 text-xs uppercase tracking-wider font-semibold border rounded-xs transition-all ${
             activeTab === 'nails'
-              ? 'bg-[#302725] text-white border-[#302725]'
-              : 'bg-white text-[#302725] border-[#C6A667]/30 hover:border-[#C6A667]'
+              ? 'bg-[#8E4B63] text-white border-[#8E4B63] shadow-xs'
+              : 'bg-white text-[#3B2A28] border-[#C6A667]/30 hover:border-[#8E4B63]'
           }`}
         >
           Nail Couture Studio
@@ -223,13 +223,13 @@ export const VirtualBeautyStudio: React.FC = () => {
           <div className="pt-6 border-t border-[#C6A667]/20 flex flex-wrap items-center justify-between gap-4">
             <button
               onClick={() => openBookingModal()}
-              className="px-6 py-3 bg-[#302725] hover:bg-[#C6A667] text-white text-xs uppercase tracking-[0.2em] font-medium transition-colors"
+              className="px-6 py-3 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.2em] font-semibold transition-colors rounded-xs shadow-xs"
             >
               Book This Exact Concept
             </button>
             <button
               onClick={handleSaveToProfile}
-              className="text-xs text-[#C6A667] hover:text-[#302725] font-semibold underline underline-offset-4"
+              className="text-xs text-[#8E4B63] hover:text-[#3B2A28] font-semibold underline underline-offset-4"
             >
               Save to Lookbook
             </button>

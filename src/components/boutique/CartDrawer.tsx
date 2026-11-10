@@ -9,7 +9,7 @@ export const CartDrawer: React.FC = () => {
   const [deliveryType, setDeliveryType] = useState<'pickup' | 'shipping'>('pickup');
   const [selectedBranchPickup, setSelectedBranchPickup] = useState<string>(branches[0].id);
   const [customerName, setCustomerName] = useState<string>('Caroline Pinckney');
-  const [customerAddress, setCustomerAddress] = useState<string>('12 Meeting Street, Charleston, SC 29401');
+  const [customerAddress, setCustomerAddress] = useState<string>('North Carolina');
   const [paymentMethod, setPaymentMethod] = useState<'apple_pay' | 'card' | 'google_pay'>('apple_pay');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [confirmedOrder, setConfirmedOrder] = useState<any>(null);
@@ -18,7 +18,7 @@ export const CartDrawer: React.FC = () => {
 
   const subtotal = cart.reduce((acc, item) => acc + (item.product.priceUSD * item.quantity), 0);
   const shippingFee = deliveryType === 'shipping' ? 15 : 0;
-  const estimatedTax = Math.round(subtotal * 0.08 * 100) / 100;
+  const estimatedTax = Math.round(subtotal * 0.0725 * 100) / 100; // NC state + local county tax ~7.25%
   const grandTotal = Math.round((subtotal + shippingFee + estimatedTax) * 100) / 100;
 
   const handleCheckout = async () => {
@@ -77,10 +77,10 @@ export const CartDrawer: React.FC = () => {
       <div className="bg-[#FAF8F5] w-full max-w-md h-full flex flex-col justify-between shadow-2xl border-l border-[#C6A667]/40">
         
         {/* Header */}
-        <div className="bg-[#302725] text-white p-5 flex items-center justify-between border-b border-[#C6A667]/30">
+        <div className="bg-[#3B2A28] text-white p-5 flex items-center justify-between border-b border-[#C6A667]/30">
           <div>
             <div className="text-[10px] uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
-              Maison Aurélia Boutiques · South Carolina
+              The Glamway Boutiques · North Carolina
             </div>
             <div className="font-serif text-lg font-medium">Your Shopping Bag</div>
           </div>
@@ -200,18 +200,18 @@ export const CartDrawer: React.FC = () => {
                     onClick={() => setDeliveryType('pickup')}
                     className={`p-2.5 border text-center rounded-sm transition-all ${
                       deliveryType === 'pickup'
-                        ? 'border-[#C6A667] bg-white font-semibold text-[#302725]'
-                        : 'border-[#C6A667]/20 bg-white/60 text-[#A48D84]'
+                        ? 'border-[#C6A667] bg-white font-semibold text-[#3B2A28]'
+                        : 'border-[#C6A667]/20 bg-white/60 text-[#A98F86]'
                     }`}
                   >
-                    SC Branch Pickup (Free)
+                    NC Branch Pickup (Free)
                   </button>
                   <button
                     onClick={() => setDeliveryType('shipping')}
                     className={`p-2.5 border text-center rounded-sm transition-all ${
                       deliveryType === 'shipping'
-                        ? 'border-[#C6A667] bg-white font-semibold text-[#302725]'
-                        : 'border-[#C6A667]/20 bg-white/60 text-[#A48D84]'
+                        ? 'border-[#C6A667] bg-white font-semibold text-[#3B2A28]'
+                        : 'border-[#C6A667]/20 bg-white/60 text-[#A98F86]'
                     }`}
                   >
                     U.S. Priority (+$15)
@@ -220,33 +220,33 @@ export const CartDrawer: React.FC = () => {
 
                 {deliveryType === 'pickup' ? (
                   <div>
-                    <label className="block text-[11px] text-[#A48D84] mb-1">Select Sanctuary for Pickup</label>
+                    <label className="block text-[11px] text-[#A98F86] mb-1">Select Branch for Pickup</label>
                     <select
                       value={selectedBranchPickup}
                       onChange={(e) => setSelectedBranchPickup(e.target.value)}
-                      className="w-full text-xs p-2 bg-white border border-[#C6A667]/30 rounded-sm"
+                      className="w-full text-xs p-2 bg-white border border-[#C6A667]/30 rounded-sm text-[#3B2A28]"
                     >
                       {branches.map(b => (
-                        <option key={b.id} value={b.id}>{b.name} ({b.city}, SC)</option>
+                        <option key={b.id} value={b.id}>{b.name} ({b.city}, NC)</option>
                       ))}
                     </select>
                   </div>
                 ) : (
                   <div>
-                    <label className="block text-[11px] text-[#A48D84] mb-1">U.S. Shipping Address</label>
+                    <label className="block text-[11px] text-[#A98F86] mb-1">U.S. Shipping Address</label>
                     <input
                       type="text"
                       value={customerAddress}
                       onChange={(e) => setCustomerAddress(e.target.value)}
-                      className="w-full text-xs p-2 bg-white border border-[#C6A667]/30 rounded-sm"
+                      className="w-full text-xs p-2 bg-white border border-[#C6A667]/30 rounded-sm text-[#3B2A28]"
                     />
                   </div>
                 )}
               </div>
 
               {/* Payment selector */}
-              <div className="space-y-2 pt-3 border-t border-[#302725]/10">
-                <div className="text-xs uppercase tracking-wider text-[#A48D84] font-semibold">
+              <div className="space-y-2 pt-3 border-t border-[#3B2A28]/10">
+                <div className="text-xs uppercase tracking-wider text-[#A98F86] font-semibold">
                   Payment Method
                 </div>
                 <div className="grid grid-cols-3 gap-2 text-xs">
@@ -258,7 +258,7 @@ export const CartDrawer: React.FC = () => {
                   </button>
                   <button
                     onClick={() => setPaymentMethod('card')}
-                    className={`p-2 border rounded-sm ${paymentMethod === 'card' ? 'border-[#302725] bg-stone-100 text-[#302725] font-bold' : 'border-[#C6A667]/30 bg-white'}`}
+                    className={`p-2 border rounded-sm ${paymentMethod === 'card' ? 'border-[#3B2A28] bg-stone-100 text-[#3B2A28] font-bold' : 'border-[#C6A667]/30 bg-white'}`}
                   >
                     Credit Card
                   </button>
@@ -278,21 +278,21 @@ export const CartDrawer: React.FC = () => {
 
         {/* Footer Checkout Summary */}
         {!confirmedOrder && cart.length > 0 && (
-          <div className="bg-[#FAF8F5] border-t border-[#C6A667]/30 p-6 space-y-3">
-            <div className="text-xs space-y-1 text-[#302725]">
+          <div className="bg-[#FFF9F4] border-t border-[#C6A667]/30 p-6 space-y-3">
+            <div className="text-xs space-y-1 text-[#3B2A28]">
               <div className="flex justify-between">
-                <span className="text-[#A48D84]">Subtotal:</span>
+                <span className="text-[#A98F86]">Subtotal:</span>
                 <span className="font-semibold tabular-nums">${subtotal}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#A48D84]">Estimated SC Tax (8%):</span>
+                <span className="text-[#A98F86]">Estimated NC Tax (7.25%):</span>
                 <span>${estimatedTax.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#A48D84]">Fulfillment:</span>
+                <span className="text-[#A98F86]">Fulfillment:</span>
                 <span>{shippingFee === 0 ? 'Complimentary Branch Pickup' : `$${shippingFee}`}</span>
               </div>
-              <div className="flex justify-between pt-2 border-t border-[#302725]/10 font-serif text-lg font-bold">
+              <div className="flex justify-between pt-2 border-t border-[#3B2A28]/10 font-serif text-lg font-bold">
                 <span>Total:</span>
                 <span className="text-[#C6A667] tabular-nums">${grandTotal.toFixed(2)} USD</span>
               </div>
@@ -301,7 +301,7 @@ export const CartDrawer: React.FC = () => {
             <button
               onClick={handleCheckout}
               disabled={isSubmitting}
-              className="w-full py-3 bg-[#302725] hover:bg-[#C6A667] text-white text-xs uppercase tracking-[0.2em] font-semibold flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
+              className="w-full py-3 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.2em] font-semibold flex items-center justify-center gap-2 transition-colors disabled:opacity-50 rounded-xs shadow-xs"
             >
               {isSubmitting ? 'Processing Payment...' : 'Authorize Purchase'}
               <ArrowRight className="w-4 h-4" />

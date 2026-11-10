@@ -69,9 +69,9 @@ export const BookingModal: React.FC = () => {
   const basePrice = currentService.priceUSD;
   const addOnsTotal = selectedAddOns.length * 35; // Average add-on price
   const subtotalUSD = basePrice + addOnsTotal;
-  const scEstimatedTaxUSD = Math.round(subtotalUSD * 0.08 * 100) / 100; // SC state + local county tax ~8%
+  const ncEstimatedTaxUSD = Math.round(subtotalUSD * 0.0725 * 100) / 100; // NC state + local county sales tax ~7.25%
   const calculatedTipUSD = Math.round((subtotalUSD * (tipPercentage / 100)) * 100) / 100;
-  const totalPriceUSD = Math.round((subtotalUSD + scEstimatedTaxUSD + calculatedTipUSD) * 100) / 100;
+  const totalPriceUSD = Math.round((subtotalUSD + ncEstimatedTaxUSD + calculatedTipUSD) * 100) / 100;
   const depositRequiredUSD = Math.round(subtotalUSD * 0.3); // 30% deposit to secure suite
 
   const handleToggleAddOn = (addon: string) => {
@@ -101,7 +101,7 @@ export const BookingModal: React.FC = () => {
       addOns: selectedAddOns,
       totalPriceUSD,
       depositPaidUSD: paymentOption === 'salon_counter' ? 0 : depositRequiredUSD,
-      taxAmountUSD: scEstimatedTaxUSD,
+      taxAmountUSD: ncEstimatedTaxUSD,
       gratuityUSD: calculatedTipUSD,
       paymentMethod: paymentOption,
       clientName,
@@ -120,7 +120,7 @@ export const BookingModal: React.FC = () => {
         particleCount: 85,
         spread: 75,
         origin: { y: 0.6 },
-        colors: ['#C6A667', '#F3DFE3', '#FAF8F5', '#302725']
+        colors: ['#C6A667', '#F5D6DE', '#8E4B63', '#FFF9F4', '#3B2A28']
       });
     } else {
       setErrorMessage(result.error || 'Unable to secure reservation. Please select an adjacent time slot.');
@@ -129,23 +129,30 @@ export const BookingModal: React.FC = () => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-[#FAF8F5] w-full max-w-3xl border border-[#C6A667]/40 rounded-sm shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="bg-[#FFF9F4] w-full max-w-3xl border border-[#C6A667]/40 rounded-sm shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         
         {/* Modal Top Bar */}
-        <div className="bg-[#302725] text-white px-6 py-4 flex items-center justify-between border-b border-[#C6A667]/30">
-          <div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
-              Aurélia Reservation Protocol · Step {step} of 8
-            </div>
-            <div className="font-serif text-lg font-medium">
-              {step === 1 && 'Step 1: Choose South Carolina Sanctuary'}
-              {step === 2 && 'Step 2: Select Beauty Ritual'}
-              {step === 3 && 'Step 3: Select Dedicated Specialist'}
-              {step === 4 && 'Step 4: Date & Eastern Time Slot'}
-              {step === 5 && 'Step 5: Signature Ritual Enhancements'}
-              {step === 6 && 'Step 6: Guest Profile & Suite Hospitality'}
-              {step === 7 && 'Step 7: Deposit, Gratuity & Apple Pay / Card'}
-              {step === 8 && 'Reservation Confirmed & Secured'}
+        <div className="bg-[#3B2A28] text-white px-6 py-4 flex items-center justify-between border-b border-[#C6A667]/30">
+          <div className="flex items-center gap-3">
+            <img 
+              src="/branding/glamway-icon.png" 
+              alt="The Glamway Crown" 
+              className="w-8 h-8 object-contain"
+            />
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
+                The Glamway Reservation Protocol · Step {step} of 8
+              </div>
+              <div className="font-serif text-lg font-medium">
+                {step === 1 && 'Step 1: Select North Carolina Branch'}
+                {step === 2 && 'Step 2: Select Beauty Ritual'}
+                {step === 3 && 'Step 3: Select Dedicated Specialist'}
+                {step === 4 && 'Step 4: Date & Eastern Time Slot'}
+                {step === 5 && 'Step 5: Signature Ritual Enhancements'}
+                {step === 6 && 'Step 6: Guest Profile & Suite Hospitality'}
+                {step === 7 && 'Step 7: Deposit, Gratuity & Apple Pay / Card'}
+                {step === 8 && 'Reservation Confirmed & Secured'}
+              </div>
             </div>
           </div>
           <button
@@ -177,8 +184,8 @@ export const BookingModal: React.FC = () => {
           {/* STEP 1: SELECT BRANCH */}
           {step === 1 && (
             <div className="space-y-4">
-              <div className="text-xs text-[#A48D84]">
-                Select your preferred luxury destination across South Carolina.
+              <div className="text-xs text-[#A98F86]">
+                Select your preferred North Carolina branch.
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {branches.map(branch => (
@@ -187,17 +194,17 @@ export const BookingModal: React.FC = () => {
                     onClick={() => setSelectedBranchId(branch.id)}
                     className={`p-4 text-left border rounded-sm transition-all ${
                       selectedBranchId === branch.id
-                        ? 'border-[#C6A667] bg-white shadow-md ring-1 ring-[#C6A667]'
+                        ? 'border-[#C6A667] bg-white shadow-md ring-2 ring-[#C6A667]/50'
                         : 'border-[#C6A667]/20 bg-white/60 hover:border-[#C6A667]/50'
                     }`}
                   >
                     <div className="text-[10px] uppercase tracking-wider text-[#C6A667] font-semibold">
-                      {branch.city}, SC {branch.zipCode}
+                      {branch.city}, NC
                     </div>
-                    <div className="font-serif text-base font-semibold text-[#302725] mt-0.5">
+                    <div className="font-serif text-base font-semibold text-[#3B2A28] mt-0.5">
                       {branch.name}
                     </div>
-                    <div className="text-xs text-[#A48D84] mt-1 line-clamp-1">
+                    <div className="text-xs text-[#A98F86] mt-1 line-clamp-1">
                       {branch.address}
                     </div>
                   </button>
@@ -209,7 +216,7 @@ export const BookingModal: React.FC = () => {
           {/* STEP 2: SELECT SERVICE */}
           {step === 2 && (
             <div className="space-y-4">
-              <div className="text-xs text-[#A48D84]">
+              <div className="text-xs text-[#A98F86]">
                 Select the signature treatment or VIP retreat for your visit.
               </div>
               <div className="space-y-2.5 max-h-[380px] overflow-y-auto pr-2">
@@ -227,15 +234,15 @@ export const BookingModal: React.FC = () => {
                       <div className="text-[10px] uppercase tracking-wider text-[#C6A667] font-medium">
                         {service.categoryLabel}
                       </div>
-                      <div className="font-serif text-base font-semibold text-[#302725]">
+                      <div className="font-serif text-base font-semibold text-[#3B2A28]">
                         {service.name}
                       </div>
-                      <div className="text-xs text-[#A48D84]">
+                      <div className="text-xs text-[#A98F86]">
                         Duration: {service.durationMinutes} mins
                       </div>
                     </div>
                     <div className="text-right shrink-0">
-                      <div className="font-serif text-lg font-semibold text-[#302725]">
+                      <div className="font-serif text-lg font-semibold text-[#3B2A28]">
                         ${service.priceUSD}
                       </div>
                     </div>
@@ -248,8 +255,8 @@ export const BookingModal: React.FC = () => {
           {/* STEP 3: CHOOSE SPECIALIST */}
           {step === 3 && (
             <div className="space-y-4">
-              <div className="text-xs text-[#A48D84]">
-                Choose your dedicated SC LLR-licensed artisan or select first available master stylist.
+              <div className="text-xs text-[#A98F86]">
+                Choose your dedicated NC Board of Cosmetic Art Sciences licensed specialist or select first available master stylist.
               </div>
               <div className="space-y-3">
                 <button
@@ -260,12 +267,12 @@ export const BookingModal: React.FC = () => {
                       : 'border-[#C6A667]/20 bg-white/60'
                   }`}
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#FAF8F5] border border-[#C6A667]/40 flex items-center justify-center text-[#C6A667]">
+                  <div className="w-10 h-10 rounded-full bg-[#FFF9F4] border border-[#C6A667]/40 flex items-center justify-center text-[#C6A667]">
                     <Sparkles className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="font-semibold text-sm text-[#302725]">First Available Master Artisan</div>
-                    <div className="text-xs text-[#A48D84]">Maximum scheduling flexibility with SC LLR-certified senior specialists.</div>
+                    <div className="font-semibold text-sm text-[#3B2A28]">First Available Master Artisan</div>
+                    <div className="text-xs text-[#A98F86]">Maximum scheduling flexibility with NC Board-certified senior specialists.</div>
                   </div>
                 </button>
 
@@ -436,32 +443,32 @@ export const BookingModal: React.FC = () => {
                 </div>
                 <div className="text-xs space-y-1.5 text-[#302725]">
                   <div className="flex justify-between">
-                    <span className="text-[#A48D84]">Location:</span>
-                    <span className="font-medium">{currentBranch.name} ({currentBranch.city}, SC)</span>
+                    <span className="text-[#A98F86]">Location:</span>
+                    <span className="font-medium text-[#3B2A28]">{currentBranch.name} ({currentBranch.city}, NC)</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#A48D84]">Service:</span>
-                    <span className="font-medium">{currentService.name} (${basePrice})</span>
+                    <span className="text-[#A98F86]">Service:</span>
+                    <span className="font-medium text-[#3B2A28]">{currentService.name} (${basePrice})</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#A48D84]">Schedule:</span>
-                    <span className="font-medium">{appointmentDate} at {appointmentTime}</span>
+                    <span className="text-[#A98F86]">Schedule:</span>
+                    <span className="font-medium text-[#3B2A28]">{appointmentDate} at {appointmentTime}</span>
                   </div>
                   {selectedAddOns.length > 0 && (
                     <div className="flex justify-between">
-                      <span className="text-[#A48D84]">Add-ons ({selectedAddOns.length}):</span>
-                      <span className="font-medium">+${addOnsTotal}</span>
+                      <span className="text-[#A98F86]">Add-ons ({selectedAddOns.length}):</span>
+                      <span className="font-medium text-[#3B2A28]">+${addOnsTotal}</span>
                     </div>
                   )}
-                  <div className="flex justify-between text-[#A48D84]">
-                    <span>SC Sales &amp; Local Tax (est. 8%):</span>
-                    <span>${scEstimatedTaxUSD.toFixed(2)}</span>
+                  <div className="flex justify-between text-[#A98F86]">
+                    <span>NC Sales &amp; Local Tax (est. 7.25%):</span>
+                    <span>${ncEstimatedTaxUSD.toFixed(2)}</span>
                   </div>
-                  <div className="flex justify-between text-[#A48D84]">
+                  <div className="flex justify-between text-[#A98F86]">
                     <span>Artisan Gratuity ({tipPercentage}%):</span>
                     <span>${calculatedTipUSD.toFixed(2)}</span>
                   </div>
-                  <div className="flex justify-between pt-2 border-t border-[#302725]/10 font-serif text-base font-bold text-[#302725]">
+                  <div className="flex justify-between pt-2 border-t border-[#3B2A28]/10 font-serif text-base font-bold text-[#3B2A28]">
                     <span>Total Service Value:</span>
                     <span>${totalPriceUSD.toFixed(2)} USD</span>
                   </div>
@@ -634,7 +641,7 @@ export const BookingModal: React.FC = () => {
             {step < 7 ? (
               <button
                 onClick={() => setStep(s => s + 1)}
-                className="px-6 py-2.5 bg-[#302725] hover:bg-[#C6A667] text-white text-xs uppercase tracking-[0.15em] font-medium flex items-center gap-1.5 transition-colors shadow-xs"
+                className="px-6 py-2.5 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.15em] font-semibold flex items-center gap-1.5 transition-colors shadow-xs rounded-xs"
               >
                 <span>Continue</span>
                 <ChevronRight className="w-3.5 h-3.5" />
@@ -643,13 +650,13 @@ export const BookingModal: React.FC = () => {
               <button
                 onClick={handleConfirmReservation}
                 disabled={isSubmitting}
-                className="px-8 py-3 bg-[#C6A667] hover:bg-[#302725] text-white text-xs uppercase tracking-[0.2em] font-semibold flex items-center gap-2 transition-all shadow-md disabled:opacity-50"
+                className="px-8 py-3 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.2em] font-bold flex items-center gap-2 transition-all shadow-md disabled:opacity-50 rounded-xs border border-[#C6A667]/40"
               >
                 {isSubmitting ? (
                   <span>Securing Private Suite...</span>
                 ) : (
                   <>
-                    <ShieldCheck className="w-4 h-4" />
+                    <ShieldCheck className="w-4 h-4 text-[#C6A667]" />
                     <span>Authorize &amp; Secure Reservation</span>
                   </>
                 )}

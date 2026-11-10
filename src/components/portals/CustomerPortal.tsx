@@ -12,17 +12,17 @@ export const CustomerPortal: React.FC = () => {
       {/* Portal Header */}
       <div className="bg-white border border-[#C6A667]/30 p-8 rounded-sm shadow-sm flex flex-wrap items-center justify-between gap-6">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-full bg-[#302725] text-[#C6A667] flex items-center justify-center font-serif text-2xl font-bold">
+          <div className="w-16 h-16 rounded-full bg-[#3B2A28] text-[#C6A667] flex items-center justify-center font-serif text-2xl font-bold border border-[#C6A667]/30">
             {currentUser.name.charAt(0)}
           </div>
           <div>
             <div className="text-xs uppercase tracking-wider text-[#C6A667] font-semibold">
-              Client Privilege Account · South Carolina
+              Client Privilege Account · North Carolina
             </div>
-            <h1 className="font-serif text-2xl sm:text-3xl font-semibold text-[#302725]">
+            <h1 className="font-serif text-2xl sm:text-3xl font-semibold text-[#3B2A28]">
               {currentUser.name}
             </h1>
-            <div className="text-xs text-[#A48D84] flex items-center gap-2 mt-0.5">
+            <div className="text-xs text-[#A98F86] flex items-center gap-2 mt-0.5">
               <span>{currentUser.email}</span>
               <span>·</span>
               <span>{currentUser.phone}</span>
@@ -32,16 +32,16 @@ export const CustomerPortal: React.FC = () => {
 
         <div className="flex items-center gap-4">
           <div className="text-right">
-            <div className="text-xs uppercase tracking-wider text-[#A48D84]">Loyalty Points</div>
+            <div className="text-xs uppercase tracking-wider text-[#A98F86]">Loyalty Points</div>
             <div className="font-serif text-2xl font-bold text-[#C6A667] tabular-nums">
               {currentUser.loyaltyPoints.toLocaleString()} PTS
             </div>
-            <div className="text-[11px] text-[#302725] font-medium">{currentUser.tier}</div>
+            <div className="text-[11px] text-[#3B2A28] font-semibold">{currentUser.tier}</div>
           </div>
 
           <button
             onClick={() => openBookingModal()}
-            className="px-5 py-2.5 bg-[#302725] hover:bg-[#C6A667] text-white text-xs uppercase tracking-wider font-semibold transition-colors"
+            className="px-5 py-2.5 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-wider font-semibold transition-colors rounded-xs shadow-xs"
           >
             New Reservation
           </button>
@@ -87,11 +87,11 @@ export const CustomerPortal: React.FC = () => {
         <div className="space-y-4">
           {appointments.length === 0 ? (
             <div className="bg-white p-12 text-center border border-[#C6A667]/20 rounded-sm space-y-3">
-              <div className="font-serif text-xl text-[#302725]">No upcoming reservations found</div>
-              <p className="text-xs text-[#A48D84]">Schedule a beauty ritual at any of our five South Carolina sanctuaries.</p>
+              <div className="font-serif text-xl text-[#3B2A28]">No upcoming reservations found</div>
+              <p className="text-xs text-[#A98F86]">Schedule a beauty ritual at our North Carolina branches.</p>
               <button
                 onClick={() => openBookingModal()}
-                className="mt-2 px-6 py-2 bg-[#C6A667] text-white text-xs uppercase tracking-wider"
+                className="mt-2 px-6 py-2 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-wider font-semibold rounded-xs shadow-xs"
               >
                 Reserve Suite
               </button>
@@ -178,42 +178,42 @@ export const CustomerPortal: React.FC = () => {
               <Gift className="w-5 h-5 text-[#C6A667]" />
               <span>Available Member Privileges</span>
             </div>
-            <div className="space-y-3 text-xs text-[#302725]">
-              <div className="p-3 bg-[#FAF8F5] border border-[#C6A667]/20 rounded-xs flex items-center justify-between">
+            <div className="space-y-3 text-xs text-[#3B2A28]">
+              <div className="p-3 bg-[#FFF9F4] border border-[#C6A667]/20 rounded-xs flex items-center justify-between">
                 <div>
                   <div className="font-semibold">Complimentary Birthday Scalp Detox</div>
-                  <div className="text-[#A48D84]">Valid during your birth month at any SC sanctuary.</div>
+                  <div className="text-[#A98F86]">Valid during your birth month at any North Carolina branch.</div>
                 </div>
-                <span className="text-[#C6A667] font-bold">READY</span>
+                <span className="text-[#8E4B63] font-bold">READY</span>
               </div>
-              <div className="p-3 bg-[#FAF8F5] border border-[#C6A667]/20 rounded-xs flex items-center justify-between">
+              <div className="p-3 bg-[#FFF9F4] border border-[#C6A667]/20 rounded-xs flex items-center justify-between">
                 <div>
                   <div className="font-semibold">15% Privilege on Boutique Skincare</div>
-                  <div className="text-[#A48D84]">Applies automatically at checkout.</div>
+                  <div className="text-[#A98F86]">Applies automatically at checkout.</div>
                 </div>
-                <span className="text-[#C6A667] font-bold">ACTIVE</span>
+                <span className="text-[#8E4B63] font-bold">ACTIVE</span>
               </div>
-              <div className="p-3 bg-[#FAF8F5] border border-[#C6A667]/20 rounded-xs flex items-center justify-between">
+              <div className="p-3 bg-[#FFF9F4] border border-[#C6A667]/20 rounded-xs flex items-center justify-between">
                 <div>
                   <div className="font-semibold">Private Suite Upgrade</div>
-                  <div className="text-[#A48D84]">Guaranteed suite reservation for bookings over $200.</div>
+                  <div className="text-[#A98F86]">Guaranteed suite reservation for bookings over $200.</div>
                 </div>
-                <span className="text-[#C6A667] font-bold">INCLUDED</span>
+                <span className="text-[#8E4B63] font-bold">INCLUDED</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-[#302725] text-white p-6 rounded-sm border border-[#C6A667]/40 flex flex-col justify-between space-y-4">
+          <div className="bg-[#3B2A28] text-white p-6 rounded-sm border border-[#C6A667]/40 flex flex-col justify-between space-y-4">
             <div>
-              <div className="text-xs uppercase tracking-wider text-[#C6A667]">Aurélia Digital Key</div>
+              <div className="text-xs uppercase tracking-wider text-[#C6A667] font-semibold">The Glamway Digital Key</div>
               <div className="font-serif text-2xl font-bold mt-1">Contactless Check-In QR</div>
               <p className="text-xs text-white/70 mt-1">Present to reception upon arrival for express private suite allocation.</p>
             </div>
             <div className="bg-white p-4 w-36 h-36 mx-auto rounded-xs flex items-center justify-center">
-              <QrCode className="w-28 h-28 text-[#302725]" />
+              <QrCode className="w-28 h-28 text-[#3B2A28]" />
             </div>
             <div className="text-center font-mono text-xs text-[#C6A667]">
-              MEMBER ID: #AUR-SC-8829-GOLD
+              MEMBER ID: #GW-NC-8829-GOLD
             </div>
           </div>
         </div>

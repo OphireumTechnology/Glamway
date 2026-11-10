@@ -13,7 +13,7 @@ export const BranchConsole: React.FC = () => {
   // Walk-in queue state in Eastern Time
   const [walkIns, setWalkIns] = useState([
     { id: 'w-1', name: 'Harper Beaufort', requestedService: 'Precision Signature Cut & Blowout', waitTime: '15 mins', status: 'waiting' },
-    { id: 'w-2', name: 'Savannah Ravenel', requestedService: 'Aurélia 24K Gold Couture Manicure', waitTime: 'Ready', status: 'allocated' }
+    { id: 'w-2', name: 'Savannah Pinckney', requestedService: '24K Champagne Gold Couture Manicure', waitTime: 'Ready', status: 'allocated' }
   ]);
 
   const [newWalkInName, setNewWalkInName] = useState('');
@@ -43,23 +43,23 @@ export const BranchConsole: React.FC = () => {
     <div className="py-10 px-6 max-w-7xl mx-auto space-y-8">
       
       {/* Console Top Header */}
-      <div className="bg-[#302725] text-white p-6 rounded-sm border border-[#C6A667]/40 shadow-xl flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-[#3B2A28] text-white p-6 rounded-sm border border-[#C6A667]/40 shadow-xl flex flex-wrap items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#C6A667]">
+          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
             <Building2 className="w-4 h-4" />
-            <span>Branch Operations &amp; Reception Console · South Carolina</span>
+            <span>Branch Operations &amp; Reception Console · North Carolina</span>
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl font-semibold mt-1">
             {currentBranch.name}
           </h1>
-          <div className="text-xs text-[#FAF8F5]/70 mt-0.5 flex flex-wrap items-center gap-3">
+          <div className="text-xs text-[#FFF9F4]/70 mt-0.5 flex flex-wrap items-center gap-3">
             <span>{currentBranch.address}</span>
             <span>·</span>
             <span>{currentBranch.phone}</span>
             <span>·</span>
             <span className="text-[#C6A667] flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>SC LLR License #{currentBranch.licenseNumber} (Active &amp; Compliant)</span>
+              <span>NC Board of Cosmetic Art Sciences License #{currentBranch.licenseNumber} (Active &amp; Compliant)</span>
             </span>
           </div>
         </div>
@@ -67,7 +67,7 @@ export const BranchConsole: React.FC = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={() => openBookingModal(undefined, currentBranch.id)}
-            className="px-4 py-2 bg-[#C6A667] hover:bg-white hover:text-[#302725] text-white text-xs uppercase tracking-wider font-semibold transition-colors flex items-center gap-1.5"
+            className="px-4 py-2 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-wider font-semibold transition-colors flex items-center gap-1.5 rounded-xs border border-[#C6A667]/30 shadow-xs"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>New Reception Booking</span>
@@ -78,23 +78,23 @@ export const BranchConsole: React.FC = () => {
       {/* KPI Cards Strip in USD */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-5 border border-[#C6A667]/25 rounded-sm shadow-xs">
-          <div className="text-xs uppercase tracking-wider text-[#A48D84]">Today's Appointments (EST)</div>
-          <div className="font-serif text-3xl font-bold text-[#302725] mt-1 tabular-nums">
+          <div className="text-xs uppercase tracking-wider text-[#A98F86]">Today's Appointments (EST)</div>
+          <div className="font-serif text-3xl font-bold text-[#3B2A28] mt-1 tabular-nums">
             {branchAppointments.length + 8}
           </div>
           <div className="text-[11px] text-emerald-700 mt-1">98% on-time arrival rate</div>
         </div>
 
         <div className="bg-white p-5 border border-[#C6A667]/25 rounded-sm shadow-xs">
-          <div className="text-xs uppercase tracking-wider text-[#A48D84]">Private Suite Utilization</div>
-          <div className="font-serif text-3xl font-bold text-[#302725] mt-1 tabular-nums">
+          <div className="text-xs uppercase tracking-wider text-[#A98F86]">Private Suite Utilization</div>
+          <div className="font-serif text-3xl font-bold text-[#3B2A28] mt-1 tabular-nums">
             {roomOccupancyRate}%
           </div>
-          <div className="text-[11px] text-[#A48D84] mt-1">{occupiedRooms} of {currentBranch.treatmentRooms} suites in active service</div>
+          <div className="text-[11px] text-[#A98F86] mt-1">{occupiedRooms} of {currentBranch.treatmentRooms} suites in active service</div>
         </div>
 
         <div className="bg-white p-5 border border-[#C6A667]/25 rounded-sm shadow-xs">
-          <div className="text-xs uppercase tracking-wider text-[#A48D84]">Today's Branch Revenue</div>
+          <div className="text-xs uppercase tracking-wider text-[#A98F86]">Today's Branch Revenue</div>
           <div className="font-serif text-3xl font-bold text-[#C6A667] mt-1 tabular-nums">
             ${totalDailyRevenueUSD.toLocaleString()} USD
           </div>
@@ -102,11 +102,11 @@ export const BranchConsole: React.FC = () => {
         </div>
 
         <div className="bg-white p-5 border border-[#C6A667]/25 rounded-sm shadow-xs">
-          <div className="text-xs uppercase tracking-wider text-[#A48D84]">SC LLR Artisans on Duty</div>
-          <div className="font-serif text-3xl font-bold text-[#302725] mt-1 tabular-nums">
+          <div className="text-xs uppercase tracking-wider text-[#A98F86]">NC Board Artisans on Duty</div>
+          <div className="font-serif text-3xl font-bold text-[#3B2A28] mt-1 tabular-nums">
             {currentBranch.staffCount} Licensed
           </div>
-          <div className="text-[11px] text-[#A48D84] mt-1">All sanitation logs verified</div>
+          <div className="text-[11px] text-[#A98F86] mt-1">All sanitation logs verified</div>
         </div>
       </div>
 
@@ -183,15 +183,15 @@ export const BranchConsole: React.FC = () => {
               <select
                 value={newWalkInService}
                 onChange={(e) => setNewWalkInService(e.target.value)}
-                className="w-full text-xs p-2 bg-white border border-[#C6A667]/30 rounded-xs"
+                className="w-full text-xs p-2 bg-white border border-[#C6A667]/30 rounded-xs text-[#3B2A28]"
               >
                 <option value="Precision Signature Cut & Blowout">Precision Cut & Blowout ($95)</option>
-                <option value="Aurélia 24K Gold Couture Manicure">24K Gold Couture Manicure ($85)</option>
+                <option value="24K Champagne Gold Couture Manicure">24K Champagne Gold Couture Manicure ($85)</option>
                 <option value="Botanical Radiance Hydra-Infusion">Hydra-Infusion Facial ($175)</option>
               </select>
               <button
                 onClick={handleAddWalkIn}
-                className="w-full py-2 bg-[#302725] hover:bg-[#C6A667] text-white text-xs uppercase tracking-wider font-medium transition-colors"
+                className="w-full py-2 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-wider font-semibold transition-colors rounded-xs shadow-xs"
               >
                 Register Walk-in Guest
               </button>

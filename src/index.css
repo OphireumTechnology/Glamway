@@ -1,35 +1,74 @@
 @import "tailwindcss";
 
+:root {
+  --brand-ivory: #FFF9F4;
+  --brand-blush: #F5D6DE;
+  --brand-gold: #C6A667;
+  --brand-rose-beige: #D9B6A9;
+  --brand-plum: #8E4B63;
+  --brand-espresso: #3B2A28;
+  --brand-taupe: #A98F86;
+  --brand-dusty-pink: #E8C3C8;
+  --brand-white: #FFFFFF;
+
+  --background-primary: var(--brand-ivory);
+  --background-card: var(--brand-white);
+  --background-secondary: var(--brand-rose-beige);
+
+  --text-primary: var(--brand-espresso);
+  --text-secondary: #705B55;
+
+  --accent-primary: var(--brand-gold);
+  --accent-secondary: var(--brand-plum);
+
+  --button-primary: var(--brand-plum);
+  --button-primary-text: #FFFFFF;
+
+  --border-luxury: var(--brand-gold);
+
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Montserrat", Arial, sans-serif;
+}
+
 @theme {
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --color-pearl: #FAF8F5;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Montserrat", system-ui, -apple-system, sans-serif;
+  --color-ivory: #FFF9F4;
+  --color-blush: #F5D6DE;
   --color-gold: #C6A667;
-  --color-gold-light: #DFCA9B;
+  --color-gold-light: #E9D5B1;
   --color-gold-dark: #A98748;
-  --color-blush: #F3DFE3;
-  --color-rose: #DCC2BA;
-  --color-ivory: #FFFDF9;
-  --color-espresso: #302725;
-  --color-taupe: #A48D84;
+  --color-rose-beige: #D9B6A9;
+  --color-plum: #8E4B63;
+  --color-plum-dark: #70374C;
+  --color-espresso: #3B2A28;
+  --color-taupe: #A98F86;
+  --color-dusty-pink: #E8C3C8;
+  --color-white: #FFFFFF;
 }
 
 html {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
+  background-color: var(--brand-ivory);
+  color: var(--brand-espresso);
   scroll-behavior: smooth;
 }
 
 .font-serif {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
 }
 
 .font-sans {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
 }
 
-/* Subtle luxury gold glow */
+/* Subtle luxury gold & plum glow effects */
 .gold-glow {
   box-shadow: 0 4px 20px -2px rgba(198, 166, 103, 0.25);
+}
+
+.plum-glow {
+  box-shadow: 0 4px 20px -2px rgba(142, 75, 99, 0.35);
 }
 
 .gold-border {

@@ -24,14 +24,14 @@ export const ShopSection: React.FC = () => {
       
       {/* Section Header */}
       <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
-        <div className="text-xs uppercase tracking-[0.25em] text-[#C6A667] font-medium">
-          Maison Aurélia Boutiques
+        <div className="text-xs uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
+          The Glamway Boutiques · FOR WOMEN
         </div>
-        <h2 className="font-serif text-3xl sm:text-4xl text-[#302725] tracking-tight">
+        <h2 className="font-serif text-3xl sm:text-4xl text-[#3B2A28] tracking-tight">
           Salon-Exclusive Formulations
         </h2>
-        <p className="text-sm sm:text-base text-[#A48D84] font-light">
-          Take home the exact French peptides, 24-karat gold botanicals, and grade-6A mulberry silk utilized in our private suites.
+        <p className="text-sm sm:text-base text-[#A98F86] font-light">
+          Take home the exact French peptides, 24-karat gold botanicals, and grade-6A mulberry silk utilized in our private styling suites.
         </p>
       </div>
 
@@ -41,10 +41,10 @@ export const ShopSection: React.FC = () => {
           <button
             key={cat.key}
             onClick={() => setActiveCategory(cat.key)}
-            className={`px-4 py-2 text-xs uppercase tracking-[0.15em] font-medium transition-all whitespace-nowrap rounded-sm border ${
+            className={`px-4 py-2 text-xs uppercase tracking-[0.15em] font-semibold transition-all whitespace-nowrap rounded-xs border ${
               activeCategory === cat.key
-                ? 'bg-[#302725] text-white border-[#302725]'
-                : 'bg-white text-[#302725]/70 border-[#C6A667]/20 hover:border-[#C6A667]'
+                ? 'bg-[#8E4B63] text-white border-[#8E4B63] shadow-sm'
+                : 'bg-white text-[#3B2A28]/70 border-[#C6A667]/20 hover:border-[#C6A667]'
             }`}
           >
             {cat.label}
@@ -110,7 +110,7 @@ export const ShopSection: React.FC = () => {
 
                 <button
                   onClick={() => addToCart(product)}
-                  className="px-4 py-2 bg-[#302725] hover:bg-[#C6A667] text-white text-xs uppercase tracking-wider font-medium flex items-center gap-1.5 transition-colors shadow-xs"
+                  className="px-4 py-2 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-wider font-semibold flex items-center gap-1.5 transition-colors shadow-xs rounded-xs"
                 >
                   <ShoppingBag className="w-3.5 h-3.5" />
                   <span>Add to Bag</span>
