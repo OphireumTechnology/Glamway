@@ -91,11 +91,11 @@ const MainLayout: React.FC = () => {
         )}
 
         {currentView === 'branch-console' && (
-          <BranchConsole />
+          <div className="mx-auto max-w-xl px-6 py-24 text-center" role="alert"><h1 className="font-serif text-3xl mb-4">Staff portal unavailable</h1><p>Secure staff authentication and server-side authorization are required before this portal can be enabled.</p></div>
         )}
 
         {currentView === 'corporate-dashboard' && (
-          <CorporateDashboard />
+          <div className="mx-auto max-w-xl px-6 py-24 text-center" role="alert"><h1 className="font-serif text-3xl mb-4">Corporate portal unavailable</h1><p>Secure corporate authentication and server-side authorization are required before this portal can be enabled.</p></div>
         )}
       </main>
 
