@@ -210,12 +210,21 @@ export const ServicesSection: React.FC = () => {
                     
                     {/* Large Premium Service Photograph */}
                     <div className="relative aspect-[16/10] overflow-hidden bg-[#FAF8F5]">
-                      <img
-                        src={service.image}
-                        alt={`The Glamway - ${service.name}`}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 motion-reduce:group-hover:scale-100"
-                        loading="lazy"
-                      />
+                      {service.category === 'lashes' || service.category === 'additional-lashes' ? (
+                        <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#FFF9F4] via-[#F5D6DE]/60 to-[#D9B6A9]/50 text-[#8E4B63] gap-4" role="img" aria-label={`${service.name}: professional eyelash treatment`}>
+                          <Eye className="w-16 h-16 text-[#C6A667]" strokeWidth={1} aria-hidden="true" />
+                          <span className="font-serif text-xl text-center px-5">{service.name}</span>
+                          <span className="text-xs uppercase tracking-widest">Professional Lash Artistry</span>
+                        </div>
+                      ) : (
+                        <img
+                          src={service.image}
+                          alt={`Illustrative image for ${service.name}`}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 motion-reduce:group-hover:scale-100"
+                          loading="lazy"
+                          onError={(event) => { event.currentTarget.style.display = 'none'; }}
+                        />
+                      )}
                       
                       {/* Gradient Ambient Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#3B2A28]/70 via-transparent to-transparent opacity-45 group-hover:opacity-30 transition-opacity" />

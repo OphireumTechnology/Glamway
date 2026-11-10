@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
               <img 
                 src={GLAMWAY_LOGO} 
                 alt="The Glamway Beauty Salon" 
-                className="h-14 sm:h-16 w-auto object-contain"
+                className="h-24 sm:h-28 w-auto max-w-full object-contain"
               />
               <div className="text-[11px] uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
                 Charlotte, North Carolina
@@ -130,7 +130,7 @@ export const Footer: React.FC = () => {
               Appointments
             </div>
             <p className="text-xs text-[#FFF9F4]/85 leading-relaxed font-light">
-              Appointments are reserved online in advance for private treatment suites at our Charlotte locations or via scheduled house calls.
+              Browse our services and contact the salon for current appointment availability. Online reservation confirmation is temporarily unavailable.
             </p>
             <button
               onClick={() => openBookingModal()}
@@ -141,7 +141,7 @@ export const Footer: React.FC = () => {
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
             <p className="text-[11px] text-[#A98F86]">
-              All reservations are confirmed through official salon coordination.
+              Appointments are not confirmed through this website until secure online booking is restored.
             </p>
           </div>
 
