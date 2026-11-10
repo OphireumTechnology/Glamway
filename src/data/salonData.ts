@@ -74,7 +74,7 @@ export const SALON_BRANCHES: SalonBranch[] = [
   }
 ];
 
-// Verified Services: strictly the 4 verified categories (Lashes, Hair, Nails, Facials)
+// Verified Services: 7 Organized Categories without public prices
 export const SALON_SERVICES: ServiceItem[] = [
   // 1. LASHES
   {
@@ -85,7 +85,6 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Customized classic, hybrid, or volume full extension set',
     description: 'Complete lash extension set individually tailored to your eye shape and natural lash strength for everyday elegance or dramatic volume.',
     durationMinutes: 120,
-    priceUSD: 160,
     image: 'https://images.unsplash.com/photo-1583001809873-a128495da465?auto=format&fit=crop&w=1200&q=85',
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     preparation: 'Arrive with clean, makeup-free eye area. Avoid caffeine prior to your appointment.',
@@ -100,7 +99,6 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: '2 to 3 week maintenance to replenish growth and preserve fullness',
     description: 'Maintenance appointment to remove outgrown extensions and place fresh lashes to restore your set to full density.',
     durationMinutes: 75,
-    priceUSD: 85,
     image: 'https://images.unsplash.com/photo-1597225244660-1cd128c64284?auto=format&fit=crop&w=1200&q=85',
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     preparation: 'Clients should have at least 40% of their extensions remaining for a fill.',
@@ -115,7 +113,6 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Full upper set with delicate lower lash application for balanced glamour',
     description: 'Comprehensive lash extension appointment covering both upper and lower lash lines for an ultra-glamorous, open-eyed look.',
     durationMinutes: 135,
-    priceUSD: 195,
     image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=85',
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
@@ -128,13 +125,125 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Gentle, non-damaging adhesive breakdown and conditioning',
     description: 'Safe in-salon removal of lash extensions using professional cream remover that dissolves adhesive without damaging natural lashes.',
     durationMinutes: 30,
-    priceUSD: 35,
     image: 'https://images.unsplash.com/photo-1512290900672-1f49615a9ff2?auto=format&fit=crop&w=1200&q=85',
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
   },
 
-  // 2. HAIR
+  // 2. ADDITIONAL LASH TREATMENTS
+  {
+    id: 'srv-removal-full-set',
+    name: 'Removal + Full Set',
+    category: 'additional-lashes',
+    categoryLabel: 'Additional Lash Treatments',
+    tagline: 'Gentle adhesive removal paired with a fresh full set',
+    description: 'Gentle, non-damaging removal of existing lash extensions followed immediately by a brand-new customized full set tailored to your eyes.',
+    durationMinutes: 120,
+    image: 'https://images.unsplash.com/photo-1512290900672-1f49615a9ff2?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    preparation: 'Arrive with clean, makeup-free eye area.',
+    aftercare: 'Keep lashes dry for 24 hours and brush gently daily.',
+    isFeatured: true
+  },
+  {
+    id: 'srv-fill-in',
+    name: 'Fill In',
+    category: 'additional-lashes',
+    categoryLabel: 'Additional Lash Treatments',
+    tagline: 'Routine lash extension touch-up and maintenance',
+    description: 'Standard maintenance appointment to replace outgrown extensions and restore lash density.',
+    durationMinutes: 60,
+    image: 'https://images.unsplash.com/photo-1597225244660-1cd128c64284?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    preparation: 'Clients should have at least 40% of extensions remaining for a fill.',
+    isFeatured: true
+  },
+  {
+    id: 'srv-top-bottom-full-set',
+    name: 'Top & Bottom Full Set',
+    category: 'additional-lashes',
+    categoryLabel: 'Additional Lash Treatments',
+    tagline: 'Upper and lower lash line full extension artistry',
+    description: 'Complete eyelash extension set applied to both upper and lower lash lines for an ultra-glamorous, balanced look.',
+    durationMinutes: 100,
+    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    preparation: 'Arrive with thoroughly cleansed eye area.',
+    isFeatured: false
+  },
+  {
+    id: 'srv-top-bottom-fill-in',
+    name: 'Top & Bottom Fill In',
+    category: 'additional-lashes',
+    categoryLabel: 'Additional Lash Treatments',
+    tagline: 'Dual lash line maintenance for top and bottom sets',
+    description: 'Refill appointment maintaining extension fullness along both the upper and lower lash lines.',
+    durationMinutes: 75,
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    preparation: 'Arrive with clean eye area.',
+    isFeatured: false
+  },
+  {
+    id: 'srv-lash-full-set',
+    name: 'Lash Full Set',
+    category: 'additional-lashes',
+    categoryLabel: 'Additional Lash Treatments',
+    tagline: 'Tailored full eyelash extension application',
+    description: 'Full set of eyelash extensions individually attached to natural lashes for enhanced length, curl, and dimension.',
+    durationMinutes: 90,
+    image: 'https://images.unsplash.com/photo-1583001809873-a128495da465?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    preparation: 'Clean natural lashes thoroughly before appointment.',
+    isFeatured: true
+  },
+  {
+    id: 'srv-7-day-fill-in',
+    name: '7 Day Fill In',
+    category: 'additional-lashes',
+    categoryLabel: 'Additional Lash Treatments',
+    tagline: 'One-week rapid touch-up to maintain set perfection',
+    description: 'Fast touch-up service scheduled within 7 days of your initial full set or fill to keep lashes immaculate.',
+    durationMinutes: 45,
+    image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    preparation: 'Must be scheduled within 7 days of previous lash appointment.',
+    isFeatured: false
+  },
+
+  // 3. WAXING
+  {
+    id: 'srv-brazilian-wax',
+    name: 'Brazilian Wax',
+    category: 'waxing',
+    categoryLabel: 'Waxing',
+    tagline: 'Precision waxing and skin-soothing botanical care',
+    description: 'Specialized Brazilian waxing treatment performed in a private suite with gentle, premium hard wax formulated for sensitive skin.',
+    durationMinutes: 30,
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    preparation: 'Hair should be approximately 1/4 inch long. Gently exfoliate 24-48 hours before your appointment.',
+    aftercare: 'Wear loose breathable clothing and avoid hot tubs, saunas, and intense exercise for 24 hours.',
+    isFeatured: true
+  },
+
+  // 4. HOUSE CALLS
+  {
+    id: 'srv-house-calls',
+    name: 'House Calls',
+    category: 'house-calls',
+    categoryLabel: 'House Calls',
+    tagline: 'Private on-location beauty appointment',
+    description: 'Dedicated on-location beauty service bringing The Glamway experience directly to your residence or event venue by appointment.',
+    durationMinutes: 150,
+    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    preparation: 'Please provide a quiet, well-lit space with access to a power outlet.',
+    aftercare: 'Standard service aftercare guidelines apply based on your selected beauty treatments.',
+    isFeatured: true
+  },
+
+  // 5. HAIR
   {
     id: 'srv-hair-styling-install',
     name: 'Hair Styling & Extension Installation',
@@ -143,7 +252,6 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Professional hair installation, sew-ins, and precision styling',
     description: 'Expert hair extension installation and styling tailored to your natural hair, ensuring seamless blending, security, and hair health.',
     durationMinutes: 150,
-    priceUSD: 185,
     image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=85',
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     preparation: 'Hair should be washed and detangled prior to installation.',
@@ -157,7 +265,6 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Deep conditioning, thermal heat protectant, and sleek silk press',
     description: 'Clarifying wash, hydrating deep condition, blow dry, and precision thermal press for lightweight, silky movement without chemical alteration.',
     durationMinutes: 90,
-    priceUSD: 95,
     image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85',
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
@@ -170,13 +277,12 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Split-end removal, shaping, and healthy growth maintenance',
     description: 'Cleanse, conditioning, precision trim to eliminate damaged ends, and light styling.',
     durationMinutes: 60,
-    priceUSD: 65,
     image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=1200&q=85',
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
   },
 
-  // 3. NAILS
+  // 6. NAILS
   {
     id: 'srv-structured-manicure',
     name: 'Structured Gel Manicure',
@@ -185,7 +291,6 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Cuticle care, apex reinforcement, and long-lasting gel finish',
     description: 'Detailed dry manicure cuticle clean-up, nail shaping, builder gel overlay to strengthen natural nails, and high-shine gel polish.',
     durationMinutes: 75,
-    priceUSD: 75,
     image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85',
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
@@ -198,13 +303,12 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Nail extensions with custom shape, length, and design',
     description: 'Full set of nail enhancements with custom shaping (almond, square, coffin), reinforced durability, and gel color finish.',
     durationMinutes: 90,
-    priceUSD: 85,
     image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=1200&q=85',
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
   },
 
-  // 4. FACIALS
+  // 7. FACIALS
   {
     id: 'srv-custom-esthetician-facial',
     name: 'Custom Esthetician Facial',
@@ -213,7 +317,6 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Personalized skin evaluation, deep cleansing, exfoliation, and hydration',
     description: 'Comprehensive facial treatment led by licensed estheticians. Includes skin analysis, double cleanse, enzyme exfoliation, pore clearing, targeted mask, and protective hydration.',
     durationMinutes: 60,
-    priceUSD: 110,
     image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85',
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     preparation: 'Discontinue retinol and chemical exfoliants 48 hours prior.',
@@ -228,7 +331,6 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Hydrating mini-facial combined with precision brow waxing',
     description: 'Skin-refreshing cleanse and glow serum application paired with gentle brow shaping and facial waxing for a clean, luminous complexion.',
     durationMinutes: 45,
-    priceUSD: 65,
     image: 'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=1200&q=85',
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false

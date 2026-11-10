@@ -4,7 +4,7 @@ import { ServiceCategory, ServiceItem } from '../../types';
 import { Clock, ArrowRight, Sparkles, X, Info, Calendar, Eye, Scissors, Sparkle, Droplets } from 'lucide-react';
 
 export const FeaturedServices: React.FC = () => {
-  const { services, openBookingModal } = useSalon();
+  const { services, openBookingModal, setCurrentView } = useSalon();
   const [selectedCategoryModal, setSelectedCategoryModal] = useState<ServiceCategory | null>(null);
   const [selectedServiceForDetail, setSelectedServiceForDetail] = useState<ServiceItem | null>(null);
 
@@ -153,6 +153,65 @@ export const FeaturedServices: React.FC = () => {
             </div>
           );
         })}
+      </div>
+
+      {/* Tasteful "Explore Our Services" Banner & Highlight Strip (Directive Section 7) */}
+      <div className="mt-16 bg-white border border-[#C6A667]/35 rounded-xs p-6 sm:p-10 shadow-sm relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-radial from-[#F5D6DE]/30 to-transparent pointer-events-none rounded-full blur-2xl" />
+        
+        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+          <div className="space-y-3 max-w-2xl">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
+              <Sparkles className="w-3.5 h-3.5 text-[#8E4B63]" />
+              <span>Expanded Official Offerings</span>
+            </div>
+            <h3 className="font-serif text-2xl sm:text-3xl text-[#3B2A28] font-bold">
+              Explore Our Complete Services Menu
+            </h3>
+            <p className="text-xs sm:text-sm text-[#3B2A28]/80 leading-relaxed font-light">
+              We have updated our verified service menu with Brazilian Waxing, specialized Additional Lash Treatments (Removal + Full Set, routine &amp; 7-day Fill-Ins, Top &amp; Bottom sets), and private on-location House Calls.
+            </p>
+
+            {/* Quick treatment highlight badges (NO PRICES) */}
+            <div className="pt-2 flex flex-wrap gap-2 text-xs">
+              <span className="px-3 py-1 bg-[#FFF9F4] border border-[#C6A667]/30 text-[#8E4B63] rounded-full font-medium">
+                Brazilian Wax · 30 mins
+              </span>
+              <span className="px-3 py-1 bg-[#FFF9F4] border border-[#C6A667]/30 text-[#8E4B63] rounded-full font-medium">
+                Removal + Full Set · 120 mins
+              </span>
+              <span className="px-3 py-1 bg-[#FFF9F4] border border-[#C6A667]/30 text-[#8E4B63] rounded-full font-medium">
+                Fill In · 60 mins
+              </span>
+              <span className="px-3 py-1 bg-[#FFF9F4] border border-[#C6A667]/30 text-[#8E4B63] rounded-full font-medium">
+                Top &amp; Bottom Sets · 100 mins
+              </span>
+              <span className="px-3 py-1 bg-[#FFF9F4] border border-[#C6A667]/30 text-[#8E4B63] rounded-full font-medium">
+                House Calls · 150 mins
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+            <button
+              onClick={() => {
+                setCurrentView('services');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="px-6 py-3.5 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.2em] font-semibold rounded-xs shadow-md border border-[#C6A667]/40 flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
+            >
+              <span>Explore All Services</span>
+              <ArrowRight className="w-4 h-4 text-[#C6A667]" />
+            </button>
+            <button
+              onClick={() => openBookingModal()}
+              className="px-6 py-3 border border-[#C6A667]/50 text-[#3B2A28] hover:text-[#8E4B63] text-xs uppercase tracking-[0.16em] font-medium rounded-xs bg-[#FFF9F4]/60 hover:bg-[#FFF9F4] flex items-center justify-center gap-2 transition-colors"
+            >
+              <Calendar className="w-3.5 h-3.5 text-[#C6A667]" />
+              <span>Book Appointment</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Category Overview Modal (Listing verified treatments under selected category without prices) */}

@@ -1,8 +1,11 @@
 export type ServiceCategory = 
   | 'lashes'
+  | 'additional-lashes'
   | 'hair'
   | 'nails'
-  | 'facial';
+  | 'facial'
+  | 'waxing'
+  | 'house-calls';
 
 export interface ServiceItem {
   id: string;

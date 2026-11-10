@@ -86,11 +86,15 @@ Phone: (704) 756-2253
 Email: theglamwayllc@icloud.com
 Appointment Policy: 24-hour advance notice cancellation required.
 
-Verified Service Categories:
-1. Lashes: Full Eyelash Extension Sets ($160), Fill-Ins ($85), Top & Bottom Lash Sets ($195), Removals ($35).
-2. Hair: Hair Styling & Install ($185), Silk Press & Treatment ($95), Maintenance Trim ($65).
-3. Nails: Structured Gel Manicure ($75), Full Nail Enhancements ($85).
-4. Facials: Custom Esthetician Facial ($110), Facial Glow & Brow Detailing ($65).
+Verified Service Offerings (Official Website):
+- Lashes: Full Eyelash Extension Set (120 mins), Lash Extension Fill-In (75 mins), Top & Bottom Lash Set (135 mins), Professional Lash Extension Removal (30 mins).
+- Additional Lash Treatments: Removal + Full Set (120 mins), Fill In (60 mins), Top & Bottom Full Set (100 mins), Top & Bottom Fill In (75 mins), Lash Full Set (90 mins), 7 Day Fill In (45 mins).
+- Waxing: Brazilian Wax (30 mins).
+- House Calls: House Calls on-location appointments (150 mins).
+- Hair: Hair Styling & Extension Installation (150 mins), Silk Press & Treatment (90 mins), Hair Cut & Maintenance Trim (60 mins).
+- Nails: Structured Gel Manicure (75 mins), Full Nail Enhancements & Art (90 mins).
+- Facials: Custom Esthetician Facial (60 mins), Facial Glow & Brow Detailing (45 mins).
+Note: Do not quote prices in chat responses. Inform clients of service durations and appointment guidelines.
 
 Verified Retail Products:
 - 0.03 Second Glue ($25)

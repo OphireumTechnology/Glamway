@@ -25,6 +25,7 @@ export const BookingModal: React.FC = () => {
   // Selections
   const [selectedBranchId, setSelectedBranchId] = useState<string>(preselectedBranchId || branches[0].id);
   const [selectedServiceId, setSelectedServiceId] = useState<string>(preselectedServiceId || services[0].id);
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [selectedSpecialistId, setSelectedSpecialistId] = useState<string>('any');
   const [appointmentDate, setAppointmentDate] = useState<string>('2026-11-14');
   const [appointmentTime, setAppointmentTime] = useState<string>('11:00 AM EST');
@@ -197,39 +198,74 @@ export const BookingModal: React.FC = () => {
           {/* STEP 2: SELECT SERVICE (NO PRICES) */}
           {step === 2 && (
             <div className="space-y-4">
-              <div className="text-xs text-[#A98F86]">
-                Select the beauty service you would like to schedule.
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="text-xs text-[#A98F86]">
+                  Select the beauty service you would like to schedule.
+                </div>
+                <div className="text-[11px] text-[#C6A667] font-medium uppercase tracking-wider">
+                  No Public Prices
+                </div>
               </div>
-              <div className="space-y-2.5 max-h-[380px] overflow-y-auto pr-1">
-                {services.map(service => (
+
+              {/* Category Filter Pills */}
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+                {[
+                  { id: 'all', label: 'All Services' },
+                  { id: 'lashes', label: 'Lashes' },
+                  { id: 'additional-lashes', label: 'Additional Lashes' },
+                  { id: 'waxing', label: 'Waxing' },
+                  { id: 'house-calls', label: 'House Calls' },
+                  { id: 'hair', label: 'Hair' },
+                  { id: 'nails', label: 'Nails' },
+                  { id: 'facial', label: 'Facials' },
+                ].map(cat => (
                   <button
-                    key={service.id}
-                    onClick={() => setSelectedServiceId(service.id)}
-                    className={`w-full p-4 text-left border rounded-sm flex items-center justify-between gap-4 transition-all ${
-                      selectedServiceId === service.id
-                        ? 'border-[#8E4B63] bg-white shadow-md ring-2 ring-[#8E4B63]/30'
-                        : 'border-[#C6A667]/20 bg-white/60 hover:border-[#8E4B63]/40'
+                    key={cat.id}
+                    type="button"
+                    onClick={() => setCategoryFilter(cat.id)}
+                    className={`px-2.5 py-1 text-[11px] uppercase tracking-wider rounded-full transition-all shrink-0 border ${
+                      categoryFilter === cat.id
+                        ? 'bg-[#8E4B63] text-white border-[#8E4B63]'
+                        : 'bg-white text-[#3B2A28] border-[#C6A667]/30 hover:border-[#8E4B63]'
                     }`}
                   >
-                    <div>
-                      <div className="text-[10px] uppercase tracking-wider text-[#C6A667] font-semibold">
-                        {service.categoryLabel}
-                      </div>
-                      <div className="font-serif text-base font-semibold text-[#3B2A28]">
-                        {service.name}
-                      </div>
-                      <div className="text-xs text-[#A98F86] mt-0.5 line-clamp-1">
-                        {service.tagline}
-                      </div>
-                    </div>
-                    <div className="text-right shrink-0">
-                      <span className="text-xs bg-[#FFF9F4] text-[#8E4B63] px-2.5 py-1 rounded-xs border border-[#C6A667]/30 flex items-center gap-1 font-mono">
-                        <Clock className="w-3 h-3 text-[#C6A667]" />
-                        <span>{service.durationMinutes} mins</span>
-                      </span>
-                    </div>
+                    {cat.label}
                   </button>
                 ))}
+              </div>
+
+              <div className="space-y-2.5 max-h-[380px] overflow-y-auto pr-1">
+                {services
+                  .filter(s => categoryFilter === 'all' || s.category === categoryFilter)
+                  .map(service => (
+                    <button
+                      key={service.id}
+                      onClick={() => setSelectedServiceId(service.id)}
+                      className={`w-full p-4 text-left border rounded-sm flex items-center justify-between gap-4 transition-all ${
+                        selectedServiceId === service.id
+                          ? 'border-[#8E4B63] bg-white shadow-md ring-2 ring-[#8E4B63]/30'
+                          : 'border-[#C6A667]/20 bg-white/60 hover:border-[#8E4B63]/40'
+                      }`}
+                    >
+                      <div>
+                        <div className="text-[10px] uppercase tracking-wider text-[#C6A667] font-semibold">
+                          {service.categoryLabel}
+                        </div>
+                        <div className="font-serif text-base font-semibold text-[#3B2A28]">
+                          {service.name}
+                        </div>
+                        <div className="text-xs text-[#A98F86] mt-0.5 line-clamp-1">
+                          {service.tagline}
+                        </div>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <span className="text-xs bg-[#FFF9F4] text-[#8E4B63] px-2.5 py-1 rounded-xs border border-[#C6A667]/30 flex items-center gap-1 font-mono">
+                          <Clock className="w-3 h-3 text-[#C6A667]" />
+                          <span>{service.durationMinutes} mins</span>
+                        </span>
+                      </div>
+                    </button>
+                  ))}
               </div>
             </div>
           )}

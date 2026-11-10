@@ -15,6 +15,7 @@ import { CorporateDashboard } from './components/portals/CorporateDashboard';
 import { BookingModal } from './components/booking/BookingModal';
 import { AboutSection } from './components/about/AboutSection';
 import { BeautyTrainingSection } from './components/training/BeautyTrainingSection';
+import { ServicesSection } from './components/services/ServicesSection';
 import { ContactSection } from './components/contact/ContactSection';
 import { CheckCircle2 } from 'lucide-react';
 
@@ -47,9 +48,7 @@ const MainLayout: React.FC = () => {
         )}
 
         {currentView === 'services' && (
-          <div className="py-8">
-            <FeaturedServices />
-          </div>
+          <ServicesSection />
         )}
 
         {currentView === 'branches' && (
