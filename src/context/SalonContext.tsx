@@ -148,16 +148,7 @@ export const SalonProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         return { success: false, error: data.error || 'Failed to book appointment' };
       }
     } catch {
-      const fallbackApt: AppointmentBooking = {
-        ...bookingData,
-        id: `apt-${Date.now()}`,
-        referenceCode: `AUR-${Math.floor(10000 + Math.random() * 90000)}`,
-        status: 'confirmed',
-        createdAt: new Date().toISOString()
-      };
-      setAppointments(prev => [fallbackApt, ...prev]);
-      showToast(`Appointment confirmed! Reference: ${fallbackApt.referenceCode}`);
-      return { success: true, appointment: fallbackApt };
+      return { success: false, error: 'Online booking is temporarily unavailable. No appointment has been confirmed.' };
     }
   };
 
@@ -174,9 +165,8 @@ export const SalonProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         return true;
       }
     } catch {
-      setAppointments(prev => prev.map(a => a.id === id ? { ...a, status: 'cancelled' } : a));
-      showToast('Appointment was cancelled.');
-      return true;
+      showToast('Cancellation could not be verified. Please contact the salon.');
+      return false;
     }
     return false;
   };
