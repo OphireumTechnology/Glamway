@@ -365,7 +365,7 @@ export const FeaturedServices: React.FC = () => {
               )}
 
               <div className="p-3 bg-white border border-[#C6A667]/20 rounded-xs text-xs text-[#A98F86]">
-                <strong className="text-[#3B2A28] font-semibold">Notice:</strong> All appointments are reserved online with a 24-hour advance notice cancellation policy.
+                <strong className="text-[#3B2A28] font-semibold">Notice:</strong> Appointments are reserved online in advance for private suites at our Charlotte locations or via scheduled house calls.
               </div>
 
               <div className="pt-4 border-t border-[#C6A667]/20 flex items-center justify-between gap-4">

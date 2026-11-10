@@ -84,7 +84,7 @@ Locations in Charlotte:
 - The Glamway — Graham: 2506 Lucena St., Charlotte, NC 28206
 Phone: (704) 756-2253
 Email: theglamwayllc@icloud.com
-Appointment Policy: 24-hour advance notice cancellation required.
+Appointments: Reserved online in advance for private suites or scheduled house calls.
 
 Verified Service Offerings (Official Website):
 - Lashes: Full Eyelash Extension Set (120 mins), Lash Extension Fill-In (75 mins), Top & Bottom Lash Set (135 mins), Professional Lash Extension Removal (30 mins).

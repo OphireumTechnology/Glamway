@@ -472,14 +472,14 @@ export const BookingModal: React.FC = () => {
                 </div>
               </div>
 
-              {/* 24-Hour Policy Notice */}
+              {/* Appointment Confirmation Notice */}
               <div className="p-3.5 bg-[#FFF9F4] border border-[#C6A667]/30 rounded-xs text-xs text-[#3B2A28]/85 space-y-1">
                 <div className="flex items-center gap-1.5 font-semibold text-[#8E4B63]">
                   <ShieldCheck className="w-4 h-4 text-[#C6A667]" />
-                  <span>24-Hour Cancellation Policy</span>
+                  <span>Appointment Reservation</span>
                 </div>
                 <p className="text-[11px] text-[#A98F86] leading-relaxed">
-                  Appointments must be cancelled or rescheduled at least 24 hours prior to the reserved time slot.
+                  Appointments are reserved online in advance for private suites at our Charlotte locations or via scheduled house calls.
                 </p>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { MEMBERSHIP_TIERS } from '../../data/salonData';
+import { MEMBERSHIP_TIERS, GLAMWAY_ICON } from '../../data/salonData';
 import { Crown, Check, QrCode } from 'lucide-react';
 
 export const MembershipSection: React.FC = () => {
@@ -71,7 +71,7 @@ export const MembershipSection: React.FC = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <img 
-                  src="/branding/glamway-icon.png" 
+                  src={GLAMWAY_ICON} 
                   alt="The Glamway Icon" 
                   className="w-7 h-7 object-contain"
                 />
