@@ -1,7 +1,7 @@
 import { SalonBranch, ServiceItem, BeautySpecialist, ProductItem, MembershipTier } from '../types';
 
-export const GLAMWAY_LOGO = '/branding/glamway-official-logo.png';
-export const GLAMWAY_ICON = '/branding/glamway-icon.png';
+export const GLAMWAY_LOGO = `${import.meta.env.BASE_URL}branding/glamway-official-logo.png`;
+export const GLAMWAY_ICON = `${import.meta.env.BASE_URL}branding/glamway-icon.png`;
 export const HERO_IMAGE = 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1800&q=85';
 export const HAIR_IMAGE = 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=85';
 export const FACIAL_IMAGE = 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85';
