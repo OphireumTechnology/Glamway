@@ -112,7 +112,7 @@ export const SalonProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     try {
       const apiBase = import.meta.env.VITE_BOOKING_API_URL;
       if (!apiBase) return { success: false, error: 'Online booking is temporarily unavailable. Contact the salon for appointment availability.' };
-      const res = await fetch(`${apiBase.replace(/\\/$/, '')}/api/appointments`, {
+      const res = await fetch(`${apiBase.endsWith('/') ? apiBase.slice(0, -1) : apiBase}/api/appointments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bookingData)
