@@ -27,8 +27,8 @@ export const BookingModal: React.FC = () => {
   const [selectedServiceId, setSelectedServiceId] = useState<string>(preselectedServiceId || services[0].id);
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [selectedSpecialistId, setSelectedSpecialistId] = useState<string>('any');
-  const [appointmentDate, setAppointmentDate] = useState<string>('2026-11-14');
-  const [appointmentTime, setAppointmentTime] = useState<string>('11:00 AM EST');
+  const [appointmentDate, setAppointmentDate] = useState<string>('');
+  const [appointmentTime, setAppointmentTime] = useState<string>('');
   
   // Client details
   const [clientName, setClientName] = useState<string>(currentUser.name);
@@ -57,13 +57,16 @@ export const BookingModal: React.FC = () => {
   const currentService = services.find(s => s.id === selectedServiceId) || services[0];
   const branchSpecialists = BEAUTY_SPECIALISTS;
 
-  // Available Time Slots in Eastern Time (America/New_York)
+  // Illustrative time options only. No availability service is connected; never present these as confirmed slots.
   const timeSlots = [
-    '10:00 AM EST', '11:00 AM EST', '12:30 PM EST', '02:00 PM EST', 
-    '03:30 PM EST', '05:00 PM EST', '06:00 PM EST'
+    '10:00 AM ET', '11:00 AM ET', '12:30 PM ET', '02:00 PM ET', 
+    '03:30 PM ET', '05:00 PM ET', '06:00 PM ET'
   ];
 
   const handleConfirmReservation = async () => {
+    // Fail closed: GitHub Pages has no authenticated availability/booking backend.
+    setErrorMessage('Online booking is temporarily unavailable. Please contact the salon directly to confirm an appointment.');
+    return;
     setIsSubmitting(true);
     setErrorMessage(null);
 
