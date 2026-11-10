@@ -7,13 +7,17 @@ export const HAIR_IMAGE = 'https://images.unsplash.com/photo-1562322140-8baeecec
 export const FACIAL_IMAGE = 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85';
 export const NAILS_IMAGE = 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85';
 
+export const FOUNDER_PORTRAIT = `${import.meta.env.BASE_URL}assets/summer-davis-founder-ceo.webp`;
+
 // Founder Information (Accurately preserved from original website)
 export const FOUNDER_INFO = {
   name: 'Summer Davis',
-  title: 'Founder & Licensed Esthetician',
+  title: 'Founder & CEO',
+  credential: 'Licensed Esthetician',
+  company: 'The Glamway Beauty Salon',
   location: 'Charlotte, North Carolina',
-  bio: 'Summer Davis is the founder of The Glamway. Born and raised in Charlotte, North Carolina, her journey in the beauty industry began with lash training in 2017, followed by obtaining her esthetician license in 2018. She built The Glamway into a one-stop destination for beauty services, professional lash supplies, and beauty education.',
-  image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=85'
+  bio: 'Summer Davis is the founder and CEO of The Glamway. Born and raised in Charlotte, North Carolina, her journey in the beauty industry began with lash training in 2017, followed by obtaining her esthetician license in 2018. She built The Glamway into a one-stop destination for luxury beauty services and professional beauty education.',
+  image: `${import.meta.env.BASE_URL}assets/summer-davis-founder-ceo.webp`
 };
 
 // Verified Locations from theglamwayclt.com/locations

@@ -61,7 +61,7 @@ export const HeroSection: React.FC = () => {
 
             {/* Supporting description using verified business details */}
             <p className="text-base sm:text-lg text-[#3B2A28]/85 font-light leading-relaxed max-w-xl font-sans">
-              Founded by licensed esthetician Summer Davis in Charlotte, North Carolina, The Glamway is your destination for professional beauty services, lash supplies, and beauty education.
+              Founded by Summer Davis in Charlotte, North Carolina, The Glamway is your premier destination for luxury beauty services and professional beauty education.
             </p>
 
             {/* Primary Actions with Mauve Plum & Gold */}

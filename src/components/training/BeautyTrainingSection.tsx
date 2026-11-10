@@ -127,8 +127,9 @@ export const BeautyTrainingSection: React.FC = () => {
           <div className="aspect-[4/5] rounded-xs overflow-hidden bg-[#D9B6A9]/20 border border-[#C6A667]/30">
             <img
               src={FOUNDER_INFO.image}
-              alt="Summer Davis - Founder & Licensed Esthetician"
-              className="w-full h-full object-cover"
+              alt="Summer Davis - Founder &amp; CEO, The Glamway Beauty Salon"
+              className="w-full h-full object-cover transition-transform duration-700 hover:scale-102"
+              referrerPolicy="no-referrer"
             />
           </div>
         </div>
@@ -141,7 +142,7 @@ export const BeautyTrainingSection: React.FC = () => {
             {FOUNDER_INFO.name}
           </h3>
           <div className="text-xs text-[#8E4B63] font-semibold uppercase tracking-wider">
-            {FOUNDER_INFO.title} · {FOUNDER_INFO.location}
+            {FOUNDER_INFO.title} · {FOUNDER_INFO.credential} · {FOUNDER_INFO.location}
           </div>
           <p className="text-xs sm:text-sm text-[#3B2A28]/85 leading-relaxed font-light">
             {FOUNDER_INFO.bio}

@@ -37,17 +37,22 @@ export const AboutSection: React.FC = () => {
           
           <div className="lg:col-span-5 relative">
             <div className="relative border border-[#C6A667]/40 p-4 rounded-xs bg-white shadow-xl">
-              <div className="aspect-[4/5] overflow-hidden rounded-xs bg-[#D9B6A9]/20">
+              <div className="aspect-[4/5] overflow-hidden rounded-xs bg-[#D9B6A9]/20 relative">
                 <img
                   src={FOUNDER_INFO.image}
-                  alt="Summer Davis - Founder of The Glamway"
-                  className="w-full h-full object-cover"
+                  alt="Summer Davis - Founder &amp; CEO, The Glamway Beauty Salon"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-102"
+                  referrerPolicy="no-referrer"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none" />
+                <div className="absolute bottom-3 left-3 text-white text-[11px] font-medium tracking-wider uppercase drop-shadow-sm sm:hidden">
+                  Summer Davis · Founder &amp; CEO
+                </div>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-[#FFF9F4] p-3 border border-[#C6A667]/40 rounded-xs shadow-lg max-w-[170px] hidden sm:block">
                 <img
                   src={GLAMWAY_LOGO}
-                  alt="The Glamway"
+                  alt="The Glamway Beauty Salon"
                   className="w-full h-auto object-contain"
                 />
               </div>
@@ -55,13 +60,21 @@ export const AboutSection: React.FC = () => {
           </div>
 
           <div className="lg:col-span-7 space-y-6">
-            <div className="text-xs uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
-              FOUNDER BACKGROUND
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#C6A667]/40 shadow-2xs">
+              <Sparkles className="w-3.5 h-3.5 text-[#C6A667]" />
+              <span className="text-[11px] uppercase tracking-[0.22em] text-[#8E4B63] font-bold">
+                Meet Our Founder
+              </span>
             </div>
             
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#3B2A28] leading-snug">
-              Summer Davis · Founder &amp; Licensed Esthetician
-            </h2>
+            <div className="space-y-1.5">
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#3B2A28] leading-snug">
+                Summer Davis · Founder &amp; CEO
+              </h2>
+              <div className="text-xs uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
+                The Glamway Beauty Salon · Charlotte, North Carolina
+              </div>
+            </div>
 
             <p className="text-sm sm:text-base text-[#3B2A28]/80 leading-relaxed font-light">
               Summer Davis is the founder of The Glamway. Born and raised in Charlotte, North Carolina, her journey in the beauty industry began with lash training in 2017, followed by obtaining her esthetician license in 2018.
