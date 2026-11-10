@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { MapPin, Phone, Mail, Clock, Building2, Calendar, ChevronRight, Search, ShieldCheck } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Building2, Calendar, ChevronRight, Search } from 'lucide-react';
 
 export const BranchShowcase: React.FC = () => {
   const { branches, openBookingModal, setSelectedBranchId, setCurrentView, setUserRole } = useSalon();
@@ -28,13 +28,13 @@ export const BranchShowcase: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
           <div className="text-xs uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
-            North Carolina Network · FOR WOMEN
+            Charlotte, North Carolina Locations
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl text-[#3B2A28] tracking-tight">
-            Our Destination Sanctuaries
+            Our Charlotte Locations
           </h2>
           <p className="text-sm sm:text-base text-[#A98F86] font-light">
-            Designed as serene, luxurious architectural escapes in North Carolina for women, featuring private styling suites, bespoke care, and gracious hospitality.
+            Conveniently serving clients across Charlotte, NC. Appointments are scheduled online with a 24-hour advance notice policy.
           </p>
         </div>
 
@@ -44,7 +44,7 @@ export const BranchShowcase: React.FC = () => {
             <Search className="w-4 h-4 text-[#C6A667] absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search branches..."
+              placeholder="Search Charlotte locations..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#C6A667]/40 rounded-sm text-xs text-[#3B2A28] focus:outline-none focus:border-[#8E4B63] shadow-xs"
@@ -66,17 +66,17 @@ export const BranchShowcase: React.FC = () => {
             >
               <div className="flex items-center justify-between">
                 <div className="text-[10px] uppercase tracking-wider text-[#C6A667] font-semibold">
-                  {branch.city}, NC
+                  {branch.district}
                 </div>
                 <span className="text-[10px] text-[#8E4B63] bg-[#F5D6DE]/40 px-2 py-0.5 rounded-xs font-semibold">
-                  Active Sanctuary
+                  Verified Location
                 </span>
               </div>
               <div className="font-serif text-base sm:text-lg font-semibold text-[#3B2A28] mt-1">
                 {branch.name}
               </div>
               <div className="text-xs text-[#A98F86] mt-1 flex items-center gap-1">
-                <span>{branch.treatmentRooms} Private Styling Suites · {branch.staffCount} Licensed Artisans</span>
+                <span>{branch.address}</span>
               </div>
             </button>
           ))}
@@ -85,7 +85,7 @@ export const BranchShowcase: React.FC = () => {
         {/* Active Branch Feature Display (2-column layout) */}
         <div className="bg-white border border-[#C6A667]/30 rounded-sm overflow-hidden shadow-xl grid grid-cols-1 lg:grid-cols-12">
           
-          {/* Left Column: Branch Architectural Media (5 cols) */}
+          {/* Left Column: Branch Media (5 cols) */}
           <div className="lg:col-span-5 relative min-h-[360px] bg-[#3B2A28]">
             <img
               src={activeBranch.image}
@@ -97,7 +97,7 @@ export const BranchShowcase: React.FC = () => {
             
             <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
               <span className="text-[11px] uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
-                {activeBranch.city}, North Carolina
+                Charlotte, North Carolina
               </span>
               <h3 className="font-serif text-2xl font-bold leading-tight">
                 {activeBranch.name}
@@ -105,14 +105,10 @@ export const BranchShowcase: React.FC = () => {
               <p className="text-xs text-white/80">
                 {activeBranch.address}
               </p>
-              <div className="flex items-center gap-1.5 text-[10px] text-[#DFCA9B] pt-1">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                <span>NC Board of Cosmetic Art Sciences #{activeBranch.licenseNumber}</span>
-              </div>
             </div>
           </div>
 
-          {/* Right Column: Branch Specifications, Amenities, Contacts & Booking (7 cols) */}
+          {/* Right Column: Specifications, Contacts & Booking (7 cols) */}
           <div className="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-between space-y-6">
             
             <div className="space-y-6">
@@ -125,7 +121,7 @@ export const BranchShowcase: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-[#8E4B63] bg-[#F5D6DE]/30 border border-[#8E4B63]/20 px-3 py-1 font-mono font-semibold">
-                    {activeBranch.staffCount} Licensed Artisans
+                    Charlotte, NC
                   </span>
                 </div>
               </div>
@@ -133,17 +129,17 @@ export const BranchShowcase: React.FC = () => {
               {/* Hours & Contact */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-[#3B2A28]">
                 <div className="flex items-start gap-2.5">
-                  <Clock className="w-4 h-4 text-[#C6A667] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#C6A667] shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-semibold text-[#3B2A28]">Operating Hours (Eastern Time)</div>
-                    <div className="text-[#A98F86]">{activeBranch.operatingHours}</div>
+                    <div className="font-semibold text-[#3B2A28]">Address</div>
+                    <div className="text-[#A98F86]">{activeBranch.address}</div>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-2.5">
                   <Phone className="w-4 h-4 text-[#C6A667] shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-semibold text-[#3B2A28]">Concierge Line</div>
+                    <div className="font-semibold text-[#3B2A28]">Telephone</div>
                     <div className="text-[#A98F86]">{activeBranch.phone}</div>
                   </div>
                 </div>
@@ -151,24 +147,24 @@ export const BranchShowcase: React.FC = () => {
                 <div className="flex items-start gap-2.5">
                   <Mail className="w-4 h-4 text-[#C6A667] shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-semibold text-[#3B2A28]">Direct Inquiries</div>
+                    <div className="font-semibold text-[#3B2A28]">Email</div>
                     <div className="text-[#A98F86]">{activeBranch.email}</div>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-[#C6A667] shrink-0 mt-0.5" />
+                  <Clock className="w-4 h-4 text-[#C6A667] shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-semibold text-[#3B2A28]">Branch Location</div>
-                    <div className="text-[#A98F86]">{activeBranch.address}</div>
+                    <div className="font-semibold text-[#3B2A28]">Appointments</div>
+                    <div className="text-[#A98F86]">{activeBranch.operatingHours}</div>
                   </div>
                 </div>
               </div>
 
-              {/* Curated Amenities */}
+              {/* Amenities */}
               <div className="space-y-2 pt-2">
                 <div className="text-xs uppercase tracking-wider text-[#A98F86] font-semibold">
-                  Branch Amenities &amp; Private Hospitality
+                  Location Offerings
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {activeBranch.amenities.map((amenity, idx) => (
@@ -182,6 +178,11 @@ export const BranchShowcase: React.FC = () => {
                 </div>
               </div>
 
+              {/* 24-Hour Policy Note */}
+              <div className="p-3 bg-[#FFF9F4] border border-[#C6A667]/20 rounded-xs text-xs text-[#A98F86]">
+                <strong className="text-[#3B2A28] font-semibold">Appointment Notice:</strong> A 24-hour advance notice is required for any appointment changes or cancellations.
+              </div>
+
             </div>
 
             {/* Bottom Actions with Mauve Plum button */}
@@ -191,7 +192,7 @@ export const BranchShowcase: React.FC = () => {
                 className="px-6 py-3 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.2em] font-semibold transition-colors flex items-center gap-2 shadow-sm rounded-xs border border-[#C6A667]/30"
               >
                 <Calendar className="w-4 h-4" />
-                <span>Reserve at {activeBranch.name.split('—')[0]}</span>
+                <span>Book Appointment</span>
               </button>
 
               <button
@@ -199,7 +200,7 @@ export const BranchShowcase: React.FC = () => {
                 className="text-xs font-semibold text-[#8E4B63] hover:text-[#3B2A28] flex items-center gap-1 transition-colors"
               >
                 <Building2 className="w-3.5 h-3.5" />
-                <span>Branch Operations &amp; Reception Desk</span>
+                <span>Branch Reception Desk</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </button>
             </div>

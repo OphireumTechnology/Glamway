@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSalon } from '../../context/SalonContext';
 import { GLAMWAY_LOGO, HERO_IMAGE } from '../../data/salonData';
-import { Calendar, MapPin, ArrowRight, Star, Crown, Sparkles } from 'lucide-react';
+import { Calendar, MapPin, ArrowRight, Sparkles, GraduationCap } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
   const { openBookingModal, setCurrentView } = useSalon();
@@ -19,14 +19,12 @@ export const HeroSection: React.FC = () => {
           {/* Left Column: Editorial Headline & Actions (7 cols) */}
           <div className="lg:col-span-7 space-y-7 z-10">
             
-            {/* Elegant metadata kicker */}
-            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#8E4B63] font-semibold">
-              <Crown className="w-3.5 h-3.5 text-[#C6A667]" />
-              <span>The Glamway Beauty Salon</span>
+            {/* Verified metadata kicker */}
+            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#8E4B63] font-semibold">
+              <Sparkles className="w-3.5 h-3.5 text-[#C6A667]" />
+              <span>The Glamway</span>
               <span aria-hidden="true" className="text-[#C6A667]">·</span>
-              <span className="text-[#C6A667]">FOR WOMEN</span>
-              <span aria-hidden="true" className="text-[#C6A667]">·</span>
-              <span>North Carolina</span>
+              <span className="text-[#C6A667]">Charlotte, North Carolina</span>
             </div>
 
             {/* Main Editorial Headline */}
@@ -34,12 +32,12 @@ export const HeroSection: React.FC = () => {
               Where Beauty Meets Elegance.
             </h1>
 
-            {/* Supporting description */}
+            {/* Supporting description using verified business details */}
             <p className="text-base sm:text-lg text-[#3B2A28]/85 font-light leading-relaxed max-w-xl font-sans">
-              Discover exceptional hair, nail, skincare, and beauty experiences at The Glamway Beauty Salon in North Carolina. Thoughtfully curated for women across our premier destination sanctuaries.
+              Founded by licensed esthetician Summer Davis in Charlotte, North Carolina, The Glamway is your premier destination for professional eyelash extensions, hair styling, structured nails, skin facials, lash supplies, and beauty education.
             </p>
 
-            {/* Three Primary Actions with Mauve Plum & Gold */}
+            {/* Primary Actions with Mauve Plum & Gold */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
                 onClick={() => openBookingModal()}
@@ -53,7 +51,7 @@ export const HeroSection: React.FC = () => {
                 onClick={() => setCurrentView('services')}
                 className="px-6 py-3.5 bg-white border border-[#C6A667]/50 text-[#3B2A28] hover:border-[#8E4B63] hover:text-[#8E4B63] text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 flex items-center gap-2 rounded-xs"
               >
-                <span>Explore Our Services</span>
+                <span>Explore Services</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
 
@@ -62,44 +60,36 @@ export const HeroSection: React.FC = () => {
                 className="px-5 py-3.5 text-[#3B2A28]/80 hover:text-[#8E4B63] text-xs uppercase tracking-[0.15em] font-medium transition-colors flex items-center gap-1.5"
               >
                 <MapPin className="w-3.5 h-3.5 text-[#C6A667]" />
-                <span>Find a Location</span>
+                <span>Charlotte Locations</span>
               </button>
             </div>
 
-            {/* Luxury Sanctuary & Hospitality Banner Strip */}
+            {/* Training Academy & Supply Highlight Strip */}
             <div className="p-4 bg-white/90 backdrop-blur-sm border border-[#C6A667]/35 rounded-xs flex items-center justify-between gap-4 max-w-xl shadow-xs">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-[#FFF9F4] border border-[#C6A667]/40 flex items-center justify-center text-[#8E4B63] shrink-0">
-                  <Sparkles className="w-4 h-4 text-[#C6A667]" />
+                  <GraduationCap className="w-4 h-4 text-[#C6A667]" />
                 </div>
                 <div>
-                  <div className="text-xs font-semibold text-[#3B2A28]">Private Suite Sanctuary Experience</div>
-                  <div className="text-xs text-[#A98F86]">Complimentary champagne, artisanal tea, and private styling suites.</div>
+                  <div className="text-xs font-semibold text-[#3B2A28]">Glamway Beauty Education</div>
+                  <div className="text-xs text-[#A98F86]">Hands-on beginner and volume lash tech courses in Charlotte, NC.</div>
                 </div>
               </div>
               <button
-                onClick={() => openBookingModal()}
+                onClick={() => setCurrentView('training')}
                 className="text-xs font-semibold text-[#8E4B63] hover:text-[#C6A667] underline underline-offset-4 whitespace-nowrap shrink-0"
               >
-                Reserve Suite
+                View Courses
               </button>
             </div>
 
-            {/* Social Proof & Trust Strip */}
-            <div className="pt-2 flex flex-wrap items-center gap-6 text-xs text-[#A98F86]">
-              <div className="flex items-center gap-1.5">
-                <div className="flex text-[#C6A667]">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-[#C6A667]" />
-                  ))}
-                </div>
-                <span className="font-semibold text-[#3B2A28]">4.98 / 5.0</span>
-                <span>(1,520+ verified guest reviews)</span>
-              </div>
+            {/* Verified Trust Strip (No fabricated review counts) */}
+            <div className="pt-2 flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-[#A98F86]">
+              <span className="font-semibold text-[#3B2A28]">Charlotte, North Carolina</span>
               <span aria-hidden="true" className="text-[#C6A667]">·</span>
-              <span>2 North Carolina Branches</span>
+              <span>Lashes · Hair · Nails · Facials</span>
               <span aria-hidden="true" className="text-[#C6A667]">·</span>
-              <span>Exclusively For Women</span>
+              <span>Professional Lash Supplies</span>
             </div>
 
           </div>
@@ -115,7 +105,7 @@ export const HeroSection: React.FC = () => {
               <div className="relative rounded-t-[96px] rounded-b-lg overflow-hidden shadow-2xl bg-[#D9B6A9]/20 aspect-[4/5] max-h-[580px] w-full">
                 <img
                   src={HERO_IMAGE}
-                  alt="The Glamway Beauty Salon Interior with curved architectural arches and champagne gold detailing"
+                  alt="The Glamway Beauty Salon Interior in Charlotte, NC"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
@@ -127,7 +117,7 @@ export const HeroSection: React.FC = () => {
                 <div className="absolute top-6 right-6 p-2 bg-[#FFF9F4]/95 backdrop-blur-md border border-[#C6A667]/40 rounded-xs shadow-lg max-w-[140px]">
                   <img
                     src={GLAMWAY_LOGO}
-                    alt="The Glamway Beauty Salon Logo"
+                    alt="The Glamway Logo"
                     className="w-full h-auto object-contain"
                   />
                 </div>
@@ -137,17 +127,17 @@ export const HeroSection: React.FC = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-[10px] uppercase tracking-[0.2em] text-[#8E4B63] font-bold">
-                        North Carolina Sanctuaries
+                        Charlotte, North Carolina
                       </div>
                       <div className="font-serif text-base text-[#3B2A28] font-semibold">
-                        The Glamway Beauty Salon
+                        The Glamway
                       </div>
                     </div>
                     <button
-                      onClick={() => openBookingModal(undefined, 'branch-nc-1')}
+                      onClick={() => openBookingModal()}
                       className="px-3.5 py-1.5 bg-[#8E4B63] hover:bg-[#C6A667] text-white text-[11px] font-semibold uppercase tracking-wider transition-colors rounded-xs shadow-xs"
                     >
-                      Reserve Suite
+                      Book Online
                     </button>
                   </div>
                 </div>
@@ -160,24 +150,24 @@ export const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Full-width 4-Column Proof & Statistics Strip */}
+      {/* 4-Column Proof & Business Offerings Strip */}
       <div className="bg-[#FFF9F4] border-t border-[#C6A667]/25 py-6 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-[#C6A667]/25">
           <div className="pt-2 md:pt-0">
-            <div className="font-serif text-2xl lg:text-3xl text-[#3B2A28] font-semibold">2 NC Branches</div>
-            <div className="text-xs uppercase tracking-[0.15em] text-[#A98F86] mt-1">North Carolina Flagship &amp; Atelier</div>
+            <div className="font-serif text-2xl lg:text-3xl text-[#3B2A28] font-semibold">Charlotte, NC</div>
+            <div className="text-xs uppercase tracking-[0.15em] text-[#A98F86] mt-1">Uptown &amp; Graham Locations</div>
           </div>
           <div className="pt-2 md:pt-0">
-            <div className="font-serif text-2xl lg:text-3xl text-[#8E4B63] font-semibold">FOR WOMEN</div>
-            <div className="text-xs uppercase tracking-[0.15em] text-[#A98F86] mt-1">Private Suite Sanctuary Standards</div>
+            <div className="font-serif text-2xl lg:text-3xl text-[#8E4B63] font-semibold">4 Services</div>
+            <div className="text-xs uppercase tracking-[0.15em] text-[#A98F86] mt-1">Lashes, Hair, Nails, Facials</div>
           </div>
           <div className="pt-2 md:pt-0">
-            <div className="font-serif text-2xl lg:text-3xl text-[#3B2A28] font-semibold">100% Certified</div>
-            <div className="text-xs uppercase tracking-[0.15em] text-[#A98F86] mt-1">Hospital-Grade Clean Formulations</div>
+            <div className="font-serif text-2xl lg:text-3xl text-[#3B2A28] font-semibold">Beauty Supply</div>
+            <div className="text-xs uppercase tracking-[0.15em] text-[#A98F86] mt-1">Lash Glues, Trays &amp; Wholesale</div>
           </div>
           <div className="pt-2 md:pt-0">
-            <div className="font-serif text-2xl lg:text-3xl text-[#3B2A28] font-semibold">USD ($) Pricing</div>
-            <div className="text-xs uppercase tracking-[0.15em] text-[#A98F86] mt-1">Apple Pay · Visa · Amex · In-Salon</div>
+            <div className="font-serif text-2xl lg:text-3xl text-[#3B2A28] font-semibold">Education</div>
+            <div className="text-xs uppercase tracking-[0.15em] text-[#A98F86] mt-1">Beginner &amp; Volume Lash Courses</div>
           </div>
         </div>
       </div>

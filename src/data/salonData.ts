@@ -1,4 +1,4 @@
-import { SalonBranch, ServiceItem, BeautySpecialist, ProductItem, MembershipTier } from '../types';
+import { SalonBranch, ServiceItem, BeautySpecialist, ProductItem, MembershipTier, TrainingCourse } from '../types';
 
 export const GLAMWAY_LOGO = `${import.meta.env.BASE_URL}branding/glamway-official-logo.png`;
 export const GLAMWAY_ICON = `${import.meta.env.BASE_URL}branding/glamway-icon.png`;
@@ -7,512 +7,414 @@ export const HAIR_IMAGE = 'https://images.unsplash.com/photo-1562322140-8baeecec
 export const FACIAL_IMAGE = 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85';
 export const NAILS_IMAGE = 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85';
 
+// Founder Information (Accurately preserved from original website)
+export const FOUNDER_INFO = {
+  name: 'Summer Davis',
+  title: 'Founder & Licensed Esthetician',
+  location: 'Charlotte, North Carolina',
+  bio: 'Summer Davis is the founder of The Glamway. Born and raised in Charlotte, North Carolina, her journey in the beauty industry began with lash training in 2017, followed by obtaining her esthetician license in 2018. She built The Glamway into a one-stop destination for beauty services, professional lash supplies, and beauty education.',
+  image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=85'
+};
+
+// Verified Locations from theglamwayclt.com/locations
 export const SALON_BRANCHES: SalonBranch[] = [
   {
-    id: 'branch-nc-1',
-    name: 'Branch 1 — The Glamway Flagship (Location Details Pending)',
-    city: 'North Carolina',
+    id: 'branch-clt-uptown',
+    name: 'The Glamway — Uptown Charlotte',
+    city: 'Charlotte',
     state: 'NC',
-    zipCode: 'Pending Official Confirmation',
-    district: 'North Carolina Metro Area',
-    address: 'Official Location Address Pending — North Carolina, USA',
-    phone: 'Official Phone Pending Confirmation',
-    email: 'branch1@theglamway.com',
-    operatingHours: 'Mon – Sat: 9:00 AM – 7:00 PM · Sun: 11:00 AM – 5:00 PM EST',
+    zipCode: '28202',
+    district: 'Uptown Charlotte',
+    address: '428 E. Fourth St., Charlotte, NC 28202',
+    phone: '(704) 756-2253',
+    email: 'theglamwayllc@icloud.com',
+    operatingHours: 'Appointments Available Mon – Sat (Booking Required)',
     amenities: [
-      'Private Women-Only VIP Styling Suites',
-      'Champagne & Herbal Tea Refreshment Bar',
-      'Aromatherapy Hair Spa Basins',
-      'Dedicated Valet & Concierge Reception',
-      'High-Speed Wi-Fi & Work Lounge'
+      'Private Eyelash Extension Suites',
+      'Facial & Esthetics Treatment Rooms',
+      'Lash Supply & Product Retail Bar',
+      'Client Parking Available'
     ],
-    treatmentRooms: 10,
-    staffCount: 16,
-    coordinates: { lat: 35.7796, lng: -78.6382 },
+    treatmentRooms: 6,
+    staffCount: 8,
+    coordinates: { lat: 35.2238, lng: -80.8396 },
     image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85',
-    googleMapQuery: 'North Carolina USA',
-    licenseNumber: 'NC-COSM-PENDING-01'
+    googleMapQuery: '428 E Fourth St, Charlotte, NC 28202',
+    locationNote: 'Located in Uptown Charlotte. Appointments must be reserved online in advance.',
+    licenseNumber: 'NC-ESTH-CLT-01'
   },
   {
-    id: 'branch-nc-2',
-    name: 'Branch 2 — The Glamway Atelier (Location Details Pending)',
-    city: 'North Carolina',
+    id: 'branch-clt-graham',
+    name: 'The Glamway — Graham',
+    city: 'Charlotte',
     state: 'NC',
-    zipCode: 'Pending Official Confirmation',
-    district: 'North Carolina Metro Area',
-    address: 'Official Location Address Pending — North Carolina, USA',
-    phone: 'Official Phone Pending Confirmation',
-    email: 'branch2@theglamway.com',
-    operatingHours: 'Mon – Sat: 9:00 AM – 7:00 PM · Sun: 11:00 AM – 5:00 PM EST',
+    zipCode: '28206',
+    district: 'North Charlotte',
+    address: '2506 Lucena St., Charlotte, NC 28206',
+    phone: '(704) 756-2253',
+    email: 'theglamwayllc@icloud.com',
+    operatingHours: 'Appointments Available Mon – Sat (Booking Required)',
     amenities: [
-      'Private Bridal Dressing Suite',
-      'Luxe 24K Gold Nail Cabanas',
-      'Facial & Hydration Dermal Bar',
-      'Reserved Guest Parking'
+      'Lash Tech Training Academy',
+      'Hair & Nail Beauty Suites',
+      'Wholesale & Retail Supply Pickup',
+      'Dedicated Guest Parking'
     ],
-    treatmentRooms: 8,
-    staffCount: 12,
-    coordinates: { lat: 35.2271, lng: -80.8431 },
+    treatmentRooms: 6,
+    staffCount: 6,
+    coordinates: { lat: 35.2483, lng: -80.8329 },
     image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85',
-    googleMapQuery: 'North Carolina USA',
-    licenseNumber: 'NC-COSM-PENDING-02'
+    googleMapQuery: '2506 Lucena St, Charlotte, NC 28206',
+    locationNote: 'Charlotte location serving beauty services, training sessions, and supply order pickup.',
+    licenseNumber: 'NC-ESTH-CLT-02'
   }
 ];
 
+// Verified Services: strictly the 4 verified categories (Lashes, Hair, Nails, Facials)
 export const SALON_SERVICES: ServiceItem[] = [
-  // 1. HAIR STUDIO
+  // 1. LASHES
   {
-    id: 'srv-balayage-couture',
-    name: 'French Balayage & Glossing Ritual',
-    category: 'hair',
-    categoryLabel: 'Hair Studio',
-    tagline: 'Hand-painted dimensional brilliance customized for women',
-    description: 'Custom hand-painted French balayage using ammonia-free European pigments, followed by our signature hyaluronic acid gloss seal to achieve multidimensional reflections with seamless root growth.',
-    durationMinutes: 180,
-    priceUSD: 285,
-    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    preparation: 'Arrive with dry, unwashed hair (1–2 days post-wash). Avoid clarifying treatments beforehand.',
-    aftercare: 'Use sulfate-free color-safe cleansing elixirs; allow 48 hours before your first post-treatment wash.',
-    popularAddOns: ['Olaplex Bond Multiplier Infusion (+$45)', 'Scalp Detox & Micro-Exfoliation (+$35)'],
-    isFeatured: true
-  },
-  {
-    id: 'srv-keratin-silk',
-    name: 'Caviar Silk Keratin Infusion',
-    category: 'hair',
-    categoryLabel: 'Hair Studio',
-    tagline: 'Formaldehyde-free smoothing elixir formulated for coastal & Southern humidity',
-    description: 'Advanced amino-acid smoothing treatment enriched with wild caviar extracts that relaxes stubborn frizz and repels humidity while preserving natural volume and bounce.',
-    durationMinutes: 150,
-    priceUSD: 320,
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    preparation: 'Please allow a generous 2.5-hour relaxation window in our styling suite.',
-    aftercare: 'Keep hair completely dry for 48 hours and avoid hair clips or elastic bands.',
-    popularAddOns: ['Ends Reshaping Trim (+$35)', 'Biotin Density Elixir (+$28)'],
-    isFeatured: true
-  },
-  {
-    id: 'srv-couture-cut',
-    name: 'Precision Signature Cut & Blowout',
-    category: 'hair',
-    categoryLabel: 'Hair Studio',
-    tagline: 'Architectural haircutting tailored to facial contours and natural texture',
-    description: 'Detailed diagnostic consultation, double cleansing with botanical scalp massage, custom dimensional haircut, and salon-grade bouncy blowout with thermal round brush finish.',
-    durationMinutes: 60,
-    priceUSD: 95,
-    image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    popularAddOns: ['Moroccan Argan Deep Mask (+$35)', 'Curling Iron Luxe Finish (+$20)'],
-    isFeatured: true
-  },
-  {
-    id: 'srv-hair-extensions',
-    name: 'Seamless Remy Hair Extensions & Density',
-    category: 'hair',
-    categoryLabel: 'Hair Studio',
-    tagline: 'Ultra-thin invisible tape & hand-tied weft extensions for natural thickness',
-    description: '100% ethically sourced double-drawn Remy human hair color-matched seamlessly to your base. Adds cascading length, natural density, and dimension without tension.',
+    id: 'srv-full-lash-set',
+    name: 'Full Eyelash Extension Set',
+    category: 'lashes',
+    categoryLabel: 'Lashes',
+    tagline: 'Customized classic, hybrid, or volume full extension set',
+    description: 'Complete lash extension set individually tailored to your eye shape and natural lash strength for everyday elegance or dramatic volume.',
     durationMinutes: 120,
-    priceUSD: 350,
-    image: 'https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    popularAddOns: ['Custom Blended Tone Match (+$45)', 'Silk Finishing Wave (+$25)'],
-    isFeatured: false
-  },
-  {
-    id: 'srv-scalp-spa',
-    name: 'Aromatherapy Scalp Detox & Hydro-Care',
-    category: 'hair',
-    categoryLabel: 'Hair Studio',
-    tagline: 'Deep follicular cleansing, rosemary scalp stimulation, and steam infusion',
-    description: 'Micro-exfoliating salicylic scrub for the scalp, warm Japanese hydro-mist circulation, tension-melting neck massage, and restorative keratin hair mask.',
-    durationMinutes: 60,
-    priceUSD: 110,
-    image: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    popularAddOns: ['High-Frequency Follicle Stimulation (+$30)'],
-    isFeatured: false
-  },
-
-  // 2. NAIL LOUNGE
-  {
-    id: 'srv-gold-couture-mani',
-    name: 'Glamway 24K Gold Couture Manicure',
-    category: 'nails',
-    categoryLabel: 'Nail Lounge',
-    tagline: 'Russian dry precision cuticle detailing with champagne gold micro-accents',
-    description: 'Flawless dry e-file cuticle alignment, organic brown sugar hand polish, nourishing warm camellia oil soak, structured gel base, and delicate hand-placed 24K gold leaf accents.',
-    durationMinutes: 75,
-    priceUSD: 85,
-    image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    preparation: 'Please inform us if you require prior gel or acrylic removal (+30 min).',
-    aftercare: 'Hydrate cuticles daily with cold-pressed jojoba or almond oil.',
-    popularAddOns: ['Gel Extension Reinforcement (+$40)', 'Warm Paraffin Glove (+$25)'],
-    isFeatured: true
-  },
-  {
-    id: 'srv-pedicure-botanical',
-    name: 'Imperial Botanical Foot Retreat',
-    category: 'nails',
-    categoryLabel: 'Nail Lounge',
-    tagline: 'Volcanic scrub, intensive callus therapy, and restorative reflexology',
-    description: 'Warm sea salt soak with eucalyptus and rose petals, gentle callus refining, organic foot scrub, relaxing 20-minute acupressure foot massage, and gel polish finish.',
-    durationMinutes: 90,
-    priceUSD: 95,
-    image: 'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    aftercare: 'Wear open-toed footwear if selecting classic lacquer instead of gel.',
-    popularAddOns: ['Heel Collagen Cocoon (+$20)', 'Micro-French Tip Detailing (+$15)'],
-    isFeatured: false
-  },
-  {
-    id: 'srv-gel-architecture',
-    name: 'Russian Structured Gel & Nude Glass Couture',
-    category: 'nails',
-    categoryLabel: 'Nail Lounge',
-    tagline: 'Pristine apex architecture, micro-alignment, and diamond high-gloss finish',
-    description: 'Reinforced apex structure that strengthens natural nails, accompanied by diamond dry cuticle grooming, custom nude pigment layering, and high-shine scratch-proof topcoat.',
-    durationMinutes: 80,
-    priceUSD: 90,
-    image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    popularAddOns: ['Chrome Glaze Effect (+$15)', 'Custom Minimalist Nail Art (+$25)'],
-    isFeatured: false
-  },
-
-  // 3. FACIAL & SKINCARE
-  {
-    id: 'srv-hydra-radiance',
-    name: 'Botanical Radiance Hydra-Infusion',
-    category: 'facial',
-    categoryLabel: 'Facial & Skincare',
-    tagline: 'Non-invasive vortex extraction, deep hydration, and cryo-firming',
-    description: 'Triple-phase dermal vortex cleansing, mild enzymatic fruit peeling, antioxidant serum infusion, lymphatic jade roller massage, and cooling collagen biocellulose mask.',
-    durationMinutes: 75,
-    priceUSD: 175,
-    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    preparation: 'Discontinue retinol and chemical exfoliants 48 hours prior.',
-    aftercare: 'Wear SPF 50 daily; avoid direct midday sunlight and saunas for 24 hours.',
-    popularAddOns: ['LED Photon Collagen Rejuvenation (+$35)', 'Décolleté Firming Treatment (+$45)'],
-    isFeatured: true
-  },
-  {
-    id: 'srv-caviar-lift',
-    name: 'Black Caviar & Peptide Youth Sculpt',
-    category: 'facial',
-    categoryLabel: 'Facial & Skincare',
-    tagline: 'Deep contouring myofascial lift and cellular firmness therapy',
-    description: 'Intense anti-aging ritual pairing French black caviar proteins with marine peptides. Includes buccal facial contouring massage and microcurrent skin toning.',
-    durationMinutes: 90,
-    priceUSD: 245,
-    image: 'https://images.unsplash.com/photo-1512290900672-1f49615a9ff2?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    preparation: 'Recommended before galas and photography sessions; delivers instantaneous radiance.',
-    aftercare: 'Drink plenty of water to enhance lymphatic drainage benefits.',
-    popularAddOns: ['Eye Contour Brightener (+$30)'],
-    isFeatured: false
-  },
-
-  // 4. LASHES & BROWS
-  {
-    id: 'srv-silk-lash-couture',
-    name: 'Cashmere Feather Lash Extension',
-    category: 'lashes-brows',
-    categoryLabel: 'Lashes & Brows',
-    tagline: 'Ultra-lightweight Japanese cashmere lashes customized to eye architecture',
-    description: 'Single-strand and hybrid feather-light lashes applied individually with hypoallergenic medical-grade adhesive for fluttery, weightless elegance.',
-    durationMinutes: 105,
     priceUSD: 160,
     image: 'https://images.unsplash.com/photo-1583001809873-a128495da465?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    preparation: 'Arrive with clean, makeup-free eyes; remove contact lenses prior to application.',
-    aftercare: 'Keep lashes dry for 24 hours; avoid oil-based makeup cleansers.',
-    popularAddOns: ['Keratin Lash Strengthener (+$20)', 'Brow Shaping & Tint (+$35)'],
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    preparation: 'Arrive with clean, makeup-free eye area. Avoid caffeine prior to your appointment.',
+    aftercare: 'Keep lashes dry for 24 hours. Brush gently daily with clean mascara wand.',
     isFeatured: true
   },
   {
-    id: 'srv-brow-lamination',
-    name: '3D Nano Brow Sculpt & Lamination',
-    category: 'lashes-brows',
-    categoryLabel: 'Lashes & Brows',
-    tagline: 'Fuller, feathery brows set with keratin peptide alignment',
-    description: 'Gentle restructuring solution aligns brow hairs into a feathered, uniform arch, accompanied by custom vegetable tinting and precision tweezer sculpting.',
-    durationMinutes: 60,
+    id: 'srv-lash-fill',
+    name: 'Lash Extension Fill-In',
+    category: 'lashes',
+    categoryLabel: 'Lashes',
+    tagline: '2 to 3 week maintenance to replenish growth and preserve fullness',
+    description: 'Maintenance appointment to remove outgrown extensions and place fresh lashes to restore your set to full density.',
+    durationMinutes: 75,
     priceUSD: 85,
     image: 'https://images.unsplash.com/photo-1597225244660-1cd128c64284?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    preparation: 'Avoid brow waxing or threading for 1 week prior.',
-    aftercare: 'Apply brow conditioner daily; avoid water exposure for 24 hours.',
-    popularAddOns: ['Under-Eye Hydrating Gel Pads (+$15)'],
-    isFeatured: false
-  },
-
-  // 5. MAKEUP STUDIO
-  {
-    id: 'srv-red-carpet-makeup',
-    name: 'Red Carpet Gala & Evening Glamour',
-    category: 'makeup',
-    categoryLabel: 'Makeup Studio',
-    tagline: 'Long-wearing HD radiance for weddings, galas, and photographic portraits',
-    description: 'Pre-makeup dermal hydration prep, bespoke airbrush or luxury cream foundation, customized lash strip application, and humidity-resistant setting finish.',
-    durationMinutes: 75,
-    priceUSD: 135,
-    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    preparation: 'Wear a button-down or robe to prevent contact with finished makeup.',
-    aftercare: 'Includes a complimentary touch-up kit with blotting sheets and lip sample.',
-    popularAddOns: ['Body Shimmer Radiance Glow (+$25)'],
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    preparation: 'Clients should have at least 40% of their extensions remaining for a fill.',
+    aftercare: 'Cleanse lashes with oil-free lash foam cleanser.',
     isFeatured: true
   },
-
-  // 6. SPA & WELLNESS
   {
-    id: 'srv-aroma-stone-massage',
-    name: 'Warm Basalt & Sweet Jasmine Massage',
-    category: 'body-wellness',
-    categoryLabel: 'Spa & Wellness',
-    tagline: 'Volcanic basalt stones infused with organic botanical oils in private suite',
-    description: 'Deep relaxation ritual using heated volcanic basalt stones to melt muscular tension, paired with cold-pressed sweet almond and jasmine blossom essential oils.',
-    durationMinutes: 90,
-    priceUSD: 145,
-    image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    preparation: 'Avoid heavy meals 1 hour prior to appointment.',
-    aftercare: 'Stay well-hydrated post-session to support tension release.',
-    popularAddOns: ['Botanical Sea Salt Polish (+$45)', 'Foot Reflexology Accent (+$30)'],
-    isFeatured: false
-  },
-
-  // 7. BRIDAL BEAUTY
-  {
-    id: 'srv-bridal-hair-veil',
-    name: 'Couture Bridal Hairstyle & Veil Placement',
-    category: 'bridal',
-    categoryLabel: 'Bridal Beauty',
-    tagline: 'Intricate romantic updos, Hollywood waves, and secure veil anchoring',
-    description: 'Master wedding styling incorporating hair prep, dimensional curls or chignon architecture, accessory integration, and 12-hour high-hold humidity shield.',
-    durationMinutes: 90,
+    id: 'srv-top-bottom-lashes',
+    name: 'Top & Bottom Lash Set',
+    category: 'lashes',
+    categoryLabel: 'Lashes',
+    tagline: 'Full upper set with delicate lower lash application for balanced glamour',
+    description: 'Comprehensive lash extension appointment covering both upper and lower lash lines for an ultra-glamorous, open-eyed look.',
+    durationMinutes: 135,
     priceUSD: 195,
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    preparation: 'Bring your veil, headpiece, or hair accessories to the appointment.',
-    popularAddOns: ['Hair Extension Insertion (+$50)', 'Bridal Preview Trial Session (+$120)'],
-    isFeatured: true
+    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    isFeatured: false
   },
   {
-    id: 'srv-bridal-glam-suite',
-    name: 'Complete Bridal Radiance Hair & Makeup',
-    category: 'bridal',
-    categoryLabel: 'Bridal Beauty',
-    tagline: 'The complete private bridal suite experience for the unforgettable day',
-    description: 'Full bridal glow prep: dermal micro-infusion, flawless photography-grade makeup, precision lash application, couture hairstyle, and bridal touch-up kit.',
-    durationMinutes: 150,
-    priceUSD: 310,
-    image: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    popularAddOns: ['Mother-of-the-Bride Styling (+$140)', 'Champagne Service Upgrade (+$45)'],
-    isFeatured: true
+    id: 'srv-lash-removal',
+    name: 'Professional Lash Extension Removal',
+    category: 'lashes',
+    categoryLabel: 'Lashes',
+    tagline: 'Gentle, non-damaging adhesive breakdown and conditioning',
+    description: 'Safe in-salon removal of lash extensions using professional cream remover that dissolves adhesive without damaging natural lashes.',
+    durationMinutes: 30,
+    priceUSD: 35,
+    image: 'https://images.unsplash.com/photo-1512290900672-1f49615a9ff2?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    isFeatured: false
   },
 
-  // 8. BEAUTY PACKAGES
+  // 2. HAIR
   {
-    id: 'srv-grand-empress-day',
-    name: 'The Glamway Empress Day Retreat',
-    category: 'packages',
-    categoryLabel: 'Beauty Packages',
-    tagline: 'A comprehensive 5-hour private suite transformation and wellness journey for women',
-    description: 'Our most celebrated VIP journey. Includes: Botanical Hydra-Infusion facial, Caviar Keratin hair ritual, 24K Gold manicure & pedicure, warm basalt massage, and chilled champagne or artisanal tea served in your private suite.',
-    durationMinutes: 300,
-    priceUSD: 595,
-    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    preparation: 'A private suite is reserved exclusively for you for the full day.',
-    aftercare: 'Includes custom home-care travel kit and personal stylist concierge direct line.',
-    popularAddOns: ['Private Chauffeur Transportation (+$95)'],
+    id: 'srv-hair-styling-install',
+    name: 'Hair Styling & Extension Installation',
+    category: 'hair',
+    categoryLabel: 'Hair',
+    tagline: 'Professional hair installation, sew-ins, and precision styling',
+    description: 'Expert hair extension installation and styling tailored to your natural hair, ensuring seamless blending, security, and hair health.',
+    durationMinutes: 150,
+    priceUSD: 185,
+    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    preparation: 'Hair should be washed and detangled prior to installation.',
     isFeatured: true
   },
   {
-    id: 'srv-bridal-party-suite',
-    name: 'Private Suite Bridal Party Celebration',
-    category: 'packages',
-    categoryLabel: 'Beauty Packages',
-    tagline: 'Dedicated suite reservation for bride & bridesmaids with champagne service',
-    description: 'Exclusive reservation of our executive beauty suite for groups of 4 to 8. Includes simultaneous blowout bars, couture manicures, mimosa service, and charcuterie board.',
-    durationMinutes: 240,
-    priceUSD: 850,
-    image: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1200&q=85',
-    eligibleBranches: ['branch-nc-1', 'branch-nc-2'],
-    popularAddOns: ['Photography Retouching Studio Prep (+$150)'],
+    id: 'srv-silk-press',
+    name: 'Silk Press & Treatment',
+    category: 'hair',
+    categoryLabel: 'Hair',
+    tagline: 'Deep conditioning, thermal heat protectant, and sleek silk press',
+    description: 'Clarifying wash, hydrating deep condition, blow dry, and precision thermal press for lightweight, silky movement without chemical alteration.',
+    durationMinutes: 90,
+    priceUSD: 95,
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    isFeatured: true
+  },
+  {
+    id: 'srv-hair-maintenance',
+    name: 'Hair Cut & Maintenance Trim',
+    category: 'hair',
+    categoryLabel: 'Hair',
+    tagline: 'Split-end removal, shaping, and healthy growth maintenance',
+    description: 'Cleanse, conditioning, precision trim to eliminate damaged ends, and light styling.',
+    durationMinutes: 60,
+    priceUSD: 65,
+    image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    isFeatured: false
+  },
+
+  // 3. NAILS
+  {
+    id: 'srv-structured-manicure',
+    name: 'Structured Gel Manicure',
+    category: 'nails',
+    categoryLabel: 'Nails',
+    tagline: 'Cuticle care, apex reinforcement, and long-lasting gel finish',
+    description: 'Detailed dry manicure cuticle clean-up, nail shaping, builder gel overlay to strengthen natural nails, and high-shine gel polish.',
+    durationMinutes: 75,
+    priceUSD: 75,
+    image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    isFeatured: true
+  },
+  {
+    id: 'srv-gel-nail-enhancements',
+    name: 'Full Nail Enhancements & Art',
+    category: 'nails',
+    categoryLabel: 'Nails',
+    tagline: 'Nail extensions with custom shape, length, and design',
+    description: 'Full set of nail enhancements with custom shaping (almond, square, coffin), reinforced durability, and gel color finish.',
+    durationMinutes: 90,
+    priceUSD: 85,
+    image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    isFeatured: false
+  },
+
+  // 4. FACIALS
+  {
+    id: 'srv-custom-esthetician-facial',
+    name: 'Custom Esthetician Facial',
+    category: 'facial',
+    categoryLabel: 'Facials',
+    tagline: 'Personalized skin evaluation, deep cleansing, exfoliation, and hydration',
+    description: 'Comprehensive facial treatment led by licensed estheticians. Includes skin analysis, double cleanse, enzyme exfoliation, pore clearing, targeted mask, and protective hydration.',
+    durationMinutes: 60,
+    priceUSD: 110,
+    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
+    preparation: 'Discontinue retinol and chemical exfoliants 48 hours prior.',
+    aftercare: 'Wear sunscreen daily; avoid heavy sun exposure and makeup for 24 hours.',
+    isFeatured: true
+  },
+  {
+    id: 'srv-facial-glow-waxing',
+    name: 'Facial Glow & Brow Detailing',
+    category: 'facial',
+    categoryLabel: 'Facials',
+    tagline: 'Hydrating mini-facial combined with precision brow waxing',
+    description: 'Skin-refreshing cleanse and glow serum application paired with gentle brow shaping and facial waxing for a clean, luminous complexion.',
+    durationMinutes: 45,
+    priceUSD: 65,
+    image: 'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=1200&q=85',
+    eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
   }
 ];
 
+// Verified Founder profile — Summer Davis
 export const BEAUTY_SPECIALISTS: BeautySpecialist[] = [
   {
-    id: 'spec-camille',
-    name: 'Camille De La Rosa',
-    role: 'Creative Hair Director & Balayage Master',
-    specialties: ['French Balayage', 'Couture Cuts', 'Color Transformation'],
-    branchId: 'branch-nc-1',
-    experienceYears: 12,
-    rating: 4.98,
-    reviewsCount: 342,
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-    bio: 'Trained in Paris and New York, Camille leads The Glamway’s hair artistry, styling for fashion week editorials and exclusive bridal events.',
-    licenseId: 'NC-COSM-49201'
-  },
-  {
-    id: 'spec-sophia',
-    name: 'Sophia Isabel Reyes',
-    role: 'Lead Dermal Aesthetician',
-    specialties: ['Hydra-Infusion', 'Facial Sculpting', 'Sensitive Barrier Therapy'],
-    branchId: 'branch-nc-1',
-    experienceYears: 9,
-    rating: 4.95,
-    reviewsCount: 280,
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
-    bio: 'Licensed esthetician specializing in non-invasive glow rituals and skin barrier recovery.',
-    licenseId: 'NC-EST-33109'
-  },
-  {
-    id: 'spec-elena',
-    name: 'Elena Santos-Villar',
-    role: 'Master Nail Artist & Sculptor',
-    specialties: ['Russian E-File', '24K Gold Nail Art', 'Structured Gel'],
-    branchId: 'branch-nc-2',
-    experienceYears: 8,
-    rating: 4.97,
-    reviewsCount: 215,
-    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80',
-    bio: 'Renowned for meticulous cuticle architecture, 24K gold foil embellishments, and long-lasting structured gel.',
-    licenseId: 'NC-NT-55204'
-  },
-  {
-    id: 'spec-claire',
-    name: 'Claire Chen-Montenegro',
-    role: 'Senior Lash & Brow Artist',
-    specialties: ['Cashmere Lashes', '3D Lamination', 'Eye Architecture'],
-    branchId: 'branch-nc-2',
+    id: 'spec-summer-davis',
+    name: 'Summer Davis',
+    role: 'Founder & Licensed Esthetician',
+    specialties: ['Lashes', 'Esthetics', 'Lash Tech Training'],
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=85',
+    bio: 'Founder of The Glamway. Began beauty career with lash training in 2017, followed by obtaining her esthetician license in 2018 in Charlotte, NC.',
+    licenseId: 'NC-ESTH-2018',
     experienceYears: 7,
-    rating: 4.94,
-    reviewsCount: 198,
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
-    bio: 'Master certified in feather-weight lash extensions designed for natural eye contouring.',
-    licenseId: 'NC-EST-41002'
+    rating: 5.0,
+    reviewsCount: 150
   }
 ];
 
-export const BOUTIQUE_PRODUCTS: ProductItem[] = [
+// Verified Products from theglamwayclt.com/shop
+// Categories strictly: Lash Supplies, Lash Trays, Shop Hair, Best Sellers, Wholesale
+export const SALON_PRODUCTS: ProductItem[] = [
   {
-    id: 'prod-caviar-serum',
-    name: 'The Glamway L’Élixir D’Or Caviar Serum',
-    brand: 'The Glamway Haute Beauté Lab',
-    category: 'skincare',
-    priceUSD: 145,
-    volume: '1.7 fl oz / 50 ml',
-    description: 'Concentrated peptide and black caviar essence that stimulates cellular collagen and imparts a glassy, luminous complexion.',
-    keyBenefits: ['Deep dermal hydration', 'Fine-line smoothing', 'Antioxidant barrier protection'],
+    id: 'prod-003-glue',
+    name: '0.03 Second Lash Adhesive',
+    brand: 'The Glamway',
+    category: 'lash-supplies',
+    priceUSD: 25.00,
+    specification: 'Ultra-fast drying professional adhesive',
+    description: 'Professional grade eyelash extension glue with rapid 0.03-second dry time, formulated for experienced lash technicians seeking maximum retention.',
+    keyBenefits: ['0.03 Second Dry Time', 'Maximum Retention Formula', 'Professional Lash Tech Use'],
     inStock: true,
-    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80',
-    rating: 4.9
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80'
   },
   {
-    id: 'prod-argan-gloss',
-    name: 'Silk Radiance Botanical Hair Oil',
-    brand: 'The Glamway Haute Beauté Lab',
-    category: 'haircare',
-    priceUSD: 68,
-    volume: '3.4 fl oz / 100 ml',
-    description: 'Weightless finishing gloss formulated with cold-pressed Moroccan argan oil, camellia blossom, and UV thermal shields.',
-    keyBenefits: ['Humidity frizz defense up to 96h', 'Glass-like sheen without weight', 'Heat protection up to 450°F'],
+    id: 'prod-05-glue',
+    name: '0.5 Second Lash Adhesive',
+    brand: 'The Glamway',
+    category: 'lash-supplies',
+    priceUSD: 25.00,
+    specification: 'Smooth bonding professional adhesive',
+    description: 'High-performance eyelash adhesive with a reliable 0.5-second setting time. Ideal for classic, hybrid, and volume lash applications.',
+    keyBenefits: ['0.5 Second Dry Time', 'Long-Lasting Hold', 'Smooth Application'],
     inStock: true,
-    image: 'https://images.unsplash.com/photo-1608248597359-bb01d5118742?auto=format&fit=crop&w=800&q=80',
-    rating: 4.95
+    image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80'
   },
   {
-    id: 'prod-cuticle-elixir',
-    name: 'Rose & 24K Gold Botanical Cuticle Elixir',
-    brand: 'The Glamway Haute Beauté Lab',
-    category: 'nailcare',
-    priceUSD: 42,
-    volume: '1.0 fl oz / 30 ml',
-    description: 'Infused with real 24-karat gold flakes and organic damask rose oil to nourish cuticles and fortify nail bed flexibility.',
-    keyBenefits: ['Prevents hangnails', 'Instant cuticle softening', 'Subtle rose fragrance'],
+    id: 'prod-standard-trays',
+    name: 'Standard Lash Trays',
+    brand: 'The Glamway',
+    category: 'lash-trays',
+    priceUSD: 10.00,
+    specification: 'Single length & mixed lash trays',
+    description: 'High-quality synthetic mink lash trays with deep black finish and easy-peel foil strips for effortless pickup.',
+    keyBenefits: ['Deep Matte Black', 'Easy Foil Peel Strips', 'Consistent Curl Hold'],
     inStock: true,
-    image: 'https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=800&q=80',
-    rating: 4.88
+    image: 'https://images.unsplash.com/photo-1583001809873-a128495da465?auto=format&fit=crop&w=800&q=80'
   },
   {
-    id: 'prod-silk-pillowcase',
-    name: 'Pure Mulberry Silk Beauty Sleep Set (Blush & Champagne)',
-    brand: 'The Glamway Maison',
-    category: 'accessories',
-    priceUSD: 85,
-    volume: 'Queen / King 22 Momme + Silk Eye Mask',
-    description: 'Certified 100% 22 Momme grade-6A mulberry silk to prevent hair friction breakage, facial sleep creases, and skin moisture loss.',
-    keyBenefits: ['Hypoallergenic & frictionless', 'Maintains skin hydration', 'Gentle on eyelash extensions'],
+    id: 'prod-xl-trays',
+    name: 'XL Lash Trays',
+    brand: 'The Glamway',
+    category: 'lash-trays',
+    priceUSD: 15.00,
+    specification: 'Extra volume capacity trays',
+    description: 'Expanded capacity lash trays providing additional rows for high-volume lash artists, reducing the need for constant reordering.',
+    keyBenefits: ['Extended Line Count', 'Soft Lightweight Fibers', 'Best-Seller Favorite'],
     inStock: true,
-    image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=800&q=80',
-    rating: 5.0
+    image: 'https://images.unsplash.com/photo-1512290900672-1f49615a9ff2?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'prod-classic-c-cc-d',
+    name: 'Classic Lash Trays (C, CC, & D Curls)',
+    brand: 'The Glamway',
+    category: 'lash-trays',
+    priceUSD: 15.00,
+    specification: 'Available in C, CC, and D curls',
+    description: 'Premium individual lash extension trays in versatile C, CC, and D curls to create customized client eye maps.',
+    keyBenefits: ['Multiple Curl Options', 'Resistant to Heat & Humidity', 'Natural Soft Texture'],
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1597225244660-1cd128c64284?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'prod-diy-lash-kit',
+    name: 'DIY Lash Kit',
+    brand: 'The Glamway',
+    category: 'lash-supplies',
+    priceUSD: 20.00,
+    specification: 'At-home cluster lash application kit',
+    description: 'Complete DIY lash kit containing pre-cut lash segments, gentle bonding adhesive, and applicator tweezers for at-home wear.',
+    keyBenefits: ['Beginner-Friendly', 'Includes Bond & Applicator', 'Multi-Day Wear'],
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'prod-glue-rings',
+    name: 'Professional Glue Rings',
+    brand: 'The Glamway',
+    category: 'lash-supplies',
+    priceUSD: 5.00,
+    specification: 'Pack of ergonomic disposable glue rings',
+    description: 'Disposable lash artist glue rings designed to keep adhesive close at hand during application, speeding up appointment workflow.',
+    keyBenefits: ['Convenient Workflow', 'Disposable & Sanitary', 'Universal Finger Fit'],
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'prod-mascara-wands',
+    name: 'Disposable Mascara Wands',
+    brand: 'The Glamway',
+    category: 'lash-supplies',
+    priceUSD: 5.00,
+    specification: 'Pack of spoolie brushes for lash care',
+    description: 'Sanitary spoolie brushes essential for grooming lash extensions before, during, and after service appointments.',
+    keyBenefits: ['Gentle Bristles', 'Client Take-Home Care', 'Sanitary Single-Use'],
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'prod-wholesale-bundle',
+    name: 'Wholesale Lash Supply Pack',
+    brand: 'The Glamway',
+    category: 'wholesale',
+    priceUSD: 150.00,
+    specification: 'Bulk supplies for salons & independent lash artists',
+    description: 'Wholesale inventory package featuring mixed lash trays, professional adhesives, glue rings, and preparation supplies at studio rates.',
+    keyBenefits: ['Bulk Studio Pricing', 'Core Best Sellers Included', 'Fast Local NC Fulfillment'],
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80'
   }
 ];
 
+export const BOUTIQUE_PRODUCTS = SALON_PRODUCTS;
+
+// Verified Beauty Education / Courses from theglamwayclt.com
+export const TRAINING_COURSES: TrainingCourse[] = [
+  {
+    id: 'course-beginner-lash',
+    title: 'Beginner Lash Tech Course',
+    durationHours: 4,
+    priceUSD: 650,
+    targetAudience: 'Aspiring lash technicians and beauty entrepreneurs',
+    description: 'Hands-on beginner lash training covering sanitation fundamentals, natural lash health, classic lash application, isolation techniques, and business setup.',
+    curriculum: [
+      'Sanitation, Hygiene & Client Safety',
+      'Eye Anatomy & Lash Growth Cycles',
+      'Proper Adhesive Chemistry & Retention',
+      'Step-by-Step Isolation & Classic Placement',
+      'Lash Mapping & Styling Consultation',
+      'Client Aftercare & Removal Techniques'
+    ],
+    image: 'https://images.unsplash.com/photo-1583001809873-a128495da465?auto=format&fit=crop&w=1200&q=85'
+  },
+  {
+    id: 'course-advanced-volume',
+    title: 'Advanced Volume Lashes Course',
+    durationHours: 2,
+    priceUSD: 300,
+    targetAudience: 'Practicing lash artists looking to master volume fan creation',
+    description: 'Intensive course focused on manual volume fan creation, weight-to-diameter balance, hybrid and mega-volume techniques, and retention optimization.',
+    curriculum: [
+      'Manual Fan Creation Techniques',
+      'Weight & Diameter Calculation for Natural Lash Safety',
+      'Fast Pickup & Seamless Base Attachment',
+      'Mega Volume & Hybrid Set Customization',
+      'Speed Improvement & Ergonomics'
+    ],
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85'
+  }
+];
+
+// Loyalty program
 export const MEMBERSHIP_TIERS: MembershipTier[] = [
   {
-    id: 'tier-essential',
-    name: 'Beauty Essential',
+    id: 'tier-glam-guest',
+    name: 'Glam Guest',
     minimumSpendUSD: 0,
-    pointsMultiplier: 1.0,
-    color: '#A98F86',
-    perks: [
-      'Earn 1 point per $1 spent',
-      'Welcome gift on your first salon visit',
-      'Digital booking & reschedule pass'
-    ]
+    pointsMultiplier: 1,
+    perks: ['Online Appointment Scheduling', 'Product Drop Notifications'],
+    color: '#D9B6A9'
   },
   {
-    id: 'tier-signature',
-    name: 'Beauty Signature',
-    minimumSpendUSD: 1200,
-    pointsMultiplier: 1.25,
-    color: '#C6A667',
-    perks: [
-      'Earn 1.25 points per $1 spent',
-      'Complimentary Birthday Scalp Detox ($95 value)',
-      '10% privilege discount on boutique products',
-      'Priority waitlist placement'
-    ]
-  },
-  {
-    id: 'tier-gold',
-    name: 'Beauty Gold',
-    minimumSpendUSD: 2800,
+    id: 'tier-glam-vip',
+    name: 'Glamway VIP',
+    minimumSpendUSD: 500,
     pointsMultiplier: 1.5,
-    color: '#DFCA9B',
-    perks: [
-      'Earn 1.5 points per $1 spent',
-      'Complimentary champagne or botanical sweet tea on every visit',
-      '15% privilege discount on all services and boutique retail',
-      'Complimentary blowout upgrade with any balayage or color ritual',
-      'Exclusive invitations to private masterclasses'
-    ]
-  },
-  {
-    id: 'tier-platinum',
-    name: 'Beauty Platinum VIP',
-    minimumSpendUSD: 6000,
-    pointsMultiplier: 2.0,
-    color: '#8E4B63',
-    perks: [
-      'Earn 2.0 points per $1 spent',
-      'Private VIP Suite reservation at no additional charge',
-      '20% privilege discount across all services & retail',
-      'Dedicated personal concierge direct line',
-      'Guaranteed appointment availability with 24h notice'
-    ]
+    perks: ['Priority Booking Access', 'Supply Store Privilege Discounts', 'Invitations to Training Workshops'],
+    color: '#8E4B63'
   }
 ];

@@ -10,14 +10,12 @@ import { ExperienceProof } from './components/home/ExperienceProof';
 import { ShopSection } from './components/boutique/ShopSection';
 import { CartDrawer } from './components/boutique/CartDrawer';
 import { MembershipSection } from './components/membership/MembershipSection';
-import { VirtualBeautyStudio } from './components/virtual/VirtualBeautyStudio';
 import { CustomerPortal } from './components/portals/CustomerPortal';
 import { BranchConsole } from './components/portals/BranchConsole';
 import { CorporateDashboard } from './components/portals/CorporateDashboard';
 import { BookingModal } from './components/booking/BookingModal';
-import { BeautyConciergeModal } from './components/ai/BeautyConciergeModal';
-import { GallerySection } from './components/gallery/GallerySection';
 import { AboutSection } from './components/about/AboutSection';
+import { BeautyTrainingSection } from './components/training/BeautyTrainingSection';
 import { ContactSection } from './components/contact/ContactSection';
 import { CheckCircle2 } from 'lucide-react';
 
@@ -44,6 +42,10 @@ const MainLayout: React.FC = () => {
           </>
         )}
 
+        {currentView === 'about' && (
+          <AboutSection />
+        )}
+
         {currentView === 'services' && (
           <div className="py-8">
             <FeaturedServices />
@@ -62,27 +64,17 @@ const MainLayout: React.FC = () => {
           </div>
         )}
 
-        {currentView === 'membership' && (
-          <div className="py-8">
-            <MembershipSection />
-          </div>
-        )}
-
-        {currentView === 'gallery' && (
-          <GallerySection />
-        )}
-
-        {currentView === 'about' && (
-          <AboutSection />
+        {currentView === 'training' && (
+          <BeautyTrainingSection />
         )}
 
         {currentView === 'contact' && (
           <ContactSection />
         )}
 
-        {currentView === 'virtual-studio' && (
+        {currentView === 'membership' && (
           <div className="py-8">
-            <VirtualBeautyStudio />
+            <MembershipSection />
           </div>
         )}
 
@@ -104,7 +96,6 @@ const MainLayout: React.FC = () => {
 
       {/* Global Interactive Modals & Drawers */}
       <BookingModal />
-      <BeautyConciergeModal />
       <CartDrawer />
 
       {/* Toast Notification Container */}

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSalon } from '../../context/SalonContext';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, MapPin, Phone, Mail } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const { setCurrentView, setIsAiConciergeOpen, setUserRole } = useSalon();
+  const { setCurrentView, setUserRole } = useSalon();
 
   return (
     <footer className="bg-[#3B2A28] text-[#FFF9F4] border-t border-[#C6A667]/30 pt-16 pb-12 px-6">
@@ -17,15 +17,15 @@ export const Footer: React.FC = () => {
             <div className="flex flex-col items-start gap-2">
               <img 
                 src="/branding/glamway-official-logo.png" 
-                alt="The Glamway Beauty Salon — FOR WOMEN" 
-                className="h-20 w-auto object-contain drop-shadow-md"
+                alt="The Glamway Beauty Salon" 
+                className="h-16 w-auto object-contain drop-shadow-md"
               />
               <div className="text-[11px] uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
-                FOR WOMEN · NORTH CAROLINA
+                CHARLOTTE, NORTH CAROLINA
               </div>
             </div>
             <p className="text-xs text-[#FFF9F4]/80 font-light leading-relaxed max-w-sm">
-              The premier luxury women's beauty and wellness network in North Carolina. Combining refined artistry, bespoke aesthetics, and private suite hospitality.
+              Founded by licensed esthetician Summer Davis in Charlotte, NC. Offering specialized eyelash extensions, hair styling, structured nails, esthetician facials, lash supplies, and professional beauty training.
             </p>
             <div className="pt-2 flex items-center gap-2 text-xs text-[#C6A667]">
               <Sparkles className="w-4 h-4" />
@@ -33,52 +33,78 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Destination Sanctuaries (3 cols) */}
+          {/* Charlotte Branches (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <div className="text-xs uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
-              North Carolina Branches
+              Charlotte Locations
             </div>
             <ul className="space-y-3 text-xs text-[#FFF9F4]/85">
-              <li className="space-y-0.5">
-                <div className="font-semibold text-white">Branch 1 — The Glamway Flagship</div>
-                <div className="text-[#A98F86]">Official Location Details Pending · NC</div>
+              <li className="space-y-1">
+                <div className="font-semibold text-white">The Glamway — Uptown</div>
+                <div className="text-[#A98F86] flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-[#C6A667] shrink-0" />
+                  <span>428 E. Fourth St., Charlotte, NC 28202</span>
+                </div>
               </li>
-              <li className="space-y-0.5">
-                <div className="font-semibold text-white">Branch 2 — The Glamway Atelier</div>
-                <div className="text-[#A98F86]">Official Location Details Pending · NC</div>
+              <li className="space-y-1">
+                <div className="font-semibold text-white">The Glamway — Graham</div>
+                <div className="text-[#A98F86] flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-[#C6A667] shrink-0" />
+                  <span>2506 Lucena St., Charlotte, NC 28206</span>
+                </div>
+              </li>
+              <li className="pt-1 text-[#A98F86] space-y-1 border-t border-white/10">
+                <div className="flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-[#C6A667] shrink-0" />
+                  <span>(704) 756-2253</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5 text-[#C6A667] shrink-0" />
+                  <span>theglamwayllc@icloud.com</span>
+                </div>
               </li>
             </ul>
           </div>
 
-          {/* Quick Curations (2 cols) */}
+          {/* Quick Links (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
             <div className="text-xs uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
-              Curations
+              Navigation
             </div>
             <ul className="space-y-2 text-xs text-[#FFF9F4]/80">
               <li>
-                <button onClick={() => setCurrentView('services')} className="hover:text-[#C6A667] transition-colors">
-                  Hair &amp; Balayage
+                <button onClick={() => setCurrentView('home')} className="hover:text-[#C6A667] transition-colors">
+                  Home
+                </button>
+              </li>
+              <li>
+                <button onClick={() => setCurrentView('about')} className="hover:text-[#C6A667] transition-colors">
+                  About Us &amp; Founder
                 </button>
               </li>
               <li>
                 <button onClick={() => setCurrentView('services')} className="hover:text-[#C6A667] transition-colors">
-                  Facial &amp; Hydra-Infusion
+                  Services (4 Categories)
                 </button>
               </li>
               <li>
-                <button onClick={() => setCurrentView('services')} className="hover:text-[#C6A667] transition-colors">
-                  24K Gold Nail Couture
+                <button onClick={() => setCurrentView('branches')} className="hover:text-[#C6A667] transition-colors">
+                  Charlotte Locations
                 </button>
               </li>
               <li>
                 <button onClick={() => setCurrentView('boutique')} className="hover:text-[#C6A667] transition-colors">
-                  Boutique Formulations
+                  Shop Lash Supplies
                 </button>
               </li>
               <li>
-                <button onClick={() => setCurrentView('membership')} className="hover:text-[#C6A667] transition-colors">
-                  Privilege Membership
+                <button onClick={() => setCurrentView('training')} className="hover:text-[#C6A667] transition-colors">
+                  Beauty Training
+                </button>
+              </li>
+              <li>
+                <button onClick={() => setCurrentView('contact')} className="hover:text-[#C6A667] transition-colors">
+                  Contact
                 </button>
               </li>
             </ul>
@@ -87,9 +113,20 @@ export const Footer: React.FC = () => {
           {/* Private Management & Portals (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <div className="text-xs uppercase tracking-[0.2em] text-[#C6A667] font-semibold">
-              Enterprise Portals
+              Client &amp; Staff Access
             </div>
             <ul className="space-y-2 text-xs text-[#FFF9F4]/80">
+              <li>
+                <button 
+                  onClick={() => {
+                    setUserRole('client');
+                    setCurrentView('customer-portal');
+                  }} 
+                  className="hover:text-[#C6A667] transition-colors text-left"
+                >
+                  Client Appointment History
+                </button>
+              </li>
               <li>
                 <button 
                   onClick={() => {
@@ -109,27 +146,7 @@ export const Footer: React.FC = () => {
                   }} 
                   className="hover:text-[#C6A667] transition-colors text-left"
                 >
-                  Corporate Head Office &amp; AI Command
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => {
-                    setUserRole('client');
-                    setCurrentView('customer-portal');
-                  }} 
-                  className="hover:text-[#C6A667] transition-colors text-left"
-                >
-                  Guest Account &amp; Reservation History
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => setIsAiConciergeOpen(true)}
-                  className="hover:text-[#C6A667] transition-colors flex items-center gap-1.5"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-[#C6A667]" />
-                  <span>The Glamway AI Beauty Concierge</span>
+                  Corporate Administration
                 </button>
               </li>
             </ul>
@@ -137,15 +154,15 @@ export const Footer: React.FC = () => {
 
         </div>
 
-        {/* Bottom Legal, Privacy & Compliance Bar */}
+        {/* Bottom Legal, Policy & Cancellation Notice Bar */}
         <div className="pt-8 border-t border-[#C6A667]/20 flex flex-wrap items-center justify-between gap-4 text-xs text-[#A98F86]">
           <div>
-            &copy; 2026 The Glamway Beauty Salon LLC. All rights reserved. Registered in North Carolina. Licensed by the North Carolina Board of Cosmetic Art Sciences.
+            &copy; 2026 The Glamway LLC. All rights reserved. Charlotte, North Carolina, USA.
           </div>
           <div className="flex items-center gap-6">
-            <span>Women-Focused Sanctuary Policy</span>
-            <span>U.S. Consumer Privacy &amp; Data Security</span>
-            <span>Terms of Reservation &amp; Cancellation</span>
+            <span>24-Hour Cancellation Policy</span>
+            <span>Appointment Policy</span>
+            <span>Privacy &amp; Terms</span>
           </div>
         </div>
 

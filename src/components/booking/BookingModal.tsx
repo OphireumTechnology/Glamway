@@ -66,7 +66,7 @@ export const BookingModal: React.FC = () => {
   ];
 
   // Calculate pricing in USD
-  const basePrice = currentService.priceUSD;
+  const basePrice = currentService?.priceUSD ?? 0;
   const addOnsTotal = selectedAddOns.length * 35; // Average add-on price
   const subtotalUSD = basePrice + addOnsTotal;
   const ncEstimatedTaxUSD = Math.round(subtotalUSD * 0.0725 * 100) / 100; // NC state + local county sales tax ~7.25%
@@ -85,7 +85,7 @@ export const BookingModal: React.FC = () => {
     setErrorMessage(null);
 
     const specialistObj = branchSpecialists.find(s => s.id === selectedSpecialistId);
-    const specialistName = selectedSpecialistId === 'any' ? 'First Available Master Artisan' : specialistObj?.name;
+    const specialistName = selectedSpecialistId === 'any' ? 'First Available Specialist' : specialistObj?.name;
 
     const bookingPayload = {
       branchId: selectedBranchId,

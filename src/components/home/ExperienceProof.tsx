@@ -1,96 +1,72 @@
 import React from 'react';
-import { Star, ShieldCheck, Sparkles, Award } from 'lucide-react';
+import { ShieldCheck, Sparkles, GraduationCap, Clock } from 'lucide-react';
 
 export const ExperienceProof: React.FC = () => {
-  const editorialMentions = [
-    {
-      publication: 'Vogue Beauty',
-      quote: 'The Glamway Beauty Salon has established an unprecedented standard of discreet luxury for women in North Carolina, pairing master color chemistry with private styling suites.'
-    },
-    {
-      publication: 'Luxury Lifestyle Magazine',
-      quote: 'The ultimate sanctuary for women who seek hair health, dermal precision, and attentive hospitality elevated to five-star standards.'
-    },
-    {
-      publication: 'Harper’s Bazaar',
-      quote: 'Their 24K gold couture manicures and caviar scalp infusions are the luxury prerequisite for North Carolina galas, weddings, and executive engagements.'
-    }
-  ];
-
   return (
     <section className="py-20 bg-[#FFF9F4] border-t border-[#C6A667]/25">
-      <div className="max-w-7xl mx-auto px-6 space-y-16">
+      <div className="max-w-7xl mx-auto px-6 space-y-12">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <div className="text-xs uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
-            Recognized Excellence · FOR WOMEN
+            THE GLAMWAY STANDARDS · CHARLOTTE, NC
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl text-[#3B2A28] tracking-tight">
-            Acclaimed by Leading Beauty Curators
+            Our Commitment to Quality &amp; Safety
           </h2>
+          <p className="text-sm text-[#A98F86] font-light">
+            Founded by licensed esthetician Summer Davis. Combining professional lash techniques, licensed skincare, and verified beauty supplies.
+          </p>
         </div>
 
-        {/* 3-Column Editorial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {editorialMentions.map((item, idx) => (
-            <div
-              key={idx}
-              className="p-8 bg-white border border-[#C6A667]/25 rounded-xs shadow-xs flex flex-col justify-between space-y-6"
-            >
-              <div className="space-y-4">
-                <div className="flex text-[#C6A667]">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-[#C6A667]" />
-                  ))}
-                </div>
-                <blockquote className="font-serif text-base text-[#3B2A28] italic leading-relaxed">
-                  "{item.quote}"
-                </blockquote>
-              </div>
-              <div className="pt-4 border-t border-[#3B2A28]/10 text-xs uppercase tracking-[0.2em] font-semibold text-[#8E4B63]">
-                {item.publication}
-              </div>
+        {/* 4 Pillars Grid (No fabricated quotes or star ratings) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="p-6 bg-white border border-[#C6A667]/25 rounded-xs space-y-3 shadow-xs">
+            <div className="w-10 h-10 rounded-full bg-[#FFF9F4] border border-[#C6A667]/40 flex items-center justify-center text-[#8E4B63]">
+              <Sparkles className="w-5 h-5 text-[#C6A667]" />
             </div>
-          ))}
-        </div>
-
-        {/* Hospital-Grade Safety & NC Board Compliance Guarantee */}
-        <div className="bg-white border border-[#C6A667]/35 rounded-xs p-8 sm:p-10 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-full bg-[#FFF9F4] border border-[#C6A667]/40 flex items-center justify-center text-[#C6A667] shrink-0">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <div className="space-y-1">
-              <h3 className="font-serif text-lg font-semibold text-[#3B2A28]">Autoclave Sterilization</h3>
-              <p className="text-xs text-[#A98F86] leading-relaxed">
-                Hospital-grade autoclave pouches opened exclusively in front of each guest. 100% single-use nail files and buffers adhering to NC Board sanitation mandates.
-              </p>
-            </div>
+            <h3 className="font-serif text-lg font-bold text-[#3B2A28]">
+              Lash Extension Mastery
+            </h3>
+            <p className="text-xs text-[#3B2A28]/80 leading-relaxed font-light">
+              Expert classic, hybrid, and volume lash application tailored to natural lash strength and eye geometry.
+            </p>
           </div>
 
-          <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-full bg-[#FFF9F4] border border-[#C6A667]/40 flex items-center justify-center text-[#C6A667] shrink-0">
-              <Sparkles className="w-5 h-5" />
+          <div className="p-6 bg-white border border-[#C6A667]/25 rounded-xs space-y-3 shadow-xs">
+            <div className="w-10 h-10 rounded-full bg-[#FFF9F4] border border-[#C6A667]/40 flex items-center justify-center text-[#8E4B63]">
+              <ShieldCheck className="w-5 h-5 text-[#C6A667]" />
             </div>
-            <div className="space-y-1">
-              <h3 className="font-serif text-lg font-semibold text-[#3B2A28]">Clean Organic Formulations</h3>
-              <p className="text-xs text-[#A98F86] leading-relaxed">
-                Strictly ammonia-free, formaldehyde-free, and cruelty-free botanical infusions imported directly from certified French and European laboratories.
-              </p>
-            </div>
+            <h3 className="font-serif text-lg font-bold text-[#3B2A28]">
+              Licensed Esthetician
+            </h3>
+            <p className="text-xs text-[#3B2A28]/80 leading-relaxed font-light">
+              Summer Davis holds her esthetician license (2018), ensuring all facial and skin services follow strict hygiene standards.
+            </p>
           </div>
 
-          <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-full bg-[#FFF9F4] border border-[#C6A667]/40 flex items-center justify-center text-[#C6A667] shrink-0">
-              <Award className="w-5 h-5" />
+          <div className="p-6 bg-white border border-[#C6A667]/25 rounded-xs space-y-3 shadow-xs">
+            <div className="w-10 h-10 rounded-full bg-[#FFF9F4] border border-[#C6A667]/40 flex items-center justify-center text-[#8E4B63]">
+              <GraduationCap className="w-5 h-5 text-[#C6A667]" />
             </div>
-            <div className="space-y-1">
-              <h3 className="font-serif text-lg font-semibold text-[#3B2A28]">NC Board Licensed Artisans</h3>
-              <p className="text-xs text-[#A98F86] leading-relaxed">
-                Every specialist holds verified active credentials with the North Carolina Board of Cosmetic Art Sciences with ongoing master aesthetic training.
-              </p>
+            <h3 className="font-serif text-lg font-bold text-[#3B2A28]">
+              Verified Education
+            </h3>
+            <p className="text-xs text-[#3B2A28]/80 leading-relaxed font-light">
+              Structured 4-hour Beginner Lash Tech Course and 2-hour Advanced Volume Course with hands-on coaching in Charlotte, NC.
+            </p>
+          </div>
+
+          <div className="p-6 bg-white border border-[#C6A667]/25 rounded-xs space-y-3 shadow-xs">
+            <div className="w-10 h-10 rounded-full bg-[#FFF9F4] border border-[#C6A667]/40 flex items-center justify-center text-[#8E4B63]">
+              <Clock className="w-5 h-5 text-[#C6A667]" />
             </div>
+            <h3 className="font-serif text-lg font-bold text-[#3B2A28]">
+              Appointment Policy
+            </h3>
+            <p className="text-xs text-[#3B2A28]/80 leading-relaxed font-light">
+              All appointments are reserved online with a 24-hour advance notice cancellation policy to respect client and artist time.
+            </p>
           </div>
         </div>
 

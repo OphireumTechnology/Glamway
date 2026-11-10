@@ -1,13 +1,8 @@
 export type ServiceCategory = 
+  | 'lashes'
   | 'hair'
   | 'nails'
-  | 'facial'
-  | 'lashes-brows'
-  | 'makeup'
-  | 'body-wellness'
-  | 'bridal'
-  | 'packages'
-  | 'vip-packages';
+  | 'facial';
 
 export interface ServiceItem {
   id: string;
@@ -17,7 +12,7 @@ export interface ServiceItem {
   tagline: string;
   description: string;
   durationMinutes: number;
-  priceUSD: number;
+  priceUSD?: number;
   image: string;
   eligibleBranches: string[];
   preparation?: string;
@@ -43,7 +38,8 @@ export interface SalonBranch {
   coordinates: { lat: number; lng: number };
   image: string;
   googleMapQuery: string;
-  licenseNumber: string; // NC Board of Cosmetic Art Sciences License
+  locationNote?: string;
+  licenseNumber?: string;
 }
 
 export interface BeautySpecialist {
@@ -51,13 +47,13 @@ export interface BeautySpecialist {
   name: string;
   role: string;
   specialties: string[];
-  branchId: string;
-  experienceYears: number;
-  rating: number;
-  reviewsCount: number;
+  branchId?: string;
   avatar: string;
   bio: string;
-  licenseId: string; // e.g. SC-COS-49201
+  licenseId?: string;
+  experienceYears?: number;
+  rating?: number;
+  reviewsCount?: number;
 }
 
 export interface AppointmentBooking {
@@ -77,7 +73,6 @@ export interface AppointmentBooking {
   totalPriceUSD: number;
   depositPaidUSD: number;
   taxAmountUSD: number;
-  gratuityUSD?: number;
   paymentMethod: 'apple_pay' | 'card' | 'google_pay' | 'salon_counter';
   status: 'confirmed' | 'in_progress' | 'completed' | 'cancelled';
   clientName: string;
@@ -87,23 +82,37 @@ export interface AppointmentBooking {
   createdAt: string;
 }
 
+export type ShopCategory = 'all' | 'lash-supplies' | 'lash-trays' | 'shop-hair' | 'best-sellers' | 'wholesale';
+
 export interface ProductItem {
   id: string;
   name: string;
   brand: string;
-  category: 'haircare' | 'skincare' | 'nailcare' | 'accessories' | 'gift-sets';
+  category: 'lash-supplies' | 'lash-trays' | 'shop-hair' | 'best-sellers' | 'wholesale';
   priceUSD: number;
-  volume: string; // e.g. 1.7 fl oz / 50 ml
+  specification?: string;
   description: string;
-  keyBenefits: string[];
+  keyBenefits?: string[];
   inStock: boolean;
   image: string;
-  rating: number;
+  rating?: number;
+  volume?: string;
 }
 
 export interface CartItem {
   product: ProductItem;
   quantity: number;
+}
+
+export interface TrainingCourse {
+  id: string;
+  title: string;
+  durationHours: number;
+  priceUSD: number;
+  targetAudience: string;
+  description: string;
+  curriculum: string[];
+  image: string;
 }
 
 export interface MembershipTier {
@@ -129,16 +138,18 @@ export interface UserProfile {
 
 export type ViewMode = 
   | 'home'
+  | 'about'
   | 'services'
   | 'branches'
+  | 'booking'
   | 'boutique'
-  | 'membership'
-  | 'gallery'
-  | 'about'
+  | 'training'
   | 'contact'
-  | 'virtual-studio'
+  | 'membership'
   | 'customer-portal'
   | 'branch-console'
-  | 'corporate-dashboard';
+  | 'corporate-dashboard'
+  | 'gallery'
+  | 'virtual-studio';
 
 export type UserRole = 'guest' | 'client' | 'branch_manager' | 'corporate_admin';
