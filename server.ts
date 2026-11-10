@@ -26,73 +26,8 @@ const ai = apiKey ? new GoogleGenAI({
 }) : null;
 
 // In-memory data store initialized with verified appointments for The Glamway (Charlotte, North Carolina)
-let appointments: any[] = [
-  {
-    id: 'apt-101',
-    referenceCode: 'GLAM-88219',
-    branchId: 'branch-clt-uptown',
-    branchName: 'The Glamway — Uptown Charlotte',
-    serviceId: 'srv-full-lash-set',
-    serviceName: 'Full Eyelash Extension Set',
-    servicePriceUSD: 160,
-    specialistName: 'Summer Davis (Licensed Esthetician)',
-    date: '2026-11-14',
-    timeSlot: '11:00 AM EST',
-    durationMinutes: 120,
-    addOns: [],
-    totalPriceUSD: 160,
-    depositPaidUSD: 48,
-    taxAmountUSD: 11.60,
-    gratuityUSD: 30,
-    paymentMethod: 'apple_pay',
-    status: 'confirmed',
-    clientName: 'Victoria Harrison',
-    clientPhone: '+1 (704) 555-0192',
-    clientEmail: 'victoria.harrison@example.com',
-    specialRequests: 'Natural hybrid lash map.',
-    createdAt: new Date().toISOString()
-  },
-  {
-    id: 'apt-102',
-    referenceCode: 'GLAM-88220',
-    branchId: 'branch-clt-graham',
-    branchName: 'The Glamway — Graham',
-    serviceId: 'srv-custom-esthetician-facial',
-    serviceName: 'Custom Esthetician Facial',
-    servicePriceUSD: 110,
-    specialistName: 'Summer Davis',
-    date: '2026-11-14',
-    timeSlot: '02:00 PM EST',
-    durationMinutes: 60,
-    addOns: [],
-    totalPriceUSD: 110,
-    depositPaidUSD: 33,
-    taxAmountUSD: 7.98,
-    gratuityUSD: 20,
-    paymentMethod: 'card',
-    status: 'confirmed',
-    clientName: 'Eleanor Vance',
-    clientPhone: '+1 (704) 555-8831',
-    clientEmail: 'eleanor.vance@example.com',
-    specialRequests: 'Sensitive skin hydration.',
-    createdAt: new Date().toISOString()
-  }
-];
-
-let orders: any[] = [
-  {
-    id: 'ord-501',
-    referenceCode: 'ORD-7712',
-    items: [{ productId: 'prod-003-glue', name: '0.03 Second Lash Adhesive', quantity: 2, priceUSD: 25 }],
-    totalAmountUSD: 50,
-    customerName: 'Katherine Bell',
-    deliveryMethod: 'branch_pickup',
-    branchId: 'branch-clt-uptown',
-    paymentMethod: 'apple_pay',
-    status: 'ready_for_pickup',
-    createdAt: new Date().toISOString()
-  }
-];
+let appointments: any[] = [];
+let orders: any[] = [];
 
 // --- REST API ENDPOINTS ---
 
@@ -113,64 +48,24 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-app.get('/api/appointments', (req, res) => {
-  const { branchId, date } = req.query;
-  let filtered = [...appointments];
-  if (branchId) {
-    filtered = filtered.filter(a => a.branchId === branchId);
-  }
-  if (date) {
-    filtered = filtered.filter(a => a.date === date);
-  }
-  res.json({ success: true, count: filtered.length, appointments: filtered });
+app.get('/api/appointments', (_req, res) => {
+  res.status(503).json({ success: false, error: 'Appointment management requires authenticated persistent backend storage.' });
 });
 
-app.post('/api/appointments', (req, res) => {
-  const body = req.body;
-  if (!body.branchId || !body.serviceId || !body.date || !body.timeSlot || !body.clientName) {
-    return res.status(400).json({ success: false, error: 'Missing mandatory appointment fields.' });
-  }
-
-  const newAppointment = {
-    ...body,
-    id: `apt-${Date.now()}`,
-    referenceCode: `GLAM-${Math.floor(10000 + Math.random() * 90000)}`,
-    status: 'confirmed',
-    createdAt: new Date().toISOString()
-  };
-
-  appointments.unshift(newAppointment);
-  res.status(201).json({ success: true, appointment: newAppointment });
+app.post('/api/appointments', (_req, res) => {
+  res.status(503).json({ success: false, error: 'Online reservations are unavailable until persistent storage and availability checks are configured. No booking was confirmed.' });
 });
 
-app.patch('/api/appointments/:id', (req, res) => {
-  const { id } = req.params;
-  const { status } = req.body;
-  const index = appointments.findIndex(a => a.id === id);
-  if (index === -1) {
-    return res.status(404).json({ success: false, error: 'Appointment not found' });
-  }
-  if (status) {
-    appointments[index].status = status;
-  }
-  res.json({ success: true, appointment: appointments[index] });
+app.patch('/api/appointments/:id', (_req, res) => {
+  res.status(503).json({ success: false, error: 'Appointment changes require authenticated authorization and persistent storage.' });
 });
 
 app.get('/api/orders', (_req, res) => {
-  res.json({ success: true, count: orders.length, orders });
+  res.status(404).json({ success: false, error: 'Retail ordering is not offered.' });
 });
 
-app.post('/api/orders', (req, res) => {
-  const body = req.body;
-  const newOrder = {
-    ...body,
-    id: `ord-${Date.now()}`,
-    referenceCode: `ORD-${Math.floor(1000 + Math.random() * 9000)}`,
-    status: 'confirmed',
-    createdAt: new Date().toISOString()
-  };
-  orders.unshift(newOrder);
-  res.status(201).json({ success: true, order: newOrder });
+app.post('/api/orders', (_req, res) => {
+  res.status(404).json({ success: false, error: 'Retail ordering is not offered.' });
 });
 
 // AI Beauty Assistant grounded in verified The Glamway information
