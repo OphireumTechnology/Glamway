@@ -1,0 +1,6 @@
+{
+  "name": "Aurélia Haute Beauté — Luxury Salon & Spa",
+  "description": "Multi-branch luxury women's beauty salon enterprise platform with smart booking, concierge AI, boutique shop, and branch operations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
