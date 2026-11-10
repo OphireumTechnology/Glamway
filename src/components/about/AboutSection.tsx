@@ -165,7 +165,7 @@ export const AboutSection: React.FC = () => {
                 3. Beauty Training Academy
               </h3>
               <p className="text-xs sm:text-sm text-[#3B2A28]/80 leading-relaxed font-light">
-                Structured courses for beauty professionals including the 4-hour Beginner Lash Tech Course ($650) and the 2-hour Advanced Volume Lashes Course ($300), taught hands-on in Charlotte, NC.
+                Structured courses for beauty professionals including the 4-hour Beginner Lash Tech Course and the 2-hour Advanced Volume Lashes Course, taught hands-on in Charlotte, NC.
               </p>
               <button
                 onClick={() => setCurrentView('training')}

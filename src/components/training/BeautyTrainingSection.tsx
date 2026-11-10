@@ -81,8 +81,8 @@ export const BeautyTrainingSection: React.FC = () => {
                 {course.title}
               </h3>
 
-              <div className="font-serif text-3xl font-bold text-[#8E4B63]">
-                ${course.priceUSD} <span className="text-xs font-sans font-normal text-[#A98F86]">USD Tuition</span>
+              <div className="text-xs uppercase tracking-wider text-[#8E4B63] font-semibold">
+                Hands-On Certification · Charlotte, NC
               </div>
 
               <p className="text-xs sm:text-sm text-[#3B2A28]/80 leading-relaxed font-light">
@@ -163,7 +163,7 @@ export const BeautyTrainingSection: React.FC = () => {
             Enroll in {selectedCourse.title}
           </h2>
           <p className="text-xs text-[#A98F86]">
-            Tuition: ${selectedCourse.priceUSD} USD ({selectedCourse.durationHours} Hours). Complete the form below to receive scheduled training dates and deposit details.
+            Duration: {selectedCourse.durationHours} Hours. Complete the form below to receive scheduled training dates and enrollment details.
           </p>
         </div>
 
@@ -237,7 +237,7 @@ export const BeautyTrainingSection: React.FC = () => {
                 >
                   {TRAINING_COURSES.map(c => (
                     <option key={c.id} value={c.id}>
-                      {c.title} — ${c.priceUSD} USD
+                      {c.title} ({c.durationHours} Hours)
                     </option>
                   ))}
                 </select>

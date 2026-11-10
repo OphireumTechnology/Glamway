@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSalon } from '../../context/SalonContext';
 import { ServiceCategory, ServiceItem } from '../../types';
-import { Clock, ArrowRight, Sparkles, X, Info } from 'lucide-react';
+import { Clock, ArrowRight, Sparkles, X, Info, Calendar } from 'lucide-react';
 
 export const FeaturedServices: React.FC = () => {
   const { services, openBookingModal } = useSalon();
@@ -24,20 +24,20 @@ export const FeaturedServices: React.FC = () => {
   return (
     <section className="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
       
-      {/* Section Header */}
+      {/* Section Header matching Directive Section 6 */}
       <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
         <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
           <Sparkles className="w-3.5 h-3.5 text-[#C6A667]" />
-          <span>THE GLAMWAY BEAUTY SERVICES</span>
+          <span>THE GLAMWAY SALON</span>
           <Sparkles className="w-3.5 h-3.5 text-[#C6A667]" />
         </div>
         
-        <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#3B2A28] tracking-tight leading-tight">
-          Beauty Services in Charlotte, NC
-        </h2>
+        <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#3B2A28] tracking-tight leading-tight">
+          Our Beauty Services
+        </h1>
         
-        <p className="text-base sm:text-lg text-[#3B2A28]/80 font-light leading-relaxed italic max-w-2xl mx-auto">
-          &ldquo;Specializing in customized eyelash extensions, professional hair styling, structured nails, and esthetician skin care.&rdquo;
+        <p className="text-base sm:text-lg text-[#3B2A28]/80 font-light leading-relaxed max-w-2xl mx-auto">
+          Discover The Glamway's beauty services, thoughtfully presented to help you explore your preferred beauty experience.
         </p>
       </div>
 
@@ -58,14 +58,14 @@ export const FeaturedServices: React.FC = () => {
         ))}
       </div>
 
-      {/* Service Cards Grid (3 Columns) */}
+      {/* Service Cards Grid (3 Columns) - NO PRICES DISPLAYED */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredServices.map(service => (
           <div
             key={service.id}
             className="group bg-white border border-[#C6A667]/25 rounded-xs overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:border-[#C6A667]"
           >
-            {/* Image Container */}
+            {/* Image Container with Duration Badge */}
             <div className="relative aspect-[4/3] overflow-hidden bg-[#D9B6A9]/20">
               <img
                 src={service.image}
@@ -73,16 +73,16 @@ export const FeaturedServices: React.FC = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent opacity-70 group-hover:opacity-50 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
 
-              {/* Price & Duration Overlay */}
+              {/* Duration and Location Overlay (Zero Pricing) */}
               <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
-                <span className="font-serif text-2xl font-bold tabular-nums drop-shadow-md">
-                  {service.priceUSD ? `$${service.priceUSD}` : 'Inquire'} <span className="text-xs font-normal font-sans opacity-90">USD</span>
-                </span>
                 <span className="text-xs uppercase tracking-wider bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-xs flex items-center gap-1.5 border border-white/10">
                   <Clock className="w-3.5 h-3.5 text-[#C6A667]" />
                   <span>{service.durationMinutes} mins</span>
+                </span>
+                <span className="text-[10px] uppercase tracking-wider bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-xs border border-white/20">
+                  Charlotte, NC
                 </span>
               </div>
             </div>
@@ -95,7 +95,7 @@ export const FeaturedServices: React.FC = () => {
                     {service.categoryLabel}
                   </span>
                   <span className="text-[10px] uppercase tracking-wider bg-[#FFF9F4] text-[#8E4B63] px-2 py-0.5 rounded-xs border border-[#C6A667]/30">
-                    Charlotte, NC
+                    By Appointment
                   </span>
                 </div>
 
@@ -119,14 +119,14 @@ export const FeaturedServices: React.FC = () => {
                   className="text-xs text-[#3B2A28]/80 hover:text-[#8E4B63] uppercase tracking-wider font-medium flex items-center gap-1 transition-colors"
                 >
                   <Info className="w-3.5 h-3.5 text-[#C6A667]" />
-                  <span>Details</span>
+                  <span>Explore Service</span>
                 </button>
 
                 <button
                   onClick={() => openBookingModal(service.id)}
                   className="px-5 py-2.5 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.18em] font-semibold transition-colors flex items-center gap-1.5 rounded-xs shadow-xs border border-[#C6A667]/40"
                 >
-                  <span>Book</span>
+                  <span>Book Appointment</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -136,7 +136,7 @@ export const FeaturedServices: React.FC = () => {
         ))}
       </div>
 
-      {/* Service Details Modal */}
+      {/* Service Details Modal (Without Prices) */}
       {selectedServiceForModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-[#FFF9F4] border border-[#C6A667]/40 rounded-xs max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
@@ -166,10 +166,10 @@ export const FeaturedServices: React.FC = () => {
                   </h3>
                 </div>
                 <div className="text-right">
-                  <div className="font-serif text-2xl font-bold text-white">
-                    {selectedServiceForModal.priceUSD ? `$${selectedServiceForModal.priceUSD} USD` : 'Inquire'}
+                  <div className="text-xs uppercase tracking-wider text-white/90 bg-black/40 px-2.5 py-1 rounded-xs border border-white/10 flex items-center gap-1">
+                    <Clock className="w-3 h-3 text-[#C6A667]" />
+                    <span>{selectedServiceForModal.durationMinutes} Minutes</span>
                   </div>
-                  <div className="text-xs text-white/80">{selectedServiceForModal.durationMinutes} Minutes</div>
                 </div>
               </div>
             </div>
@@ -206,6 +206,10 @@ export const FeaturedServices: React.FC = () => {
                 </div>
               )}
 
+              <div className="p-3 bg-white border border-[#C6A667]/20 rounded-xs text-xs text-[#A98F86]">
+                <strong className="text-[#3B2A28] font-semibold">Notice:</strong> Appointments are scheduled online in advance with a 24-hour cancellation policy.
+              </div>
+
               <div className="pt-4 border-t border-[#C6A667]/20 flex items-center justify-between gap-4">
                 <button
                   onClick={() => setSelectedServiceForModal(null)}
@@ -221,6 +225,7 @@ export const FeaturedServices: React.FC = () => {
                   }}
                   className="px-6 py-2.5 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.2em] font-semibold rounded-xs shadow-md border border-[#C6A667]/40 flex items-center gap-2"
                 >
+                  <Calendar className="w-3.5 h-3.5 text-[#C6A667]" />
                   <span>Book Appointment</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>

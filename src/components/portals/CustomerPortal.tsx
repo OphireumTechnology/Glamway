@@ -145,13 +145,10 @@ export const CustomerPortal: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-4 text-right">
-                  <div>
-                    <div className="font-serif text-lg font-bold text-[#302725] tabular-nums">
-                      ${apt.totalPriceUSD.toFixed(2)} USD
-                    </div>
-                    <div className="text-[11px] text-[#A48D84]">
-                      Deposit: ${apt.depositPaidUSD} ({apt.paymentMethod.replace('_', ' ').toUpperCase()})
-                    </div>
+                  <div className="text-right">
+                    <span className="text-xs uppercase tracking-wider text-[#8E4B63] font-medium bg-[#FFF9F4] px-2.5 py-1 rounded-xs border border-[#C6A667]/30">
+                      Confirmed Request
+                    </span>
                   </div>
 
                   {apt.status === 'confirmed' && (
@@ -196,7 +193,7 @@ export const CustomerPortal: React.FC = () => {
               <div className="p-3 bg-[#FFF9F4] border border-[#C6A667]/20 rounded-xs flex items-center justify-between">
                 <div>
                   <div className="font-semibold">Private Suite Upgrade</div>
-                  <div className="text-[#A98F86]">Guaranteed suite reservation for bookings over $200.</div>
+                  <div className="text-[#A98F86]">Guaranteed suite reservation for online client reservations.</div>
                 </div>
                 <span className="text-[#8E4B63] font-bold">INCLUDED</span>
               </div>

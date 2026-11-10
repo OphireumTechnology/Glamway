@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSalon } from '../../context/SalonContext';
 import { BEAUTY_SPECIALISTS, GLAMWAY_ICON } from '../../data/salonData';
 import { 
-  X, Check, Calendar as CalendarIcon, Clock, User, 
-  MapPin, Sparkles, CreditCard, ShieldCheck, ChevronRight, ChevronLeft, DollarSign
+  X, Check, Clock, User, 
+  MapPin, Sparkles, ChevronRight, ChevronLeft, ShieldCheck, AlertCircle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -19,7 +19,7 @@ export const BookingModal: React.FC = () => {
     currentUser
   } = useSalon();
 
-  // Booking Wizard Step: 1 to 8
+  // Booking Wizard Step: 1 to 6 (Review), 7 is Confirmed Result
   const [step, setStep] = useState<number>(1);
 
   // Selections
@@ -28,9 +28,6 @@ export const BookingModal: React.FC = () => {
   const [selectedSpecialistId, setSelectedSpecialistId] = useState<string>('any');
   const [appointmentDate, setAppointmentDate] = useState<string>('2026-11-14');
   const [appointmentTime, setAppointmentTime] = useState<string>('11:00 AM EST');
-  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
-  const [tipPercentage, setTipPercentage] = useState<number>(20);
-  const [paymentOption, setPaymentOption] = useState<'apple_pay' | 'card' | 'google_pay' | 'salon_counter'>('apple_pay');
   
   // Client details
   const [clientName, setClientName] = useState<string>(currentUser.name);
@@ -38,7 +35,7 @@ export const BookingModal: React.FC = () => {
   const [clientEmail, setClientEmail] = useState<string>(currentUser.email);
   const [specialRequests, setSpecialRequests] = useState<string>('');
 
-  // Confirmation state
+  // Submission state
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [confirmedBooking, setConfirmedBooking] = useState<any>(null);
@@ -57,28 +54,13 @@ export const BookingModal: React.FC = () => {
 
   const currentBranch = branches.find(b => b.id === selectedBranchId) || branches[0];
   const currentService = services.find(s => s.id === selectedServiceId) || services[0];
-  const branchSpecialists = BEAUTY_SPECIALISTS.filter(s => s.branchId === selectedBranchId);
+  const branchSpecialists = BEAUTY_SPECIALISTS;
 
-  // Available Time Slots in America/New_York (Eastern Time)
+  // Available Time Slots in Eastern Time (America/New_York)
   const timeSlots = [
     '10:00 AM EST', '11:00 AM EST', '12:30 PM EST', '02:00 PM EST', 
     '03:30 PM EST', '05:00 PM EST', '06:00 PM EST'
   ];
-
-  // Calculate pricing in USD
-  const basePrice = currentService?.priceUSD ?? 0;
-  const addOnsTotal = selectedAddOns.length * 35; // Average add-on price
-  const subtotalUSD = basePrice + addOnsTotal;
-  const ncEstimatedTaxUSD = Math.round(subtotalUSD * 0.0725 * 100) / 100; // NC state + local county sales tax ~7.25%
-  const calculatedTipUSD = Math.round((subtotalUSD * (tipPercentage / 100)) * 100) / 100;
-  const totalPriceUSD = Math.round((subtotalUSD + ncEstimatedTaxUSD + calculatedTipUSD) * 100) / 100;
-  const depositRequiredUSD = Math.round(subtotalUSD * 0.3); // 30% deposit to secure suite
-
-  const handleToggleAddOn = (addon: string) => {
-    setSelectedAddOns(prev => 
-      prev.includes(addon) ? prev.filter(a => a !== addon) : [...prev, addon]
-    );
-  };
 
   const handleConfirmReservation = async () => {
     setIsSubmitting(true);
@@ -92,18 +74,17 @@ export const BookingModal: React.FC = () => {
       branchName: currentBranch.name,
       serviceId: selectedServiceId,
       serviceName: currentService.name,
-      servicePriceUSD: basePrice,
+      servicePriceUSD: 0,
       specialistId: selectedSpecialistId === 'any' ? undefined : selectedSpecialistId,
       specialistName,
       date: appointmentDate,
       timeSlot: appointmentTime,
       durationMinutes: currentService.durationMinutes,
-      addOns: selectedAddOns,
-      totalPriceUSD,
-      depositPaidUSD: paymentOption === 'salon_counter' ? 0 : depositRequiredUSD,
-      taxAmountUSD: ncEstimatedTaxUSD,
-      gratuityUSD: calculatedTipUSD,
-      paymentMethod: paymentOption,
+      addOns: [],
+      totalPriceUSD: 0,
+      depositPaidUSD: 0,
+      taxAmountUSD: 0,
+      paymentMethod: 'salon_counter' as const,
       clientName,
       clientPhone,
       clientEmail,
@@ -115,21 +96,21 @@ export const BookingModal: React.FC = () => {
 
     if (result.success && result.appointment) {
       setConfirmedBooking(result.appointment);
-      setStep(8);
+      setStep(7);
       confetti({
-        particleCount: 85,
-        spread: 75,
+        particleCount: 70,
+        spread: 60,
         origin: { y: 0.6 },
         colors: ['#C6A667', '#F5D6DE', '#8E4B63', '#FFF9F4', '#3B2A28']
       });
     } else {
-      setErrorMessage(result.error || 'Unable to secure reservation. Please select an adjacent time slot.');
+      setErrorMessage(result.error || 'Online booking is temporarily unavailable. No appointment has been confirmed. Please contact the salon directly.');
     }
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-[#FFF9F4] w-full max-w-3xl border border-[#C6A667]/40 rounded-sm shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="bg-[#FFF9F4] w-full max-w-2xl border border-[#C6A667]/40 rounded-sm shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         
         {/* Modal Top Bar */}
         <div className="bg-[#3B2A28] text-white px-6 py-4 flex items-center justify-between border-b border-[#C6A667]/30">
@@ -141,17 +122,16 @@ export const BookingModal: React.FC = () => {
             />
             <div>
               <div className="text-[10px] uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
-                The Glamway Reservation Protocol · Step {step} of 8
+                The Glamway Appointment Scheduler · Step {step <= 6 ? step : 6} of 6
               </div>
               <div className="font-serif text-lg font-medium">
-                {step === 1 && 'Step 1: Select North Carolina Branch'}
-                {step === 2 && 'Step 2: Select Beauty Ritual'}
-                {step === 3 && 'Step 3: Select Dedicated Specialist'}
-                {step === 4 && 'Step 4: Date & Eastern Time Slot'}
-                {step === 5 && 'Step 5: Signature Ritual Enhancements'}
-                {step === 6 && 'Step 6: Guest Profile & Suite Hospitality'}
-                {step === 7 && 'Step 7: Deposit, Gratuity & Apple Pay / Card'}
-                {step === 8 && 'Reservation Confirmed & Secured'}
+                {step === 1 && '1. Select Location'}
+                {step === 2 && '2. Select Service'}
+                {step === 3 && '3. Select Specialist'}
+                {step === 4 && '4. Select Date & Time'}
+                {step === 5 && '5. Client Information'}
+                {step === 6 && '6. Review Appointment Request'}
+                {step === 7 && 'Appointment Request Received'}
               </div>
             </div>
           </div>
@@ -168,7 +148,7 @@ export const BookingModal: React.FC = () => {
         <div className="w-full bg-[#E8DFD8] h-1">
           <div 
             className="bg-[#C6A667] h-full transition-all duration-300"
-            style={{ width: `${(step / 8) * 100}%` }}
+            style={{ width: `${(Math.min(step, 6) / 6) * 100}%` }}
           />
         </div>
 
@@ -176,16 +156,17 @@ export const BookingModal: React.FC = () => {
         <div className="p-6 sm:p-8 overflow-y-auto flex-1 space-y-6">
           
           {errorMessage && (
-            <div className="p-4 bg-red-50 border border-red-200 text-red-800 text-xs rounded-sm">
-              {errorMessage}
+            <div className="p-4 bg-red-50 border border-red-200 text-red-800 text-xs rounded-sm flex items-start gap-2.5">
+              <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+              <span>{errorMessage}</span>
             </div>
           )}
 
-          {/* STEP 1: SELECT BRANCH */}
+          {/* STEP 1: SELECT LOCATION */}
           {step === 1 && (
             <div className="space-y-4">
               <div className="text-xs text-[#A98F86]">
-                Select your preferred North Carolina branch.
+                Select your preferred Charlotte, North Carolina location.
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {branches.map(branch => (
@@ -194,12 +175,12 @@ export const BookingModal: React.FC = () => {
                     onClick={() => setSelectedBranchId(branch.id)}
                     className={`p-4 text-left border rounded-sm transition-all ${
                       selectedBranchId === branch.id
-                        ? 'border-[#C6A667] bg-white shadow-md ring-2 ring-[#C6A667]/50'
-                        : 'border-[#C6A667]/20 bg-white/60 hover:border-[#C6A667]/50'
+                        ? 'border-[#8E4B63] bg-white shadow-md ring-2 ring-[#8E4B63]/30'
+                        : 'border-[#C6A667]/20 bg-white/60 hover:border-[#8E4B63]/40'
                     }`}
                   >
                     <div className="text-[10px] uppercase tracking-wider text-[#C6A667] font-semibold">
-                      {branch.city}, NC
+                      {branch.district}
                     </div>
                     <div className="font-serif text-base font-semibold text-[#3B2A28] mt-0.5">
                       {branch.name}
@@ -213,38 +194,39 @@ export const BookingModal: React.FC = () => {
             </div>
           )}
 
-          {/* STEP 2: SELECT SERVICE */}
+          {/* STEP 2: SELECT SERVICE (NO PRICES) */}
           {step === 2 && (
             <div className="space-y-4">
               <div className="text-xs text-[#A98F86]">
-                Select the signature treatment or VIP retreat for your visit.
+                Select the beauty service you would like to schedule.
               </div>
-              <div className="space-y-2.5 max-h-[380px] overflow-y-auto pr-2">
+              <div className="space-y-2.5 max-h-[380px] overflow-y-auto pr-1">
                 {services.map(service => (
                   <button
                     key={service.id}
                     onClick={() => setSelectedServiceId(service.id)}
                     className={`w-full p-4 text-left border rounded-sm flex items-center justify-between gap-4 transition-all ${
                       selectedServiceId === service.id
-                        ? 'border-[#C6A667] bg-white shadow-md ring-1 ring-[#C6A667]'
-                        : 'border-[#C6A667]/20 bg-white/60 hover:border-[#C6A667]/50'
+                        ? 'border-[#8E4B63] bg-white shadow-md ring-2 ring-[#8E4B63]/30'
+                        : 'border-[#C6A667]/20 bg-white/60 hover:border-[#8E4B63]/40'
                     }`}
                   >
                     <div>
-                      <div className="text-[10px] uppercase tracking-wider text-[#C6A667] font-medium">
+                      <div className="text-[10px] uppercase tracking-wider text-[#C6A667] font-semibold">
                         {service.categoryLabel}
                       </div>
                       <div className="font-serif text-base font-semibold text-[#3B2A28]">
                         {service.name}
                       </div>
-                      <div className="text-xs text-[#A98F86]">
-                        Duration: {service.durationMinutes} mins
+                      <div className="text-xs text-[#A98F86] mt-0.5 line-clamp-1">
+                        {service.tagline}
                       </div>
                     </div>
                     <div className="text-right shrink-0">
-                      <div className="font-serif text-lg font-semibold text-[#3B2A28]">
-                        ${service.priceUSD}
-                      </div>
+                      <span className="text-xs bg-[#FFF9F4] text-[#8E4B63] px-2.5 py-1 rounded-xs border border-[#C6A667]/30 flex items-center gap-1 font-mono">
+                        <Clock className="w-3 h-3 text-[#C6A667]" />
+                        <span>{service.durationMinutes} mins</span>
+                      </span>
                     </div>
                   </button>
                 ))}
@@ -256,23 +238,23 @@ export const BookingModal: React.FC = () => {
           {step === 3 && (
             <div className="space-y-4">
               <div className="text-xs text-[#A98F86]">
-                Choose your dedicated NC Board of Cosmetic Art Sciences licensed specialist or select first available master stylist.
+                Select your preferred beauty specialist or choose first available.
               </div>
               <div className="space-y-3">
                 <button
                   onClick={() => setSelectedSpecialistId('any')}
                   className={`w-full p-4 text-left border rounded-sm flex items-center gap-3 transition-all ${
                     selectedSpecialistId === 'any'
-                      ? 'border-[#C6A667] bg-white shadow-md ring-1 ring-[#C6A667]'
+                      ? 'border-[#8E4B63] bg-white shadow-md ring-2 ring-[#8E4B63]/30'
                       : 'border-[#C6A667]/20 bg-white/60'
                   }`}
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#FFF9F4] border border-[#C6A667]/40 flex items-center justify-center text-[#C6A667]">
-                    <Sparkles className="w-5 h-5" />
+                  <div className="w-10 h-10 rounded-full bg-[#FFF9F4] border border-[#C6A667]/40 flex items-center justify-center text-[#8E4B63]">
+                    <Sparkles className="w-5 h-5 text-[#C6A667]" />
                   </div>
                   <div>
-                    <div className="font-semibold text-sm text-[#3B2A28]">First Available Master Artisan</div>
-                    <div className="text-xs text-[#A98F86]">Maximum scheduling flexibility with NC Board-certified senior specialists.</div>
+                    <div className="font-semibold text-sm text-[#3B2A28]">First Available Specialist</div>
+                    <div className="text-xs text-[#A98F86]">Optimal scheduling flexibility for your requested date and time.</div>
                   </div>
                 </button>
 
@@ -282,7 +264,7 @@ export const BookingModal: React.FC = () => {
                     onClick={() => setSelectedSpecialistId(specialist.id)}
                     className={`w-full p-4 text-left border rounded-sm flex items-center gap-3 transition-all ${
                       selectedSpecialistId === specialist.id
-                        ? 'border-[#C6A667] bg-white shadow-md ring-1 ring-[#C6A667]'
+                        ? 'border-[#8E4B63] bg-white shadow-md ring-2 ring-[#8E4B63]/30'
                         : 'border-[#C6A667]/20 bg-white/60'
                     }`}
                   >
@@ -293,9 +275,9 @@ export const BookingModal: React.FC = () => {
                       referrerPolicy="no-referrer"
                     />
                     <div>
-                      <div className="font-semibold text-sm text-[#302725]">{specialist.name}</div>
-                      <div className="text-xs text-[#C6A667]">{specialist.role} · Lic #{specialist.licenseId}</div>
-                      <div className="text-xs text-[#A48D84]">{specialist.experienceYears} years experience · ★ {specialist.rating}</div>
+                      <div className="font-semibold text-sm text-[#3B2A28]">{specialist.name}</div>
+                      <div className="text-xs text-[#8E4B63] font-medium">{specialist.role}</div>
+                      <div className="text-xs text-[#A98F86]">{specialist.specialties.join(' · ')}</div>
                     </div>
                   </button>
                 ))}
@@ -307,7 +289,7 @@ export const BookingModal: React.FC = () => {
           {step === 4 && (
             <div className="space-y-6">
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#A48D84] font-semibold mb-2">
+                <label className="block text-xs uppercase tracking-wider text-[#3B2A28] font-semibold mb-2">
                   Select Appointment Date
                 </label>
                 <input
@@ -315,13 +297,13 @@ export const BookingModal: React.FC = () => {
                   value={appointmentDate}
                   min={new Date().toISOString().split('T')[0]}
                   onChange={(e) => setAppointmentDate(e.target.value)}
-                  className="w-full sm:w-64 p-3 bg-white border border-[#C6A667]/40 rounded-sm text-sm text-[#302725] focus:outline-none focus:border-[#302725]"
+                  className="w-full sm:w-64 p-3 bg-white border border-[#C6A667]/40 rounded-sm text-sm text-[#3B2A28] focus:outline-none focus:border-[#8E4B63]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#A48D84] font-semibold mb-2">
-                  Available Reserved Time Slots (Eastern Time · America/New_York)
+                <label className="block text-xs uppercase tracking-wider text-[#3B2A28] font-semibold mb-2">
+                  Available Time Slots (Eastern Time)
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                   {timeSlots.map(slot => (
@@ -330,8 +312,8 @@ export const BookingModal: React.FC = () => {
                       onClick={() => setAppointmentTime(slot)}
                       className={`p-3 text-center text-xs font-mono rounded-sm border transition-all ${
                         appointmentTime === slot
-                          ? 'bg-[#302725] text-white border-[#302725] shadow-sm'
-                          : 'bg-white text-[#302725] border-[#C6A667]/30 hover:border-[#C6A667]'
+                          ? 'bg-[#8E4B63] text-white border-[#8E4B63] shadow-sm'
+                          : 'bg-white text-[#3B2A28] border-[#C6A667]/30 hover:border-[#8E4B63]'
                       }`}
                     >
                       {slot}
@@ -342,322 +324,220 @@ export const BookingModal: React.FC = () => {
             </div>
           )}
 
-          {/* STEP 5: ADD-ONS */}
+          {/* STEP 5: ENTER CUSTOMER INFORMATION */}
           {step === 5 && (
             <div className="space-y-4">
-              <div className="text-xs text-[#A48D84]">
-                Enhance your experience with scalp micro-exfoliation, bond repair, or LED collagen therapy.
-              </div>
-              <div className="space-y-2.5">
-                {(currentService.popularAddOns || [
-                  'Olaplex Bond Multiplier Infusion (+$45)',
-                  'Scalp Detox & Micro-Exfoliation (+$35)',
-                  'Warm Paraffin Hand Cocoon (+$25)'
-                ]).map(addon => {
-                  const isChecked = selectedAddOns.includes(addon);
-                  return (
-                    <button
-                      key={addon}
-                      onClick={() => handleToggleAddOn(addon)}
-                      className={`w-full p-4 text-left border rounded-sm flex items-center justify-between transition-all ${
-                        isChecked
-                          ? 'border-[#C6A667] bg-[#FAF8F5] shadow-xs'
-                          : 'border-[#C6A667]/20 bg-white'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className={`w-4 h-4 rounded-xs border flex items-center justify-center ${
-                          isChecked ? 'bg-[#C6A667] border-[#C6A667] text-white' : 'border-[#A48D84]'
-                        }`}>
-                          {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
-                        </div>
-                        <span className="text-sm text-[#302725] font-medium">{addon}</span>
-                      </div>
-                      <span className="text-xs text-[#C6A667] font-semibold">Optional</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* STEP 6: CLIENT INFORMATION */}
-          {step === 6 && (
-            <div className="space-y-4">
-              <div className="text-xs text-[#A48D84]">
-                Please review your guest contact details for calendar invitations and SMS notifications.
+              <div className="text-xs text-[#A98F86]">
+                Please enter your contact details for appointment coordination.
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#A48D84] mb-1">Full Name</label>
+                  <label className="block text-xs uppercase tracking-wider text-[#3B2A28] font-semibold mb-1">
+                    Full Name *
+                  </label>
                   <input
                     type="text"
+                    required
                     value={clientName}
                     onChange={(e) => setClientName(e.target.value)}
-                    className="w-full p-2.5 bg-white border border-[#C6A667]/40 rounded-sm text-sm text-[#302725]"
-                    placeholder="e.g. Caroline Pinckney"
+                    className="w-full p-2.5 bg-white border border-[#C6A667]/40 rounded-sm text-sm text-[#3B2A28] focus:outline-none focus:border-[#8E4B63]"
+                    placeholder="e.g. Eleanor Vance"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#A48D84] mb-1">Mobile Phone (U.S.)</label>
+                  <label className="block text-xs uppercase tracking-wider text-[#3B2A28] font-semibold mb-1">
+                    Mobile Phone *
+                  </label>
                   <input
-                    type="text"
+                    type="tel"
+                    required
                     value={clientPhone}
                     onChange={(e) => setClientPhone(e.target.value)}
-                    className="w-full p-2.5 bg-white border border-[#C6A667]/40 rounded-sm text-sm text-[#302725]"
-                    placeholder="+1 (843) 000-0000"
+                    className="w-full p-2.5 bg-white border border-[#C6A667]/40 rounded-sm text-sm text-[#3B2A28] focus:outline-none focus:border-[#8E4B63]"
+                    placeholder="(704) 555-0192"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#A48D84] mb-1">Email Address</label>
+                <label className="block text-xs uppercase tracking-wider text-[#3B2A28] font-semibold mb-1">
+                  Email Address *
+                </label>
                 <input
                   type="email"
+                  required
                   value={clientEmail}
                   onChange={(e) => setClientEmail(e.target.value)}
-                  className="w-full p-2.5 bg-white border border-[#C6A667]/40 rounded-sm text-sm text-[#302725]"
+                  className="w-full p-2.5 bg-white border border-[#C6A667]/40 rounded-sm text-sm text-[#3B2A28] focus:outline-none focus:border-[#8E4B63]"
                   placeholder="your.email@example.com"
                 />
               </div>
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#A48D84] mb-1">Private Suite Hospitality Preferences</label>
+                <label className="block text-xs uppercase tracking-wider text-[#3B2A28] font-semibold mb-1">
+                  Special Preferences or Notes (Optional)
+                </label>
                 <textarea
                   value={specialRequests}
                   onChange={(e) => setSpecialRequests(e.target.value)}
                   rows={2}
-                  className="w-full p-2.5 bg-white border border-[#C6A667]/40 rounded-sm text-sm text-[#302725]"
-                  placeholder="e.g. Chilled champagne, botanical sweet tea, quiet suite, sensitive scalp..."
+                  className="w-full p-2.5 bg-white border border-[#C6A667]/40 rounded-sm text-sm text-[#3B2A28] focus:outline-none focus:border-[#8E4B63] resize-none"
+                  placeholder="e.g. Lash map preference, sensitive skin notes..."
                 />
               </div>
             </div>
           )}
 
-          {/* STEP 7: PAYMENT, GRATUITY & SUMMARY */}
-          {step === 7 && (
-            <div className="space-y-6">
-              
-              {/* Order Breakdown Box */}
-              <div className="bg-white p-5 border border-[#C6A667]/30 rounded-sm space-y-3">
-                <div className="font-serif text-base text-[#302725] font-semibold border-b border-[#302725]/10 pb-2">
-                  Reservation Summary
+          {/* STEP 6: REVIEW APPOINTMENT REQUEST (NO PRICING) */}
+          {step === 6 && (
+            <div className="space-y-5">
+              <div className="bg-white p-5 border border-[#C6A667]/30 rounded-sm space-y-3 shadow-xs">
+                <div className="font-serif text-lg text-[#3B2A28] font-semibold border-b border-[#3B2A28]/10 pb-2">
+                  Review Appointment Request
                 </div>
-                <div className="text-xs space-y-1.5 text-[#302725]">
-                  <div className="flex justify-between">
+
+                <div className="text-xs space-y-2 text-[#3B2A28]">
+                  <div className="flex justify-between py-1 border-b border-[#3B2A28]/5">
                     <span className="text-[#A98F86]">Location:</span>
-                    <span className="font-medium text-[#3B2A28]">{currentBranch.name} ({currentBranch.city}, NC)</span>
+                    <span className="font-semibold text-[#3B2A28]">{currentBranch.name}</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between py-1 border-b border-[#3B2A28]/5">
+                    <span className="text-[#A98F86]">Address:</span>
+                    <span className="text-[#3B2A28]">{currentBranch.address}</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-[#3B2A28]/5">
                     <span className="text-[#A98F86]">Service:</span>
-                    <span className="font-medium text-[#3B2A28]">{currentService.name} (${basePrice})</span>
+                    <span className="font-semibold text-[#8E4B63]">{currentService.name}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#A98F86]">Schedule:</span>
-                    <span className="font-medium text-[#3B2A28]">{appointmentDate} at {appointmentTime}</span>
+                  <div className="flex justify-between py-1 border-b border-[#3B2A28]/5">
+                    <span className="text-[#A98F86]">Duration:</span>
+                    <span className="text-[#3B2A28]">{currentService.durationMinutes} minutes</span>
                   </div>
-                  {selectedAddOns.length > 0 && (
-                    <div className="flex justify-between">
-                      <span className="text-[#A98F86]">Add-ons ({selectedAddOns.length}):</span>
-                      <span className="font-medium text-[#3B2A28]">+${addOnsTotal}</span>
-                    </div>
-                  )}
-                  <div className="flex justify-between text-[#A98F86]">
-                    <span>NC Sales &amp; Local Tax (est. 7.25%):</span>
-                    <span>${ncEstimatedTaxUSD.toFixed(2)}</span>
+                  <div className="flex justify-between py-1 border-b border-[#3B2A28]/5">
+                    <span className="text-[#A98F86]">Specialist:</span>
+                    <span className="text-[#3B2A28]">
+                      {selectedSpecialistId === 'any' ? 'First Available Specialist' : branchSpecialists.find(s => s.id === selectedSpecialistId)?.name}
+                    </span>
                   </div>
-                  <div className="flex justify-between text-[#A98F86]">
-                    <span>Artisan Gratuity ({tipPercentage}%):</span>
-                    <span>${calculatedTipUSD.toFixed(2)}</span>
+                  <div className="flex justify-between py-1 border-b border-[#3B2A28]/5">
+                    <span className="text-[#A98F86]">Scheduled Date &amp; Time:</span>
+                    <span className="font-semibold text-[#3B2A28]">{appointmentDate} at {appointmentTime}</span>
                   </div>
-                  <div className="flex justify-between pt-2 border-t border-[#3B2A28]/10 font-serif text-base font-bold text-[#3B2A28]">
-                    <span>Total Service Value:</span>
-                    <span>${totalPriceUSD.toFixed(2)} USD</span>
+                  <div className="flex justify-between py-1 border-b border-[#3B2A28]/5">
+                    <span className="text-[#A98F86]">Guest Name:</span>
+                    <span className="text-[#3B2A28]">{clientName || 'Not specified'}</span>
                   </div>
-                  <div className="flex justify-between text-xs text-[#C6A667] font-semibold">
-                    <span>30% Deposit to Secure Suite:</span>
-                    <span>${depositRequiredUSD} USD</span>
+                  <div className="flex justify-between py-1 border-b border-[#3B2A28]/5">
+                    <span className="text-[#A98F86]">Contact Phone:</span>
+                    <span className="text-[#3B2A28]">{clientPhone || 'Not specified'}</span>
+                  </div>
+                  <div className="flex justify-between py-1">
+                    <span className="text-[#A98F86]">Contact Email:</span>
+                    <span className="text-[#3B2A28]">{clientEmail || 'Not specified'}</span>
                   </div>
                 </div>
               </div>
 
-              {/* Tip Selection Strip */}
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-[#A48D84] font-semibold mb-2">
-                  Select Artisan Gratuity
-                </label>
-                <div className="grid grid-cols-4 gap-2">
-                  {[18, 20, 25, 0].map(tip => (
-                    <button
-                      key={tip}
-                      onClick={() => setTipPercentage(tip)}
-                      className={`py-2 text-xs font-semibold rounded-sm border ${
-                        tipPercentage === tip
-                          ? 'bg-[#302725] text-white border-[#302725]'
-                          : 'bg-white text-[#302725] border-[#C6A667]/30'
-                      }`}
-                    >
-                      {tip === 0 ? 'Custom/Later' : `${tip}%`}
-                    </button>
-                  ))}
+              {/* 24-Hour Policy Notice */}
+              <div className="p-3.5 bg-[#FFF9F4] border border-[#C6A667]/30 rounded-xs text-xs text-[#3B2A28]/85 space-y-1">
+                <div className="flex items-center gap-1.5 font-semibold text-[#8E4B63]">
+                  <ShieldCheck className="w-4 h-4 text-[#C6A667]" />
+                  <span>24-Hour Cancellation Policy</span>
                 </div>
+                <p className="text-[11px] text-[#A98F86] leading-relaxed">
+                  Appointments must be cancelled or rescheduled at least 24 hours prior to the reserved time slot.
+                </p>
               </div>
-
-              {/* Payment Method Selector */}
-              <div className="space-y-2">
-                <div className="text-xs uppercase tracking-wider text-[#A48D84] font-semibold">
-                  Select Deposit Payment Method
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                  <button
-                    onClick={() => setPaymentOption('apple_pay')}
-                    className={`p-3 text-center border rounded-sm transition-all ${
-                      paymentOption === 'apple_pay'
-                        ? 'border-black bg-stone-100 ring-1 ring-black'
-                        : 'border-[#C6A667]/30 bg-white'
-                    }`}
-                  >
-                    <div className="font-bold text-xs text-black"> Apple Pay</div>
-                    <div className="text-[10px] text-[#A48D84]">One-touch checkout</div>
-                  </button>
-
-                  <button
-                    onClick={() => setPaymentOption('card')}
-                    className={`p-3 text-center border rounded-sm transition-all ${
-                      paymentOption === 'card'
-                        ? 'border-[#302725] bg-stone-100 ring-1 ring-[#302725]'
-                        : 'border-[#C6A667]/30 bg-white'
-                    }`}
-                  >
-                    <div className="font-bold text-xs text-[#302725]">Credit / Debit</div>
-                    <div className="text-[10px] text-[#A48D84]">Visa · MC · Amex</div>
-                  </button>
-
-                  <button
-                    onClick={() => setPaymentOption('google_pay')}
-                    className={`p-3 text-center border rounded-sm transition-all ${
-                      paymentOption === 'google_pay'
-                        ? 'border-blue-600 bg-blue-50/50 ring-1 ring-blue-600'
-                        : 'border-[#C6A667]/30 bg-white'
-                    }`}
-                  >
-                    <div className="font-bold text-xs text-blue-600">G Pay</div>
-                    <div className="text-[10px] text-[#A48D84]">Google Wallet</div>
-                  </button>
-
-                  <button
-                    onClick={() => setPaymentOption('salon_counter')}
-                    className={`p-3 text-center border rounded-sm transition-all ${
-                      paymentOption === 'salon_counter'
-                        ? 'border-[#C6A667] bg-[#FAF8F5] ring-1 ring-[#C6A667]'
-                        : 'border-[#C6A667]/30 bg-white'
-                    }`}
-                  >
-                    <div className="font-bold text-xs text-[#C6A667]">In-Salon</div>
-                    <div className="text-[10px] text-[#A48D84]">Pay upon arrival</div>
-                  </button>
-                </div>
-              </div>
-
-              <div className="text-[11px] text-[#A48D84] flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#C6A667]" />
-                <span>Complimentary cancellation or rescheduling permitted up to 24 hours prior. Tokenized Stripe encryption.</span>
-              </div>
-
             </div>
           )}
 
-          {/* STEP 8: CONFIRMATION CELEBRATION */}
-          {step === 8 && confirmedBooking && (
+          {/* STEP 7: APPOINTMENT CONFIRMATION */}
+          {step === 7 && confirmedBooking && (
             <div className="text-center py-6 space-y-6 animate-in zoom-in-95 duration-300">
-              <div className="w-16 h-16 bg-[#C6A667] text-white rounded-full flex items-center justify-center mx-auto shadow-lg">
+              <div className="w-16 h-16 bg-[#8E4B63] text-white rounded-full flex items-center justify-center mx-auto shadow-lg">
                 <Check className="w-8 h-8 stroke-[3]" />
               </div>
 
               <div className="space-y-2">
                 <span className="text-xs uppercase tracking-[0.25em] text-[#C6A667] font-semibold">
-                  Reservation Secured
+                  Appointment Request Received
                 </span>
-                <h3 className="font-serif text-3xl text-[#302725] font-semibold">
+                <h3 className="font-serif text-3xl text-[#3B2A28] font-semibold">
                   We look forward to welcoming you.
                 </h3>
-                <p className="text-xs text-[#A48D84] max-w-md mx-auto">
-                  A calendar invitation, digital suite pass, and directions have been dispatched to {confirmedBooking.clientEmail}.
+                <p className="text-xs text-[#A98F86] max-w-md mx-auto">
+                  Your appointment request has been registered in our system. A confirmation has been prepared for {confirmedBooking.clientEmail}.
                 </p>
               </div>
 
-              {/* Digital Pass / Reference Card */}
-              <div className="max-w-md mx-auto bg-white border border-[#C6A667]/40 p-6 rounded-sm text-left shadow-md space-y-3 font-mono text-xs">
-                <div className="flex justify-between border-b border-[#302725]/10 pb-2">
-                  <span className="text-[#A48D84]">REFERENCE CODE:</span>
-                  <span className="font-bold text-[#C6A667] text-sm">{confirmedBooking.referenceCode}</span>
+              {/* Confirmation Details Card */}
+              <div className="bg-white p-5 border border-[#C6A667]/40 rounded-sm text-left max-w-md mx-auto text-xs space-y-2.5">
+                <div className="flex justify-between border-b border-[#3B2A28]/10 pb-2">
+                  <span className="text-[#A98F86]">Reference Code:</span>
+                  <span className="font-mono font-bold text-[#8E4B63]">{confirmedBooking.referenceCode}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#A48D84]">LOCATION:</span>
-                  <span className="text-[#302725]">{confirmedBooking.branchName}</span>
+                  <span className="text-[#A98F86]">Location:</span>
+                  <span className="font-semibold text-[#3B2A28]">{confirmedBooking.branchName}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#A48D84]">SERVICE:</span>
-                  <span className="text-[#302725]">{confirmedBooking.serviceName}</span>
+                  <span className="text-[#A98F86]">Service:</span>
+                  <span className="font-semibold text-[#3B2A28]">{confirmedBooking.serviceName}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#A48D84]">SCHEDULE:</span>
-                  <span className="text-[#302725]">{confirmedBooking.date} · {confirmedBooking.timeSlot}</span>
+                  <span className="text-[#A98F86]">Scheduled Time:</span>
+                  <span className="text-[#3B2A28]">{confirmedBooking.date} at {confirmedBooking.timeSlot}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#A48D84]">GUEST:</span>
-                  <span className="text-[#302725]">{confirmedBooking.clientName}</span>
-                </div>
-                <div className="flex justify-between pt-2 border-t border-[#302725]/10 text-sm font-bold">
-                  <span>TOTAL PAID/AUTHORIZED:</span>
-                  <span>${confirmedBooking.totalPriceUSD.toFixed(2)} USD</span>
+                  <span className="text-[#A98F86]">Guest:</span>
+                  <span className="text-[#3B2A28]">{confirmedBooking.clientName}</span>
                 </div>
               </div>
 
-              <div className="pt-2 flex justify-center gap-3">
-                <button
-                  onClick={closeBookingModal}
-                  className="px-6 py-2.5 bg-[#302725] text-white text-xs uppercase tracking-wider font-medium hover:bg-[#C6A667] transition-colors"
-                >
-                  Return to Salon Platform
-                </button>
-              </div>
+              <button
+                onClick={closeBookingModal}
+                className="px-8 py-3 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.2em] font-semibold rounded-xs shadow-md transition-colors"
+              >
+                Close &amp; Return to Website
+              </button>
             </div>
           )}
 
         </div>
 
-        {/* Modal Bottom Actions Footer */}
-        {step < 8 && (
-          <div className="bg-[#FAF8F5] border-t border-[#C6A667]/20 px-6 py-4 flex items-center justify-between">
+        {/* Modal Bottom Action Controls (Steps 1 to 6) */}
+        {step <= 6 && (
+          <div className="bg-white px-6 py-4 border-t border-[#C6A667]/30 flex items-center justify-between">
             {step > 1 ? (
               <button
-                onClick={() => setStep(s => s - 1)}
-                className="px-4 py-2 border border-[#C6A667]/40 text-[#302725] hover:bg-white text-xs uppercase tracking-wider font-medium flex items-center gap-1.5 transition-colors"
+                onClick={() => setStep(prev => prev - 1)}
+                className="px-4 py-2 border border-[#C6A667]/30 hover:border-[#3B2A28] text-xs font-semibold text-[#3B2A28] rounded-xs flex items-center gap-1.5 transition-colors"
               >
-                <ChevronLeft className="w-3.5 h-3.5" />
+                <ChevronLeft className="w-4 h-4" />
                 <span>Back</span>
               </button>
-            ) : <div />}
+            ) : (
+              <div />
+            )}
 
-            {step < 7 ? (
+            {step < 6 ? (
               <button
-                onClick={() => setStep(s => s + 1)}
-                className="px-6 py-2.5 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.15em] font-semibold flex items-center gap-1.5 transition-colors shadow-xs rounded-xs"
+                onClick={() => setStep(prev => prev + 1)}
+                className="px-6 py-2.5 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.18em] font-semibold rounded-xs flex items-center gap-1.5 shadow-sm transition-colors"
               >
                 <span>Continue</span>
-                <ChevronRight className="w-3.5 h-3.5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             ) : (
               <button
                 onClick={handleConfirmReservation}
                 disabled={isSubmitting}
-                className="px-8 py-3 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.2em] font-bold flex items-center gap-2 transition-all shadow-md disabled:opacity-50 rounded-xs border border-[#C6A667]/40"
+                className="px-7 py-3 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.2em] font-semibold rounded-xs flex items-center gap-2 shadow-md transition-all border border-[#C6A667]/40 disabled:opacity-50"
               >
                 {isSubmitting ? (
-                  <span>Securing Private Suite...</span>
+                  <span>Submitting Request...</span>
                 ) : (
                   <>
-                    <ShieldCheck className="w-4 h-4 text-[#C6A667]" />
-                    <span>Authorize &amp; Secure Reservation</span>
+                    <Check className="w-4 h-4 text-[#C6A667]" />
+                    <span>Submit Booking Request</span>
                   </>
                 )}
               </button>
