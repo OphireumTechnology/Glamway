@@ -48,28 +48,28 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-[#FFF9F4]/95 backdrop-blur-md border-b border-[#C6A667]/25 transition-all shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 sm:h-22 flex items-center justify-between gap-4 lg:gap-6">
+      <header className="sticky top-0 z-40 bg-[#FFF9F4]/98 backdrop-blur-md border-b border-[#C6A667]/25 transition-all shadow-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] sm:h-[80px] lg:h-[92px] flex items-center justify-between gap-6 lg:gap-8">
           
-          {/* Official Glamway Logo (~110-140px on desktop, ~85-105px on mobile) */}
+          {/* Zone 1 (Left): Official Glamway Logo (Display height: 64-72px desktop, 56-64px tablet, 48-56px mobile) */}
           <button 
             onClick={() => handleNavClick('home')}
-            className="flex items-center shrink-0 hover:opacity-95 transition-opacity text-left focus:outline-none py-1"
+            className="flex items-center shrink-0 hover:opacity-95 transition-opacity text-left focus:outline-none py-1 focus-visible:ring-2 focus-visible:ring-[#8E4B63]/50 rounded-xs"
             aria-label="The Glamway - Home"
           >
-            <GlamwayLogo size="md" priority />
+            <GlamwayLogo size="header" priority />
           </button>
 
-          {/* Center Navigation Bar */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-xs uppercase tracking-[0.16em] font-medium text-[#3B2A28]/90">
+          {/* Zone 2 (Center): Main Navigation (Home | About Us | Services | Locations | Beauty Training | Contact) */}
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-[12.5px] uppercase tracking-[0.08em] font-medium text-[#3B2A28]">
             {navLinks.map((link) => (
               <button
                 key={link.label}
                 onClick={() => handleNavClick(link.view)}
-                className={`hover:text-[#8E4B63] transition-colors py-1 border-b-2 whitespace-nowrap shrink-0 ${
+                className={`transition-colors py-1.5 border-b-2 whitespace-nowrap shrink-0 hover:text-[#8E4B63] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#8E4B63] ${
                   currentView === link.view 
-                    ? 'border-[#8E4B63] text-[#8E4B63] font-bold' 
-                    : 'border-transparent'
+                    ? 'border-[#8E4B63] text-[#8E4B63] font-semibold' 
+                    : 'border-transparent text-[#3B2A28]/85 hover:border-[#C6A667]/40'
                 }`}
               >
                 {link.label}
@@ -77,17 +77,17 @@ export const Header: React.FC = () => {
             ))}
           </nav>
 
-          {/* Right zone: Account, Cart, Book Appointment Button */}
-          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+          {/* Zone 3 (Right): Account Icon and Book Appointment Button */}
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
             
             {/* Account Icon with Clean Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setAccountDropdownOpen(!accountDropdownOpen)}
                 aria-label="Guest and staff account"
-                className="p-2 text-[#3B2A28] hover:text-[#8E4B63] transition-colors rounded-full hover:bg-black/5"
+                className="w-10 h-10 flex items-center justify-center text-[#3B2A28] hover:text-[#8E4B63] transition-colors rounded-full hover:bg-black/5 focus-visible:ring-2 focus-visible:ring-[#8E4B63]/40"
               >
-                <User className="w-5 h-5 stroke-[1.6]" />
+                <User className="w-5 h-5 stroke-[1.7]" />
               </button>
 
               {accountDropdownOpen && (
@@ -139,7 +139,7 @@ export const Header: React.FC = () => {
             {/* Book Appointment CTA Button */}
             <button
               onClick={() => openBookingModal()}
-              className="hidden sm:flex items-center px-4.5 py-2.5 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 shadow-sm whitespace-nowrap shrink-0 border border-[#C6A667]/40 rounded-xs"
+              className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.16em] font-semibold transition-all duration-200 shadow-2xs whitespace-nowrap shrink-0 border border-[#C6A667]/40 rounded-xs hover:shadow-xs active:scale-[0.98]"
             >
               Book Appointment
             </button>
@@ -147,7 +147,7 @@ export const Header: React.FC = () => {
             {/* Mobile Menu Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-[#3B2A28]"
+              className="lg:hidden w-11 h-11 flex items-center justify-center text-[#3B2A28] hover:text-[#8E4B63] transition-colors rounded-xs focus-visible:ring-2 focus-visible:ring-[#8E4B63]"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -158,7 +158,7 @@ export const Header: React.FC = () => {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-[#C6A667]/25 bg-[#FFF9F4] px-6 py-6 space-y-4 animate-in fade-in duration-200">
+          <div className="lg:hidden border-t border-[#C6A667]/25 bg-[#FFF9F4] px-6 py-6 space-y-4 animate-in fade-in duration-200 shadow-md">
             <div className="flex justify-center pb-2">
               <GlamwayLogo size="sm" priority />
             </div>

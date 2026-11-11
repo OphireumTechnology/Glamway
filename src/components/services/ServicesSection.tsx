@@ -208,35 +208,31 @@ export const ServicesSection: React.FC = () => {
                     className="group bg-white border border-[#C6A667]/30 rounded-xs overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:border-[#8E4B63]/60 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none relative"
                   >
                     
-                    {/* Large Premium Service Photograph */}
-                    <div className="relative aspect-[16/10] overflow-hidden bg-[#FAF8F5]">
-                      {service.category === 'lashes' || service.category === 'additional-lashes' ? (
-                        <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#FFF9F4] via-[#F5D6DE]/60 to-[#D9B6A9]/50 text-[#8E4B63] gap-4" role="img" aria-label={`${service.name}: professional eyelash treatment`}>
-                          <Eye className="w-16 h-16 text-[#C6A667]" strokeWidth={1} aria-hidden="true" />
-                          <span className="font-serif text-xl text-center px-5">{service.name}</span>
-                          <span className="text-xs uppercase tracking-widest">Professional Lash Artistry</span>
-                        </div>
-                      ) : (
-                        <img
-                          src={service.image}
-                          alt={`Illustrative image for ${service.name}`}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 motion-reduce:group-hover:scale-100"
-                          loading="lazy"
-                          onError={(event) => { event.currentTarget.style.display = 'none'; }}
-                        />
-                      )}
+                    {/* Large Premium Service Photograph (4:3 Aspect Ratio) */}
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#FAF8F5]">
+                      <img
+                        src={service.image}
+                        alt={`The Glamway — ${service.name} in Charlotte, NC`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 motion-reduce:group-hover:scale-100"
+                        loading="lazy"
+                        decoding="async"
+                        onError={(event) => {
+                          // Resilient fallback to styled gradient
+                          event.currentTarget.classList.add('hidden');
+                        }}
+                      />
                       
                       {/* Gradient Ambient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#3B2A28]/70 via-transparent to-transparent opacity-45 group-hover:opacity-30 transition-opacity" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#3B2A28]/75 via-transparent to-transparent opacity-40 group-hover:opacity-25 transition-opacity pointer-events-none" />
 
-                      {/* Duration Badge with Clock */}
+                      {/* Duration Indicator with Clock */}
                       <div className="absolute top-3.5 right-3.5 bg-black/75 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full border border-white/20 flex items-center gap-1.5 font-medium shadow-sm">
                         <Clock className="w-3.5 h-3.5 text-[#C6A667]" />
-                        <span>{service.durationMinutes} minutes</span>
+                        <span>{service.durationMinutes} min</span>
                       </div>
 
-                      {/* Category Label Pill */}
-                      <div className="absolute top-3.5 left-3.5 bg-white/95 backdrop-blur-md text-[#8E4B63] text-xs uppercase tracking-wider px-3 py-1 rounded-full border border-[#C6A667]/35 font-semibold shadow-sm">
+                      {/* Category Label */}
+                      <div className="absolute top-3.5 left-3.5 bg-white/95 backdrop-blur-md text-[#8E4B63] text-[11px] uppercase tracking-wider px-3 py-1 rounded-full border border-[#C6A667]/35 font-semibold shadow-sm">
                         {service.categoryLabel}
                       </div>
                     </div>

@@ -66,10 +66,10 @@ export const HeroSection: React.FC = () => {
             </p>
 
             {/* Primary Actions with Mauve Plum & Gold */}
-            <div className="flex flex-wrap items-center gap-4 pt-1">
+            <div className="flex flex-wrap items-center gap-3.5 pt-1">
               <button
                 onClick={() => openBookingModal()}
-                className="px-7 py-3.5 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-md flex items-center gap-2 rounded-xs border border-[#C6A667]/40 hover:shadow-lg hover:-translate-y-0.5"
+                className="px-7 py-3.5 bg-[#8E4B63] hover:bg-[#70374C] text-white text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-200 shadow-sm flex items-center justify-center gap-2 rounded-xs border border-[#C6A667]/40 active:scale-[0.98]"
               >
                 <Calendar className="w-4 h-4 text-[#C6A667]" />
                 <span>Book an Appointment</span>
@@ -77,7 +77,7 @@ export const HeroSection: React.FC = () => {
 
               <button
                 onClick={() => setCurrentView('services')}
-                className="px-6 py-3.5 bg-white/90 border border-[#C6A667]/50 text-[#3B2A28] hover:border-[#8E4B63] hover:text-[#8E4B63] text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 flex items-center gap-2 rounded-xs shadow-xs hover:shadow-md hover:-translate-y-0.5"
+                className="px-7 py-3.5 bg-white border border-[#C6A667]/50 text-[#3B2A28] hover:border-[#8E4B63] hover:text-[#8E4B63] text-xs uppercase tracking-[0.18em] font-medium transition-all duration-200 flex items-center justify-center gap-2 rounded-xs shadow-xs active:scale-[0.98]"
               >
                 <span>Explore Services</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#C6A667]" />
@@ -85,10 +85,10 @@ export const HeroSection: React.FC = () => {
 
               <button
                 onClick={() => setCurrentView('branches')}
-                className="px-4 py-3.5 text-[#3B2A28]/80 hover:text-[#8E4B63] text-xs uppercase tracking-[0.16em] font-medium transition-colors flex items-center gap-1.5"
+                className="px-3 py-3.5 text-[#3B2A28]/80 hover:text-[#8E4B63] text-xs uppercase tracking-[0.14em] font-medium transition-colors flex items-center gap-1.5"
               >
                 <MapPin className="w-3.5 h-3.5 text-[#C6A667]" />
-                <span>Charlotte Locations</span>
+                <span>Locations</span>
               </button>
             </div>
 
@@ -139,110 +139,28 @@ export const HeroSection: React.FC = () => {
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
-              {/* Flowing Champagne-Gold SVG Ribbons & Light Trails */}
-              <svg 
-                className="absolute -top-12 -left-12 w-[130%] h-[125%] pointer-events-none z-0 overflow-visible"
-                viewBox="0 0 500 600"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <linearGradient id="goldLightGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#C6A667" stopOpacity="0.1" />
-                    <stop offset="50%" stopColor="#E9D5B1" stopOpacity="0.85" />
-                    <stop offset="100%" stopColor="#C6A667" stopOpacity="0.2" />
-                  </linearGradient>
-                  <linearGradient id="goldLightGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#F5D6DE" stopOpacity="0.1" />
-                    <stop offset="50%" stopColor="#C6A667" stopOpacity="0.75" />
-                    <stop offset="100%" stopColor="#8E4B63" stopOpacity="0.3" />
-                  </linearGradient>
-                </defs>
-
-                {/* Flowing Ribbon Path 1 */}
-                <path
-                  d="M 20,150 C 90,80 180,220 280,110 C 370,10 440,160 490,260 C 530,350 460,490 390,540"
-                  stroke="url(#goldLightGradient1)"
-                  strokeWidth="2.5"
-                  className="animate-flow-ribbon"
-                />
-
-                {/* Flowing Ribbon Path 2 */}
-                <path
-                  d="M 40,480 C 110,540 220,430 310,490 C 400,560 460,440 480,340 C 500,240 430,90 350,60"
-                  stroke="url(#goldLightGradient2)"
-                  strokeWidth="1.8"
-                  className="animate-flow-ribbon"
-                  style={{ animationDelay: '-6s' }}
-                />
-              </svg>
-
               {/* Outer decorative gold hairline frame */}
-              <div className="absolute -inset-3.5 border border-[#C6A667]/45 rounded-t-[110px] rounded-b-lg pointer-events-none z-10" />
-              <div className="absolute -inset-1.5 border border-[#C6A667]/25 rounded-t-[105px] rounded-b-md pointer-events-none z-10" />
+              <div className="absolute -inset-3 border border-[#C6A667]/35 rounded-t-[105px] rounded-b-lg pointer-events-none z-10" />
 
-              {/* Arched image container with subtle mirror reflection */}
-              <div className="relative rounded-t-[100px] rounded-b-lg overflow-hidden shadow-2xl bg-[#D9B6A9]/20 aspect-[4/5] max-h-[580px] w-full z-10">
+              {/* Arched image container showcasing unobstructed luxury interior */}
+              <div className="relative rounded-t-[96px] rounded-b-lg overflow-hidden shadow-2xl bg-[#D9B6A9]/20 aspect-[4/5] max-h-[580px] w-full z-10 border border-[#C6A667]/30">
                 <img
                   src={HERO_IMAGE}
                   alt="The Glamway Beauty Salon Interior in Charlotte, NC"
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-102"
                   referrerPolicy="no-referrer"
+                  loading="eager"
+                  decoding="async"
                 />
 
-                {/* Gradient scrim */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#3B2A28]/85 via-[#3B2A28]/20 to-transparent" />
+                {/* Subtle bottom gradient scrim for gentle tone */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3B2A28]/40 via-transparent to-transparent pointer-events-none" />
 
-                {/* Subtle digital shimmer sweep */}
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer-sweep" />
+                {/* Quiet caption bar at the bottom */}
+                <div className="absolute bottom-4 left-4 right-4 py-2.5 px-4 bg-[#FFF9F4]/95 backdrop-blur-sm border border-[#C6A667]/40 rounded-xs shadow-sm flex items-center justify-between text-xs text-[#3B2A28]">
+                  <span className="font-serif font-medium">The Glamway · Charlotte, NC</span>
+                  <span className="text-[10px] uppercase tracking-wider text-[#8E4B63] font-semibold">Uptown &amp; Graham</span>
                 </div>
-
-                {/* Floating Official Brand Overlay Badge (Top Right) */}
-                <div className="absolute top-6 right-6 p-2.5 glass-panel rounded-xs shadow-xl max-w-[150px] z-20 border border-[#C6A667]/50">
-                  <GlamwayLogo
-                    size="sm"
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
-
-                {/* Floating Glass Label 1: Lashes (Top Left) */}
-                <div className="absolute top-16 left-6 glass-panel px-3.5 py-2 rounded-xs shadow-lg border border-[#C6A667]/40 z-20 animate-float-gentle hidden sm:flex items-center gap-2">
-                  <Eye className="w-3.5 h-3.5 text-[#8E4B63]" />
-                  <span className="text-xs uppercase tracking-[0.16em] font-bold text-[#3B2A28]">
-                    Lashes Studio
-                  </span>
-                </div>
-
-                {/* Floating Glass Label 2: Facials (Middle Right) */}
-                <div className="absolute top-1/2 -right-2 glass-panel px-3.5 py-2 rounded-xs shadow-lg border border-[#C6A667]/40 z-20 animate-float-subtle-rev hidden sm:flex items-center gap-2">
-                  <Droplets className="w-3.5 h-3.5 text-[#C6A667]" />
-                  <span className="text-xs uppercase tracking-[0.16em] font-bold text-[#3B2A28]">
-                    Facial Esthetics
-                  </span>
-                </div>
-
-                {/* Bottom floating card overlay */}
-                <div className="absolute bottom-6 left-6 right-6 p-4 glass-panel rounded-xs shadow-2xl z-20 border border-[#C6A667]/50">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-[10px] uppercase tracking-[0.22em] text-[#8E4B63] font-bold flex items-center gap-1.5">
-                        <Sparkles className="w-3 h-3 text-[#C6A667]" />
-                        <span>Charlotte Sanctuaries</span>
-                      </div>
-                      <div className="font-serif text-base text-[#3B2A28] font-semibold">
-                        The Glamway · Uptown &amp; Graham
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => openBookingModal()}
-                      className="px-4 py-2 bg-[#8E4B63] hover:bg-[#70374C] text-white text-[11px] font-semibold uppercase tracking-wider transition-colors rounded-xs shadow-xs border border-[#C6A667]/40"
-                    >
-                      Book Online
-                    </button>
-                  </div>
-                </div>
-
               </div>
 
             </div>

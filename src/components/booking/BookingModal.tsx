@@ -17,7 +17,8 @@ export const BookingModal: React.FC = () => {
     preselectedServiceId, 
     preselectedBranchId,
     createBooking,
-    currentUser
+    currentUser,
+    setCurrentView
   } = useSalon();
 
   // Booking Wizard Step: 1 to 6 (Review), 7 is Confirmed Result
@@ -157,9 +158,20 @@ export const BookingModal: React.FC = () => {
         <div className="p-6 sm:p-8 overflow-y-auto flex-1 space-y-6">
           
           {errorMessage && (
-            <div className="p-4 bg-red-50 border border-red-200 text-red-800 text-xs rounded-sm flex items-start gap-2.5">
-              <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-              <span>{errorMessage}</span>
+            <div className="p-4 bg-[#FFF9F4] border border-[#C6A667]/50 text-[#3B2A28] text-xs rounded-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+              <div className="flex items-start gap-2.5">
+                <AlertCircle className="w-4 h-4 text-[#8E4B63] shrink-0 mt-0.5" />
+                <span className="leading-relaxed">{errorMessage}</span>
+              </div>
+              <button
+                onClick={() => {
+                  closeBookingModal();
+                  setCurrentView('contact');
+                }}
+                className="px-4 py-2 bg-[#8E4B63] hover:bg-[#70374C] text-white text-[11px] font-semibold uppercase tracking-wider rounded-xs whitespace-nowrap self-start sm:self-auto transition-colors shadow-2xs"
+              >
+                Contact Salon
+              </button>
             </div>
           )}
 

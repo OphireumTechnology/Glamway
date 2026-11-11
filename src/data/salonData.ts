@@ -4,10 +4,10 @@ export const GLAMWAY_LOGO = `${import.meta.env.BASE_URL}branding/glamway-officia
 export const GLAMWAY_LOGO_WEBP = `${import.meta.env.BASE_URL}branding/glamway-official-logo.webp`;
 export const GLAMWAY_ICON = `${import.meta.env.BASE_URL}branding/glamway-icon.png`;
 export const GLAMWAY_SOCIAL_PREVIEW = `${import.meta.env.BASE_URL}branding/glamway-social-preview.png`;
-export const HERO_IMAGE = 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1800&q=85';
-export const HAIR_IMAGE = 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=85';
-export const FACIAL_IMAGE = 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85';
-export const NAILS_IMAGE = 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85';
+export const HERO_IMAGE = `${import.meta.env.BASE_URL}assets/services/hero-salon-interior.webp`;
+export const HAIR_IMAGE = `${import.meta.env.BASE_URL}assets/services/hair-styling.webp`;
+export const FACIAL_IMAGE = `${import.meta.env.BASE_URL}assets/services/skincare-facial.webp`;
+export const NAILS_IMAGE = `${import.meta.env.BASE_URL}assets/services/nail-couture.webp`;
 
 export const FOUNDER_PORTRAIT = `${import.meta.env.BASE_URL}assets/summer-davis-founder-ceo.webp`;
 
@@ -44,7 +44,7 @@ export const SALON_BRANCHES: SalonBranch[] = [
     treatmentRooms: 6,
     staffCount: 8,
     coordinates: { lat: 35.2238, lng: -80.8396 },
-    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/hero-salon-interior.webp`,
     googleMapQuery: '428 E Fourth St, Charlotte, NC 28202',
     locationNote: 'Located in Uptown Charlotte. Appointments must be reserved online in advance.',
     licenseNumber: 'NC-ESTH-CLT-01'
@@ -69,7 +69,7 @@ export const SALON_BRANCHES: SalonBranch[] = [
     treatmentRooms: 6,
     staffCount: 6,
     coordinates: { lat: 35.2483, lng: -80.8329 },
-    image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/hero-salon-interior.webp`,
     googleMapQuery: '2506 Lucena St, Charlotte, NC 28206',
     locationNote: 'Charlotte location serving beauty services, training sessions, and supply order pickup.',
     licenseNumber: 'NC-ESTH-CLT-02'
@@ -87,7 +87,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Customized classic, hybrid, or volume full extension set',
     description: 'Complete eyelash extension set customized to your eye shape and natural lashes.',
     durationMinutes: 120,
-    image: 'https://images.unsplash.com/photo-1583001809873-a128495da465?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/lash-full-set.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
   },
@@ -99,7 +99,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: '2 to 3 week maintenance to replenish growth and preserve fullness',
     description: 'Maintenance appointment to remove outgrown extensions and replenish lashes.',
     durationMinutes: 75,
-    image: 'https://images.unsplash.com/photo-1597225244660-1cd128c64284?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/lash-fill-in.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
   },
@@ -111,7 +111,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Upper and lower lash application for balanced glamour',
     description: 'Comprehensive lash extension appointment covering upper and lower lash lines.',
     durationMinutes: 135,
-    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/top-bottom-lashes.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
   },
@@ -123,7 +123,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Gentle adhesive removal and natural lash conditioning',
     description: 'Safe removal of lash extensions with professional cream cleanser.',
     durationMinutes: 30,
-    image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/lash-fill-in.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
   },
@@ -137,7 +137,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Professional lash removal followed by a fresh full set',
     description: 'Removal of existing lash extensions followed by application of a full set.',
     durationMinutes: 120,
-    image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/lash-full-set.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
   },
@@ -149,7 +149,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Routine eyelash extension refill and maintenance',
     description: 'Standard maintenance appointment to replace outgrown extensions and maintain fullness.',
     durationMinutes: 60,
-    image: 'https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/lash-fill-in.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
   },
@@ -161,7 +161,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Full upper and lower lash line extension artistry',
     description: 'Full set application covering both upper and lower lash lines.',
     durationMinutes: 100,
-    image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/top-bottom-lashes.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
   },
@@ -173,7 +173,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Maintenance refill for upper and lower lash sets',
     description: 'Maintenance refill for both upper and lower lash extensions.',
     durationMinutes: 75,
-    image: 'https://images.unsplash.com/photo-1500840216050-6ffa99d75160?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/top-bottom-lashes.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
   },
@@ -185,7 +185,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Tailored full eyelash extension application',
     description: 'Full set of eyelash extensions individually applied for enhanced length and volume.',
     durationMinutes: 90,
-    image: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/lash-full-set.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
   },
@@ -197,7 +197,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Rapid one-week lash touch-up to maintain perfection',
     description: 'Lash extension touch-up scheduled within 7 days of a previous appointment.',
     durationMinutes: 45,
-    image: 'https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/lash-fill-in.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
   },
@@ -211,7 +211,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Precision waxing performed in private treatment suites',
     description: 'Professional Brazilian waxing treatment performed in a private suite.',
     durationMinutes: 30,
-    image: 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/brazilian-wax.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
   },
@@ -225,7 +225,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Private on-location beauty appointment scheduled in advance',
     description: 'Private on-location beauty appointment scheduled in advance.',
     durationMinutes: 150,
-    image: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/house-calls.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
   },
@@ -239,7 +239,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Professional hair installation, sew-ins, and precision styling',
     description: 'Professional hair extension installation and styling tailored to your natural hair.',
     durationMinutes: 150,
-    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/hair-styling.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
   },
@@ -251,7 +251,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Deep conditioning treatment and thermal silk press',
     description: 'Deep conditioning treatment and thermal silk press.',
     durationMinutes: 90,
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/hair-styling.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
   },
@@ -263,7 +263,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Precision hair trim and shaping',
     description: 'Precision hair trim and shaping.',
     durationMinutes: 60,
-    image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/hair-styling.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
   },
@@ -277,7 +277,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Cuticle care, apex reinforcement, and gel polish',
     description: 'Cuticle care, apex reinforcement, and long-lasting gel polish.',
     durationMinutes: 75,
-    image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/nail-couture.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
   },
@@ -289,7 +289,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Nail extensions with custom shape, length, and design',
     description: 'Full set of nail enhancements with custom shaping and design.',
     durationMinutes: 90,
-    image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/nail-couture.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
   },
@@ -303,7 +303,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Personalized skin evaluation, cleansing, and hydration',
     description: 'Personalized facial treatment with cleansing, exfoliation, and hydration.',
     durationMinutes: 60,
-    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/skincare-facial.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: true
   },
@@ -315,7 +315,7 @@ export const SALON_SERVICES: ServiceItem[] = [
     tagline: 'Hydrating mini-facial combined with precision brow waxing',
     description: 'Skin-refreshing facial treatment paired with precision brow detailing.',
     durationMinutes: 45,
-    image: 'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=1200&q=85',
+    image: `${import.meta.env.BASE_URL}assets/services/skincare-facial.webp`,
     eligibleBranches: ['branch-clt-uptown', 'branch-clt-graham'],
     isFeatured: false
   }

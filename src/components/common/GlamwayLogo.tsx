@@ -3,7 +3,7 @@ import React from 'react';
 export interface GlamwayLogoProps {
   className?: string;
   variant?: 'light' | 'dark' | 'auto';
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'custom';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'header' | 'custom';
   alt?: string;
   priority?: boolean;
 }
@@ -14,7 +14,10 @@ export interface GlamwayLogoProps {
  * Embeds the final, authoritative Glamway Beauty Salon metallic-gold logo with
  * crown, female profile, flowing hair, blush floral accent, and Charlotte, NC mark.
  * Respects Vite BASE_URL, supports light and dark background variants, and includes
- * responsive sizing presets.
+ * responsive sizing presets conforming to the official display targets:
+ * - Desktop: 64–72 px display height
+ * - Tablet: 56–64 px display height
+ * - Mobile: 48–56 px display height
  */
 export const GlamwayLogo: React.FC<GlamwayLogoProps> = ({
   className = '',
@@ -26,27 +29,27 @@ export const GlamwayLogo: React.FC<GlamwayLogoProps> = ({
   const logoPngUrl = `${import.meta.env.BASE_URL}branding/glamway-official-logo.png`;
   const logoWebpUrl = `${import.meta.env.BASE_URL}branding/glamway-official-logo.webp`;
 
-  // Sizing presets strictly conforming to Section 6:
-  // Desktop header: ~110-140px
-  // Mobile header: ~85-105px
-  // Footer: ~180-240px
   let sizeClasses = '';
   switch (size) {
+    case 'header':
+      // Header target: Mobile 48-56px, Tablet 56-64px, Desktop 64-72px
+      sizeClasses = 'h-[50px] sm:h-[60px] lg:h-[68px] w-auto max-w-full';
+      break;
     case 'sm':
-      // Mobile header or compact interfaces (~85-105px)
-      sizeClasses = 'w-[88px] sm:w-[102px] max-w-full h-auto';
+      // Mobile header or compact interfaces (~48-54px height)
+      sizeClasses = 'h-[48px] sm:h-[54px] w-auto max-w-full';
       break;
     case 'md':
-      // Desktop header (~110-140px)
-      sizeClasses = 'w-[110px] sm:w-[125px] md:w-[136px] max-w-full h-auto';
+      // Standard responsive presentation (fits header targets)
+      sizeClasses = 'h-[52px] sm:h-[62px] lg:h-[70px] w-auto max-w-full';
       break;
     case 'lg':
-      // Footer & modal titles (~180-240px)
-      sizeClasses = 'w-[180px] sm:w-[210px] md:w-[230px] max-w-full h-auto';
+      // Footer & modal titles (~80-110px height)
+      sizeClasses = 'h-[80px] sm:h-[95px] lg:h-[110px] w-auto max-w-full';
       break;
     case 'xl':
-      // Showcase, About hero, splash branding (~280-340px)
-      sizeClasses = 'w-[260px] sm:w-[320px] max-w-full h-auto';
+      // Showcase, About hero, splash branding
+      sizeClasses = 'h-[120px] sm:h-[150px] lg:h-[180px] w-auto max-w-full';
       break;
     case 'custom':
     default:
