@@ -17,6 +17,8 @@ jobs:
           bun-version: latest
       - name: Install dependencies
         run: bun install --frozen-lockfile
+      - name: Verify public image assets
+        run: node scripts/verify-public-assets.mjs
       - name: TypeScript validation
         run: bun run lint
       - name: Production build
